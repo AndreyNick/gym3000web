@@ -10,6 +10,7 @@
     <version>${gym3000web.version}</version>
     <modules>
         <module>ui</module>
+        <module>core</module>
     </modules>
 
     <properties>

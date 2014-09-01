@@ -9,17 +9,12 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ui</artifactId>
     <packaging>war</packaging>
-    <name>gym3000web</name>
+    <name>gym3000web-ui</name>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
+
     <build>
-        <finalName>ui</finalName>
+        <finalName>gym3000-ui</finalName>
     </build>
 </project>
