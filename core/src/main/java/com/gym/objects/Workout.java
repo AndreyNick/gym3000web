@@ -7,16 +7,27 @@ import java.util.Collection;
  */
 public class Workout {
 
-    public Workout(String workoutName, String workoutDescription, Collection<Workout> resultsCollection) {
-        this.workoutName = workoutName;
-        this.workoutDescription = workoutDescription;
-        this.resultsCollection = resultsCollection;
-    }
     public Workout(){}
 
+    public Workout(boolean isWarmingWorkout, String workoutName, String workoutDescription, Collection<Set> setsCollection) {
+        this.isWarmingWorkout = isWarmingWorkout;
+        this.workoutName = workoutName;
+        this.workoutDescription = workoutDescription;
+        this.setsCollection = setsCollection;
+    }
+
+    boolean isWarmingWorkout;
     String workoutName;
     String workoutDescription;
-    Collection<Workout> resultsCollection;
+    Collection<Set> setsCollection;
+
+    public boolean isWarmingWorkout() {
+        return isWarmingWorkout;
+    }
+
+    public void setWarmingWorkout(boolean isWarmingWorkout) {
+        this.isWarmingWorkout = isWarmingWorkout;
+    }
 
     public String getWorkoutDescription() {
         return workoutDescription;
@@ -26,14 +37,13 @@ public class Workout {
         this.workoutDescription = workoutDescription;
     }
 
-    public Collection<Workout> getResultsCollection() {
-        return resultsCollection;
+    public Collection<Set> getSetsCollection() {
+        return setsCollection;
     }
 
-    public void setResultsCollection(Collection<Workout> resultsCollection) {
-        this.resultsCollection = resultsCollection;
+    public void setSetsCollection(Collection<Set> setsCollection) {
+        this.setsCollection = setsCollection;
     }
-
 
     public String getWorkoutName() {
         return workoutName;

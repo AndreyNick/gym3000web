@@ -5,15 +5,25 @@ package com.gym.objects;
  */
 public class Set {
 
-    public Set(int weight, int numberOfTimes) {
+    public Set() {}
+
+    public Set(boolean isWarmingSet, int weight, int numberOfTimes) {
+        this.isWarmingSet = isWarmingSet;
         this.weight = weight;
         this.numberOfTimes = numberOfTimes;
     }
 
-    public Set() {}
-
+    boolean isWarmingSet;
     int weight;
     int numberOfTimes;
+
+    public boolean isWarmingSet() {
+        return isWarmingSet;
+    }
+
+    public void setWarmingSet(boolean isWarmingSet) {
+        this.isWarmingSet = isWarmingSet;
+    }
 
     public int getNumberOfTimes() {
         return numberOfTimes;
