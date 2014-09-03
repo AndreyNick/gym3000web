@@ -16,7 +16,7 @@ public class Workout {
         this.setsCollection = setsCollection;
     }
 
-    boolean isWarmingWorkout;
+    boolean isWarmingWorkout; //TODO realise posibility of warming
     String workoutName;
     String workoutDescription;
     Collection<Set> setsCollection;

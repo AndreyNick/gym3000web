@@ -13,7 +13,7 @@ public class Set {
         this.numberOfTimes = numberOfTimes;
     }
 
-    boolean isWarmingSet;
+    boolean isWarmingSet; //TODO realise posibility of warming
     int weight;
     int numberOfTimes;
 
