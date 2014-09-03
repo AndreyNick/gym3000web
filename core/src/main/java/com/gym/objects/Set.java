@@ -3,14 +3,14 @@ package com.gym.objects;
 /**
  * Created by AndreyNick on 02.09.2014.
  */
-public class Result {
+public class Set {
 
-    public Result(int weight, int numberOfTimes) {
+    public Set(int weight, int numberOfTimes) {
         this.weight = weight;
         this.numberOfTimes = numberOfTimes;
     }
 
-    public Result() {}
+    public Set() {}
 
     int weight;
     int numberOfTimes;
