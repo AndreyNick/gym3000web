@@ -62,4 +62,24 @@ public class Program {
     public void setWorkoutList(List<Workout> workoutList) {
         this.workoutList = workoutList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Program program = (Program) o;
+
+        if (!description.equals(program.description)) return false;
+        if (!name.equals(program.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + description.hashCode();
+        return result;
+    }
 }

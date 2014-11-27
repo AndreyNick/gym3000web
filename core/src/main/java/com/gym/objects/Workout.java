@@ -85,4 +85,29 @@ public class Workout {
     public void setExerciseList(List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Workout workout = (Workout) o;
+
+        if (picture_id != workout.picture_id) return false;
+        if (!description.equals(workout.description)) return false;
+        if (!name.equals(workout.name)) return false;
+        if (!program.equals(workout.program)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = program.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + picture_id;
+        return result;
+    }
 }

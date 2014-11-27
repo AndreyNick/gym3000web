@@ -65,4 +65,26 @@ public class Attempt {
     public void setTimes(int times) {
         this.times = times;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Attempt attempt = (Attempt) o;
+
+        if (times != attempt.times) return false;
+        if (weight != attempt.weight) return false;
+        if (!exercise.equals(attempt.exercise)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = exercise.hashCode();
+        result = 31 * result + weight;
+        result = 31 * result + times;
+        return result;
+    }
 }

@@ -77,4 +77,26 @@ public class Exercise {
     public void setAttemptList(List<Attempt> attemptList) {
         this.attemptList = attemptList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Exercise exercise = (Exercise) o;
+
+        if (!date.equals(exercise.date)) return false;
+        if (!typeOfExercise.equals(exercise.typeOfExercise)) return false;
+        if (!workout.equals(exercise.workout)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = workout.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + typeOfExercise.hashCode();
+        return result;
+    }
 }
