@@ -1,5 +1,7 @@
 package com.gym.objects;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -11,19 +13,20 @@ import javax.persistence.*;
 public class Attempt {
 
     public Attempt(Exercise parentExercise, int weight, int times) {
-        this.parentExercise = parentExercise;
+        this.exercise = parentExercise;
         this.weight = weight;
         this.times = times;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     @Column(name = "attempt_id", unique = true, nullable = false)
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exercise_id", nullable = false)
-    private Exercise parentExercise;
+    private Exercise exercise;
 
     @Column(name = "weight", nullable = false)
     private int weight;
@@ -40,11 +43,11 @@ public class Attempt {
     }
 
     public Exercise getParentExercise() {
-        return parentExercise;
+        return exercise;
     }
 
     public void setParentExercise(Exercise parentExercise) {
-        this.parentExercise = parentExercise;
+        this.exercise = parentExercise;
     }
 
     public int getWeight() {

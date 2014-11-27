@@ -1,5 +1,7 @@
 package com.gym.objects;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -12,24 +14,25 @@ import java.util.List;
 public class Exercise {
 
     public Exercise(Workout parentWorkout, Date date, String typeOfExercise) {
-        this.parentWorkout = parentWorkout;
+        this.workout = parentWorkout;
         this.date = date;
         this.typeOfExercise = typeOfExercise;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "workout_id", unique = true, nullable = false)
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "exercise_id", unique = true, nullable = false)
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_id", nullable = false)
-    private Workout parentWorkout;
+    private Workout workout;
 
     @Column(name = "name", nullable = false)
     private Date date;                                                                 //TODO check type
 
-    @Column(name = "name")
+    @Column(name = "type_of_exercise")
     private String typeOfExercise;                                                    //   TODO check type
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
@@ -43,12 +46,12 @@ public class Exercise {
         this.id = id;
     }
 
-    public Workout getParentWorkout() {
-        return parentWorkout;
+    public Workout getWorkout() {
+        return workout;
     }
 
-    public void setParentWorkout(Workout parentWorkout) {
-        this.parentWorkout = parentWorkout;
+    public void setWorkout(Workout workout) {
+        this.workout = workout;
     }
 
     public Date getDate() {

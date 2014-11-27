@@ -28,4 +28,9 @@
         </property>
     </bean>
 
+    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Program"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 </beans>

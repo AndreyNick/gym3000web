@@ -1,7 +1,6 @@
 package com.gym.objects;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ import java.util.List;
 public class Workout {
 
     public Workout(Program parentProgram, String name, String description, int picture_id) {
-        this.parentProgram = parentProgram;
+        this.program = parentProgram;
         this.name = name;
         this.description = description;
         this.picture_id = picture_id;
@@ -25,7 +24,7 @@ public class Workout {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "program_id", nullable = false)
-    private Program parentProgram;
+    private Program program;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -33,7 +32,7 @@ public class Workout {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "name")
+    @Column(name = "picture_id")
     private int picture_id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "workout", cascade = CascadeType.ALL)
@@ -47,12 +46,12 @@ public class Workout {
         this.id = id;
     }
 
-    public Program getParentProgram() {
-        return parentProgram;
+    public Program getProgram() {
+        return program;
     }
 
-    public void setParentProgram(Program parentProgram) {
-        this.parentProgram = parentProgram;
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
     public String getName() {
