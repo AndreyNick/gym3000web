@@ -1,55 +1,89 @@
 package com.gym.objects;
 
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by AndreyNick on 02.09.2014.
  */
+@Entity
+@Table(name = "workout")
 public class Workout {
 
-    public Workout(){}
-
-    public Workout(boolean isWarmingWorkout, String workoutName, String workoutDescription, Collection<Set> setsCollection) {
-        this.isWarmingWorkout = isWarmingWorkout;
-        this.workoutName = workoutName;
-        this.workoutDescription = workoutDescription;
-        this.setsCollection = setsCollection;
+    public Workout(Program parentProgram, String name, String description, int picture_id) {
+        this.parentProgram = parentProgram;
+        this.name = name;
+        this.description = description;
+        this.picture_id = picture_id;
     }
 
-    boolean isWarmingWorkout; //TODO realise posibility of warming
-    String workoutName;
-    String workoutDescription;
-    Collection<Set> setsCollection;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "workout_id", unique = true, nullable = false)
+    private long id;
 
-    public boolean isWarmingWorkout() {
-        return isWarmingWorkout;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "program_id", nullable = false)
+    private Program parentProgram;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "name")
+    private int picture_id;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<Exercise> exerciseList;
+
+    public long getId() {
+        return id;
     }
 
-    public void setWarmingWorkout(boolean isWarmingWorkout) {
-        this.isWarmingWorkout = isWarmingWorkout;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getWorkoutDescription() {
-        return workoutDescription;
+    public Program getParentProgram() {
+        return parentProgram;
     }
 
-    public void setWorkoutDescription(String workoutDescription) {
-        this.workoutDescription = workoutDescription;
+    public void setParentProgram(Program parentProgram) {
+        this.parentProgram = parentProgram;
     }
 
-    public Collection<Set> getSetsCollection() {
-        return setsCollection;
+    public String getName() {
+        return name;
     }
 
-    public void setSetsCollection(Collection<Set> setsCollection) {
-        this.setsCollection = setsCollection;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getWorkoutName() {
-        return workoutName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setWorkoutName(String workoutName) {
-        this.workoutName = workoutName;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPicture_id() {
+        return picture_id;
+    }
+
+    public void setPicture_id(int picture_id) {
+        this.picture_id = picture_id;
+    }
+
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
+    }
+
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 }
