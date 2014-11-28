@@ -1,5 +1,6 @@
 package com.gym.objects;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
  */
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
-public abstract class CrudGenericTest<T> extends AbstractSpringTest {
+public abstract class CrudGenericTest<T, PK> extends AbstractSpringTest {
 
     public T getTestObject() {
         return testObject;
@@ -24,19 +25,37 @@ public abstract class CrudGenericTest<T> extends AbstractSpringTest {
     }
 
     protected T testObject;
+    private Long testId;
 
+  /*  @Ignore
     @Test
     public void testCR() {
-        Long id = create(testObject);
+        PK id = create(testObject);
         T selected = read(id);
         compare(selected, testObject);
 
+    }*/
+
+    @Test
+    public void create(){
+        PK id = create(testObject);
+        System.out.println(id + "\n");
+        testId = (Long)id;
+        assertNotNull(id);
     }
 
-    public abstract Long create(T object);
+    @Test
+    public void read(){
+        T selected = read((PK) testId);
+        compare(selected, testObject);
+    }
 
 
-    public abstract T read(Long id);
+
+    public abstract PK create(T object);
+
+
+    public abstract T read(PK id);
 
 
     public void compare(T selected, T testObject) {

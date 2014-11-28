@@ -34,7 +34,7 @@ import static org.junit.Assert.*;
  * TODO We need to set in GenericDao different types of product with different inner parameters, so we can't use @Parameters
  *
  * */
-public class GenericTest<T, PK extends Serializable> {
+public class GenericTest {
 
     public GenericTest(String beanName){
         genericDao = (GenericDaoImpl) ac.getBean(beanName);
