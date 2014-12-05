@@ -12,11 +12,6 @@ import java.util.List;
 @Table(name = "program")
 public class Program {
 
-    public Program(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "program_id", unique = true, nullable = false)
@@ -30,6 +25,13 @@ public class Program {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
     private List<Workout> workoutList;
+
+    public Program(){}
+
+    public Program(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public long getId() {
         return id;
@@ -81,5 +83,10 @@ public class Program {
         int result = name.hashCode();
         result = 31 * result + description.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString(){
+        return String.valueOf(getId()) + " " + getName() + " " + getDescription();
     }
 }

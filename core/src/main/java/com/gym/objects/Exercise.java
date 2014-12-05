@@ -13,12 +13,6 @@ import java.util.List;
 @Table(name = "exercise")
 public class Exercise {
 
-    public Exercise(Workout parentWorkout, Date date, String typeOfExercise) {
-        this.workout = parentWorkout;
-        this.date = date;
-        this.typeOfExercise = typeOfExercise;
-    }
-
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
@@ -37,6 +31,14 @@ public class Exercise {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<Attempt> attemptList;
+
+    public Exercise(){}
+
+    public Exercise(Workout parentWorkout, Date date, String typeOfExercise) {
+        this.workout = parentWorkout;
+        this.date = date;
+        this.typeOfExercise = typeOfExercise;
+    }
 
     public long getId() {
         return id;

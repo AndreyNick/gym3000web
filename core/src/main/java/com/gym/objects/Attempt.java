@@ -10,13 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "attempt")
-public class Attempt {
-
-    public Attempt(Exercise parentExercise, int weight, int times) {
-        this.exercise = parentExercise;
-        this.weight = weight;
-        this.times = times;
-    }
+public class Attempt{
 
     @Id
     @GeneratedValue(generator="increment")
@@ -33,6 +27,14 @@ public class Attempt {
 
     @Column(name = "times", nullable = false)
     private int times;
+
+    public Attempt(){}
+
+    public Attempt(Exercise parentExercise, int weight, int times) {
+        this.exercise = parentExercise;
+        this.weight = weight;
+        this.times = times;
+    }
 
     public long getId() {
         return id;

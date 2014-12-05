@@ -10,13 +10,6 @@ import java.util.List;
 @Table(name = "workout")
 public class Workout {
 
-    public Workout(Program parentProgram, String name, String description, int picture_id) {
-        this.program = parentProgram;
-        this.name = name;
-        this.description = description;
-        this.picture_id = picture_id;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "workout_id", unique = true, nullable = false)
@@ -37,6 +30,15 @@ public class Workout {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "workout", cascade = CascadeType.ALL)
     private List<Exercise> exerciseList;
+
+    public Workout(){}
+
+    public Workout(Program parentProgram, String name, String description, int picture_id) {
+        this.program = parentProgram;
+        this.name = name;
+        this.description = description;
+        this.picture_id = picture_id;
+    }
 
     public long getId() {
         return id;
