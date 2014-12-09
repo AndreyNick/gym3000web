@@ -1,6 +1,7 @@
 package com.gym.service;
 
 import com.gym.dao.GenericDao;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by anni0913 on 28.11.2014.
  */
+@Service
 public class AbstractGenericService<T, PK extends Serializable> {
 
     private GenericDao<T, PK> dao;

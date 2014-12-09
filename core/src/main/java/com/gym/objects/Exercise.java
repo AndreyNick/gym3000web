@@ -24,20 +24,24 @@ public class Exercise {
     private Workout workout;
 
     @Column(name = "name", nullable = false)
-    private Date date;                                                                 //TODO check type
+    private Date date;
 
-    @Column(name = "type_of_exercise")
-    private String typeOfExercise;                                                    //   TODO check type
+    @Column(name = "type")
+    private Enum type;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<Attempt> attemptList;
 
     public Exercise(){}
 
-    public Exercise(Workout parentWorkout, Date date, String typeOfExercise) {
+    public Exercise(Workout parentWorkout, Date date, Enum type) {
         this.workout = parentWorkout;
         this.date = date;
-        this.typeOfExercise = typeOfExercise;
+        this.type = type;
+    }
+
+    public enum TYPE{
+        S, M, L
     }
 
     public long getId() {
@@ -64,12 +68,12 @@ public class Exercise {
         this.date = date;
     }
 
-    public String getTypeOfExercise() {
-        return typeOfExercise;
+    public Enum getType() {
+        return type;
     }
 
-    public void setTypeOfExercise(String typeOfExercise) {
-        this.typeOfExercise = typeOfExercise;
+    public void setType(Enum type) {
+        this.type = type;
     }
 
     public List<Attempt> getAttemptList() {
@@ -88,7 +92,7 @@ public class Exercise {
         Exercise exercise = (Exercise) o;
 
         if (!date.equals(exercise.date)) return false;
-        if (!typeOfExercise.equals(exercise.typeOfExercise)) return false;
+        if (!type.equals(exercise.type)) return false;
         if (!workout.equals(exercise.workout)) return false;
 
         return true;
@@ -98,7 +102,7 @@ public class Exercise {
     public int hashCode() {
         int result = workout.hashCode();
         result = 31 * result + date.hashCode();
-        result = 31 * result + typeOfExercise.hashCode();
+        result = 31 * result + type.hashCode();
         return result;
     }
 }

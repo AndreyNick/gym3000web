@@ -82,20 +82,20 @@
     <bean id="dateFormat" class="java.text.SimpleDateFormat">
         <constructor-arg value="yyyy-MM-dd" />
     </bean>
-    <!--<bean id="testExercise" class="com.gym.objects.Exercise">
+    <bean id="testExercise" class="com.gym.objects.Exercise">
         <constructor-arg index="0" ref="testWorkout"/>
-        &lt;!&ndash;<constructor-arg index="1">
+        <constructor-arg index="1">
             <bean factory-bean="dateFormat" factory-method="parse">
                 <constructor-arg value="2010-01-31" />
             </bean>
-        </constructor-arg>&ndash;&gt;
-        <constructor-arg index="1" value="10.11.12"/>
+        </constructor-arg>
+        <!--<constructor-arg index="1" value="10.11.12"/>-->
         <constructor-arg index="2" value="T"/>
-    </bean>-->
-    <!--<bean id="testAttempt" class="com.gym.objects.Exercise">
+    </bean>
+    <bean id="testAttempt" class="com.gym.objects.Attempt">
         <constructor-arg index="0" ref="testExercise"/>
         <constructor-arg index="1" value="1"/>
         <constructor-arg index="2" value="1"/>
-    </bean>-->
+    </bean>
 
 </beans>
