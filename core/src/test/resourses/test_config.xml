@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contest="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <contest:annotation-config/>
+    <contest:property-placeholder location="test_config.properties"/>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${db.driver}" />
+        <property name="url" value="${db.url}" />
+        <property name="username" value="${db.user}" />
+        <property name="password" value="${db.password}" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${db.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="workoutDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Workout"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="exerciseDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Exercise"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="attemptDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Attempt"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Program"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="programService" class="com.gym.service.ProgramService">
+        <constructor-arg ref="programDao"></constructor-arg>
+    </bean>
+
+    <bean id="workoutService" class="com.gym.service.WorkoutService">
+        <constructor-arg ref="programDao"></constructor-arg>
+    </bean>
+
+    <bean id="exerciseService" class="com.gym.service.ExerciseService">
+        <constructor-arg ref="programDao"></constructor-arg>
+    </bean>
+
+    <bean id="attemptService" class="com.gym.service.AttemptService">
+        <constructor-arg ref="programDao"></constructor-arg>
+    </bean>
+
+    <bean id="testProgram" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Program for testing 1"/>
+        <constructor-arg index="1" value="Description for testing 1"/>
+    </bean>
+    <bean id="testWorkout" class="com.gym.objects.Workout">
+        <constructor-arg index="0" ref="testProgram"/>
+        <constructor-arg index="1" value="Name 1"/>
+        <constructor-arg index="2" value="Description 1"/>
+        <constructor-arg index="3" value="0"/>
+    </bean>
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd" />
+    </bean>
+    <bean id="testExercise" class="com.gym.objects.Exercise">
+        <constructor-arg index="0" ref="testWorkout"/>
+        <constructor-arg index="1">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="2010-01-31" />
+            </bean>
+        </constructor-arg>
+        <!--<constructor-arg index="1" value="10.11.12"/>-->
+        <constructor-arg index="2" value="T"/>
+    </bean>
+    <bean id="testAttempt" class="com.gym.objects.Attempt">
+        <constructor-arg index="0" ref="testExercise"/>
+        <constructor-arg index="1" value="1"/>
+        <constructor-arg index="2" value="1"/>
+    </bean>
+
+</beans>

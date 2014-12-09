@@ -1,55 +1,115 @@
 package com.gym.objects;
 
-import java.util.Collection;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by AndreyNick on 02.09.2014.
  */
+@Entity
+@Table(name = "workout")
 public class Workout {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "workout_id", unique = true, nullable = false)
+    private long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "program_id", nullable = false)
+    private Program program;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "picture_id")
+    private int picture_id;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<Exercise> exerciseList;
 
     public Workout(){}
 
-    public Workout(boolean isWarmingWorkout, String workoutName, String workoutDescription, Collection<Set> setsCollection) {
-        this.isWarmingWorkout = isWarmingWorkout;
-        this.workoutName = workoutName;
-        this.workoutDescription = workoutDescription;
-        this.setsCollection = setsCollection;
+    public Workout(Program parentProgram, String name, String description, int picture_id) {
+        this.program = parentProgram;
+        this.name = name;
+        this.description = description;
+        this.picture_id = picture_id;
     }
 
-    boolean isWarmingWorkout; //TODO realise posibility of warming
-    String workoutName;
-    String workoutDescription;
-    Collection<Set> setsCollection;
-
-    public boolean isWarmingWorkout() {
-        return isWarmingWorkout;
+    public long getId() {
+        return id;
     }
 
-    public void setWarmingWorkout(boolean isWarmingWorkout) {
-        this.isWarmingWorkout = isWarmingWorkout;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getWorkoutDescription() {
-        return workoutDescription;
+    public Program getProgram() {
+        return program;
     }
 
-    public void setWorkoutDescription(String workoutDescription) {
-        this.workoutDescription = workoutDescription;
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
-    public Collection<Set> getSetsCollection() {
-        return setsCollection;
+    public String getName() {
+        return name;
     }
 
-    public void setSetsCollection(Collection<Set> setsCollection) {
-        this.setsCollection = setsCollection;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getWorkoutName() {
-        return workoutName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setWorkoutName(String workoutName) {
-        this.workoutName = workoutName;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPicture_id() {
+        return picture_id;
+    }
+
+    public void setPicture_id(int picture_id) {
+        this.picture_id = picture_id;
+    }
+
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
+    }
+
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Workout workout = (Workout) o;
+
+        if (picture_id != workout.picture_id) return false;
+        if (!description.equals(workout.description)) return false;
+        if (!name.equals(workout.name)) return false;
+        if (!program.equals(workout.program)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = program.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + picture_id;
+        return result;
     }
 }
