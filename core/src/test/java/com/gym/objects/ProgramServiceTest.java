@@ -24,6 +24,7 @@ public class ProgramServiceTest extends AbstractServiceTest{
     @Autowired
     Program testProgram;
 
+    @Ignore
     @Override
     @Test
     public void crudTest(){

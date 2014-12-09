@@ -31,6 +31,7 @@ public class WorkoutServiceTest extends AbstractServiceTest{
     Program testProgram;
 
 
+    @Ignore
     @Override
     @Test
     //@Ignore
