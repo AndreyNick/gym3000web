@@ -1,6 +1,7 @@
 package com.gym.objects;
 
 import com.gym.service.ProgramService;
+import org.hibernate.ObjectNotFoundException;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by anni0913 on 08.12.2014.
@@ -21,32 +21,54 @@ public class ProgramServiceTest extends AbstractServiceTest{
 
     @Autowired
     ProgramService programService;
-    @Autowired
-    Program testProgram;
 
-    @Ignore
+    @Autowired
+    Program testProgram1;
+
+    @Autowired
+    Program testProgram2;
+
+
+
+    //@Ignore
     @Override
-    @Test
+    @Test(expected = ObjectNotFoundException.class)
     public void crudTest(){
 
-        programService.create(testProgram);
-        Program readProgram = programService.read(testProgram.getId());
-        compare(readProgram, testProgram);
+        idNotNull(programService.create(testProgram1));
+        Program readProgram = programService.read(testProgram1.getId());
+        compare(readProgram, testProgram1);
 
-        programService.update(testProgram);
-        readProgram = programService.read(testProgram.getId());
-        compare(readProgram, testProgram);
+        testProgram1.setName("Program for testing updated");
+        programService.update(testProgram1);
+        readProgram = programService.read(testProgram1.getId());
+        compare(readProgram, testProgram1);
 
-        //testProgram.setId(Long.parseLong("4"));
-        programService.delete(testProgram);
-        readProgram = programService.read(testProgram.getId());
-        assertNull(readProgram);
+        programService.create(testProgram2);
+
+        List<Program> actualList = programService.readAll();
+
+        List<Program> expectedList = new LinkedList<Program>();
+        expectedList.add(testProgram1);
+        expectedList.add(testProgram2);
+
+        compareLists(expectedList, actualList);
+
+        programService.delete(testProgram1);
+        programService.delete(testProgram2);
+
+        readProgram = programService.read(testProgram1.getId());
+        readProgram.toString();
     }
 
-    @Override
-    @Test
     @Ignore
-    public void readAllTest(){
+    @Test(expected = ObjectNotFoundException.class)
+    public void test(){
+        //testProgram.setId(new Long("45"));
+        programService.create(testProgram1);
 
     }
+
+
+
 }

@@ -69,27 +69,41 @@
         <constructor-arg ref="programDao"></constructor-arg>
     </bean>
 
-    <bean id="testProgram" class="com.gym.objects.Program">
-        <constructor-arg index="0" value="Program for testing 1"/>
+    <bean id="testProgram1" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Program for testing 2"/>
         <constructor-arg index="1" value="Description for testing 1"/>
     </bean>
-    <bean id="testWorkout" class="com.gym.objects.Workout">
-        <constructor-arg index="0" ref="testProgram"/>
+
+    <bean id="testProgram2" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Program for testing 2"/>
+        <constructor-arg index="1" value="Description for testing 2"/>
+    </bean>
+
+    <bean id="testWorkout1" class="com.gym.objects.Workout">
+        <constructor-arg index="0" ref="testProgram1"/>
         <constructor-arg index="1" value="Name 1"/>
         <constructor-arg index="2" value="Description 1"/>
         <constructor-arg index="3" value="0"/>
     </bean>
+
+    <bean id="testWorkout2" class="com.gym.objects.Workout">
+        <constructor-arg index="0" ref="testProgram1"/>
+        <constructor-arg index="1" value="Name 2"/>
+        <constructor-arg index="2" value="Description 2"/>
+        <constructor-arg index="3" value="0"/>
+    </bean>
+
     <bean id="dateFormat" class="java.text.SimpleDateFormat">
         <constructor-arg value="yyyy-MM-dd" />
     </bean>
-    <bean id="testExercise" class="com.gym.objects.Exercise">
+   <!-- <bean id="testExercise" class="com.gym.objects.Exercise">
         <constructor-arg index="0" ref="testWorkout"/>
         <constructor-arg index="1">
             <bean factory-bean="dateFormat" factory-method="parse">
                 <constructor-arg value="2010-01-31" />
             </bean>
         </constructor-arg>
-        <!--<constructor-arg index="1" value="10.11.12"/>-->
+        &lt;!&ndash;<constructor-arg index="1" value="10.11.12"/>&ndash;&gt;
         <constructor-arg index="2" value="T"/>
     </bean>
     <bean id="testAttempt" class="com.gym.objects.Attempt">
@@ -97,5 +111,5 @@
         <constructor-arg index="1" value="1"/>
         <constructor-arg index="2" value="1"/>
     </bean>
-
+-->
 </beans>

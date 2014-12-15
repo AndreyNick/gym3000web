@@ -19,19 +19,13 @@ public class AttemptServiceTest extends AbstractServiceTest{
     AttemptService attemptService;
 
     @Autowired
-    Attempt testAttempt;
+    //Attempt testAttempt;
 
-    @Override
     @Test
+    @Override
     @Ignore
     public void crudTest() {
 
     }
 
-    @Override
-    @Test
-    @Ignore
-    public void readAllTest() {
-
-    }
 }
