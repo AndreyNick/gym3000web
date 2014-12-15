@@ -19,7 +19,8 @@ public class ExerciseServiceTest extends AbstractServiceTest{
     ExerciseService exerciseService;
 
     @Autowired
-    Exercise testExercise;
+    //Exercise testExercise;
+
 
 
     @Override
@@ -29,10 +30,4 @@ public class ExerciseServiceTest extends AbstractServiceTest{
 
     }
 
-    @Override
-    @Test
-    @Ignore
-    public void readAllTest() {
-
-    }
 }
