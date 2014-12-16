@@ -43,13 +43,10 @@ public class WorkoutServiceTest extends AbstractServiceTest{
         programService.create(testProgram1);
         workoutService.create(testWorkout1);
 
-        /*Workout readWorkout = workoutService.read(testWorkout1.getId());
-        compare(readWorkout, testWorkout1);*/
+        Workout readWorkout = workoutService.read(testWorkout1.getId());
+        compare(readWorkout, testWorkout1);
 
-        Workout qew = workoutService.read(testWorkout1.getId());
-
-
-        /*testWorkout1.setName("Name updated");
+        testWorkout1.setName("Name updated");
 
         workoutService.update(testWorkout1);
         readWorkout = workoutService.read(testWorkout1.getId());
@@ -68,8 +65,10 @@ public class WorkoutServiceTest extends AbstractServiceTest{
         workoutService.delete(testWorkout1);
         workoutService.delete(testWorkout2);
 
+        programService.delete(testProgram1);
+
         readWorkout = workoutService.read(testWorkout1.getId());
-        readWorkout.toString();*/
+        readWorkout.toString();
 
     }
 

@@ -58,7 +58,7 @@
     </bean>
 
     <bean id="workoutService" class="com.gym.service.WorkoutService">
-        <constructor-arg ref="programDao"></constructor-arg>
+        <constructor-arg ref="workoutDao"></constructor-arg>
     </bean>
 
     <bean id="exerciseService" class="com.gym.service.ExerciseService">
@@ -93,17 +93,19 @@
         <constructor-arg index="3" value="0"/>
     </bean>
 
-    <bean id="dateFormat" class="java.text.SimpleDateFormat">
-        <constructor-arg value="yyyy-MM-dd" />
+    <bean id="date" class="java.sql.Date">
+        <constructor-arg index="0" value="2014"/>
+        <constructor-arg index="1" value="11"/>
+        <constructor-arg index="2" value="21"/>
     </bean>
-   <!-- <bean id="testExercise" class="com.gym.objects.Exercise">
-        <constructor-arg index="0" ref="testWorkout"/>
-        <constructor-arg index="1">
-            <bean factory-bean="dateFormat" factory-method="parse">
-                <constructor-arg value="2010-01-31" />
-            </bean>
-        </constructor-arg>
-        &lt;!&ndash;<constructor-arg index="1" value="10.11.12"/>&ndash;&gt;
+    <bean id="enum" class="java.lang.Enum">
+        <constructor-arg index="0" value=""/>
+        <constructor-arg index="1" value=""/>
+    </bean>
+
+    <bean id="testExercise" class="com.gym.objects.Exercise">
+        <constructor-arg index="0" ref="testWorkout1"/>
+        <constructor-arg index="1" ref="date"/>
         <constructor-arg index="2" value="T"/>
     </bean>
     <bean id="testAttempt" class="com.gym.objects.Attempt">
@@ -111,5 +113,4 @@
         <constructor-arg index="1" value="1"/>
         <constructor-arg index="2" value="1"/>
     </bean>
--->
 </beans>

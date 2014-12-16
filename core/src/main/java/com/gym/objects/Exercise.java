@@ -3,7 +3,8 @@ package com.gym.objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 /**
