@@ -5,8 +5,8 @@ CREATE TABLE program (
   program_id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(50) NOT NULL,
   description varchar(500),
-  order_id int(11) NOT NULL ,
-  PRIMARY KEY (program_id, order_id)
+  /*order_id int(11) NOT NULL ,*/
+  PRIMARY KEY (program_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE workout (
@@ -15,8 +15,8 @@ CREATE TABLE workout (
   name varchar(50) NOT NULL,
   description varchar(500),
   picture_id int(11),
-  order_id int(11) NOT NULL AUTO_INCREMENT,*/
-  PRIMARY KEY (workout_id, order_id)
+  /*order_id int(11) NOT NULL AUTO_INCREMENT,*/
+  PRIMARY KEY (workout_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE exercise (

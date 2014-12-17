@@ -3,6 +3,7 @@ package com.gym.dao.impl;
 import com.gym.dao.GenericDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Implementation of generic DAO class for simple crud operations
  */
+@Repository
 public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
 
     private Class<T> type;

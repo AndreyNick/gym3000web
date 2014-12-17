@@ -22,10 +22,10 @@ public class Program {
 
     @Column(name = "description")
     private String description;
-
+/*
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order", unique = true, nullable = false)
-    private long order;
+    private long order;*/
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
     private List<Workout> workoutList;
@@ -37,13 +37,13 @@ public class Program {
         this.description = description;
     }
 
-    public long getOrder() {
+    /*public long getOrder() {
         return order;
     }
 
     public void setOrder(long order) {
         this.order = order;
-    }
+    }*/
 
     public long getId() {
         return id;
