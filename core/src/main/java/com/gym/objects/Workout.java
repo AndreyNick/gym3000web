@@ -28,6 +28,10 @@ public class Workout {
     @Column(name = "picture_id")
     private int picture_id;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "order", unique = true, nullable = false)
+    private long order;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "workout", cascade = CascadeType.ALL)
     private List<Exercise> exerciseList;
 
@@ -38,6 +42,14 @@ public class Workout {
         this.name = name;
         this.description = description;
         this.picture_id = picture_id;
+    }
+
+    public long getOrder() {
+        return order;
+    }
+
+    public void setOrder(long order) {
+        this.order = order;
     }
 
     public long getId() {
