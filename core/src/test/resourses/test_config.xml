@@ -33,6 +33,8 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
+    <!--DAOs-->
+
     <bean id="workoutDao" class="com.gym.dao.impl.GenericDaoImpl">
         <constructor-arg value="com.gym.objects.Workout"/>
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -53,6 +55,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <!--Services-->
+
     <bean id="programService" class="com.gym.service.ProgramService">
         <constructor-arg ref="programDao"></constructor-arg>
     </bean>
@@ -62,32 +66,34 @@
     </bean>
 
     <bean id="exerciseService" class="com.gym.service.ExerciseService">
-        <constructor-arg ref="programDao"></constructor-arg>
+        <constructor-arg ref="exerciseDao"></constructor-arg>
     </bean>
 
     <bean id="attemptService" class="com.gym.service.AttemptService">
-        <constructor-arg ref="programDao"></constructor-arg>
+        <constructor-arg ref="attemptDao"></constructor-arg>
     </bean>
 
-    <bean id="testProgram1" class="com.gym.objects.Program">
+    <!--Test entities-->
+
+    <bean id="expectedProgram1" class="com.gym.objects.Program">
         <constructor-arg index="0" value="Program for testing 2"/>
         <constructor-arg index="1" value="Description for testing 1"/>
     </bean>
 
-    <bean id="testProgram2" class="com.gym.objects.Program">
+    <bean id="expectedProgram2" class="com.gym.objects.Program">
         <constructor-arg index="0" value="Program for testing 2"/>
         <constructor-arg index="1" value="Description for testing 2"/>
     </bean>
 
-    <bean id="testWorkout1" class="com.gym.objects.Workout">
-        <constructor-arg index="0" ref="testProgram1"/>
+    <bean id="expectedWorkout1" class="com.gym.objects.Workout">
+        <constructor-arg index="0" ref="expectedProgram1"/>
         <constructor-arg index="1" value="Name 1"/>
         <constructor-arg index="2" value="Description 1"/>
         <constructor-arg index="3" value="0"/>
     </bean>
 
-    <bean id="testWorkout2" class="com.gym.objects.Workout">
-        <constructor-arg index="0" ref="testProgram1"/>
+    <bean id="expectedWorkout2" class="com.gym.objects.Workout">
+        <constructor-arg index="0" ref="expectedProgram1"/>
         <constructor-arg index="1" value="Name 2"/>
         <constructor-arg index="2" value="Description 2"/>
         <constructor-arg index="3" value="0"/>
@@ -98,19 +104,28 @@
         <constructor-arg index="1" value="11"/>
         <constructor-arg index="2" value="21"/>
     </bean>
-    <bean id="enum" class="java.lang.Enum">
-        <constructor-arg index="0" value=""/>
-        <constructor-arg index="1" value=""/>
+
+    <bean id="expectedExercise1" class="com.gym.objects.Exercise">
+        <constructor-arg index="0" ref="expectedWorkout1"/>
+        <constructor-arg index="1" ref="date"/>
+        <constructor-arg index="2" value="test1"/>
     </bean>
 
-    <bean id="testExercise" class="com.gym.objects.Exercise">
-        <constructor-arg index="0" ref="testWorkout1"/>
+    <bean id="expectedExercise2" class="com.gym.objects.Exercise">
+        <constructor-arg index="0" ref="expectedWorkout1"/>
         <constructor-arg index="1" ref="date"/>
-        <constructor-arg index="2" value="T"/>
+        <constructor-arg index="2" value="test2"/>
     </bean>
-    <bean id="testAttempt" class="com.gym.objects.Attempt">
-        <constructor-arg index="0" ref="testExercise"/>
+
+    <bean id="expectedAttempt1" class="com.gym.objects.Attempt">
+        <constructor-arg index="0" ref="expectedExercise1"/>
         <constructor-arg index="1" value="1"/>
         <constructor-arg index="2" value="1"/>
+    </bean>
+
+    <bean id="expectedAttempt2" class="com.gym.objects.Attempt">
+        <constructor-arg index="0" ref="expectedExercise1"/>
+        <constructor-arg index="1" value="2"/>
+        <constructor-arg index="2" value="2"/>
     </bean>
 </beans>

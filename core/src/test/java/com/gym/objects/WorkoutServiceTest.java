@@ -3,7 +3,6 @@ package com.gym.objects;
 import com.gym.service.ProgramService;
 import com.gym.service.WorkoutService;
 import org.hibernate.ObjectNotFoundException;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,50 +25,49 @@ public class WorkoutServiceTest extends AbstractServiceTest{
     @Autowired
     ProgramService programService;
     @Autowired
-    Program testProgram1;
+    WorkoutService workoutService;
 
     @Autowired
-    WorkoutService workoutService;
+    Program expectedProgram1;
     @Autowired
-    Workout testWorkout1;
+    Workout expectedWorkout1;
     @Autowired
-    Workout testWorkout2;
+    Workout expectedWorkout2;
 
 
     //@Ignore
     @Test(expected = ObjectNotFoundException.class)
     @Override
     public void crudTest() {
-        programService.create(testProgram1);
-        workoutService.create(testWorkout1);
+        programService.create(expectedProgram1);
+        workoutService.create(expectedWorkout1);
 
-        Workout readWorkout = workoutService.read(testWorkout1.getId());
-        compare(readWorkout, testWorkout1);
+        Workout readWorkout = workoutService.read(expectedWorkout1.getId());
+        compare(readWorkout, expectedWorkout1);
 
-        testWorkout1.setName("Name updated");
+        expectedWorkout1.setName("Name updated");
 
-        workoutService.update(testWorkout1);
-        readWorkout = workoutService.read(testWorkout1.getId());
-        compare(readWorkout, testWorkout1);
+        workoutService.update(expectedWorkout1);
+        readWorkout = workoutService.read(expectedWorkout1.getId());
+        compare(readWorkout, expectedWorkout1);
 
-        workoutService.create(testWorkout2);
+        workoutService.create(expectedWorkout2);
 
         List<Workout> actualList = workoutService.readAll();
 
         List<Workout> expectedList = new LinkedList<Workout>();
-        expectedList.add(testWorkout1);
-        expectedList.add(testWorkout2);
+        expectedList.add(expectedWorkout1);
+        expectedList.add(expectedWorkout2);
 
         compareLists(expectedList, actualList);
 
-        workoutService.delete(testWorkout1);
-        workoutService.delete(testWorkout2);
+        workoutService.delete(expectedWorkout1);
+        workoutService.delete(expectedWorkout2);
 
-        programService.delete(testProgram1);
+        programService.delete(expectedProgram1);
 
-        readWorkout = workoutService.read(testWorkout1.getId());
+        readWorkout = workoutService.read(expectedWorkout1.getId());
         readWorkout.toString();
-
     }
 
 }

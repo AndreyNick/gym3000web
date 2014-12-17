@@ -23,52 +23,38 @@ public class ProgramServiceTest extends AbstractServiceTest{
     ProgramService programService;
 
     @Autowired
-    Program testProgram1;
-
+    Program expectedProgram1;
     @Autowired
-    Program testProgram2;
-
-
+    Program expectedProgram2;
 
     //@Ignore
     @Override
     @Test(expected = ObjectNotFoundException.class)
     public void crudTest(){
 
-        idNotNull(programService.create(testProgram1));
-        Program readProgram = programService.read(testProgram1.getId());
-        compare(readProgram, testProgram1);
+        idNotNull(programService.create(expectedProgram1));
+        Program readProgram = programService.read(expectedProgram1.getId());
+        compare(readProgram, expectedProgram1);
 
-        testProgram1.setName("Program for testing updated");
-        programService.update(testProgram1);
-        readProgram = programService.read(testProgram1.getId());
-        compare(readProgram, testProgram1);
+        expectedProgram1.setName("Program for testing updated");
+        programService.update(expectedProgram1);
+        readProgram = programService.read(expectedProgram1.getId());
+        compare(readProgram, expectedProgram1);
 
-        programService.create(testProgram2);
+        programService.create(expectedProgram2);
 
         List<Program> actualList = programService.readAll();
 
         List<Program> expectedList = new LinkedList<Program>();
-        expectedList.add(testProgram1);
-        expectedList.add(testProgram2);
+        expectedList.add(expectedProgram1);
+        expectedList.add(expectedProgram2);
 
         compareLists(expectedList, actualList);
 
-        programService.delete(testProgram1);
-        programService.delete(testProgram2);
+        programService.delete(expectedProgram1);
+        programService.delete(expectedProgram2);
 
-        readProgram = programService.read(testProgram1.getId());
+        readProgram = programService.read(expectedProgram1.getId());
         readProgram.toString();
     }
-
-    @Ignore
-    @Test(expected = ObjectNotFoundException.class)
-    public void test(){
-        //testProgram.setId(new Long("45"));
-        programService.create(testProgram1);
-
-    }
-
-
-
 }
