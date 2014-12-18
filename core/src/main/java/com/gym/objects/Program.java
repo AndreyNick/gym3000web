@@ -1,7 +1,10 @@
 package com.gym.objects;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,10 +25,11 @@ public class Program {
 
     @Column(name = "description")
     private String description;
-/*
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order", unique = true, nullable = false)
-    private long order;*/
+
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
+    @Column(name = "order_number", unique = true, nullable = false)
+    private long orderNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
     private List<Workout> workoutList;
@@ -37,13 +41,13 @@ public class Program {
         this.description = description;
     }
 
-    /*public long getOrder() {
-        return order;
+    public long getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrder(long order) {
-        this.order = order;
-    }*/
+    public void setOrderNumber(long orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
     public long getId() {
         return id;

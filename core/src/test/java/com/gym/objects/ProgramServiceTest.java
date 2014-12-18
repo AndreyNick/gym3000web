@@ -27,7 +27,7 @@ public class ProgramServiceTest extends AbstractServiceTest{
     @Autowired
     Program expectedProgram2;
 
-    //@Ignore
+    @Ignore
     @Override
     @Test(expected = ObjectNotFoundException.class)
     public void crudTest(){
@@ -56,5 +56,12 @@ public class ProgramServiceTest extends AbstractServiceTest{
 
         readProgram = programService.read(expectedProgram1.getId());
         readProgram.toString();
+    }
+
+    @Test(expected = ObjectNotFoundException.class)
+    public void test(){
+        programService.create(expectedProgram1);
+        programService.create(expectedProgram2);
+
     }
 }
