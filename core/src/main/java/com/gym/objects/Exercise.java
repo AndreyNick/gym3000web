@@ -3,7 +3,8 @@ package com.gym.objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -23,26 +24,23 @@ public class Exercise {
     @JoinColumn(name = "workout_id", nullable = false)
     private Workout workout;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column(name = "type")
-    private Enum type;
+    @Column(name = "type_of_exercise")
+    private String type;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<Attempt> attemptList;
 
     public Exercise(){}
 
-    public Exercise(Workout parentWorkout, Date date, Enum type) {
+    public Exercise(Workout parentWorkout, Date date, String type) {
         this.workout = parentWorkout;
         this.date = date;
         this.type = type;
     }
 
-    public enum TYPE{
-        S, M, L
-    }
 
     public long getId() {
         return id;
@@ -68,11 +66,11 @@ public class Exercise {
         this.date = date;
     }
 
-    public Enum getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Enum type) {
+    public void setType(String type) {
         this.type = type;
     }
 

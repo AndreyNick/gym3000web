@@ -28,6 +28,9 @@ public class Workout {
     @Column(name = "picture_id")
     private int picture_id;
 
+    @Column(name = "order_number", unique = true, nullable = false)
+    private long orderNumber;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "workout", cascade = CascadeType.ALL)
     private List<Exercise> exerciseList;
 
@@ -38,6 +41,14 @@ public class Workout {
         this.name = name;
         this.description = description;
         this.picture_id = picture_id;
+    }
+
+    public long getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(long order) {
+        this.orderNumber = order;
     }
 
     public long getId() {
