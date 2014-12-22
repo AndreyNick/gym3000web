@@ -40,7 +40,7 @@ public class WorkoutServiceTest extends AbstractServiceTest{
     @Override
     public void crudTest() {
         programService.create(expectedProgram1);
-        workoutService.create(expectedWorkout1);
+        idNotNull(workoutService.create(expectedWorkout1));
 
         Workout readWorkout = workoutService.read(expectedWorkout1.getId());
         compare(readWorkout, expectedWorkout1);

@@ -35,6 +35,11 @@
 
     <!--DAOs-->
 
+    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Program"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
     <bean id="workoutDao" class="com.gym.dao.impl.GenericDaoImpl">
         <constructor-arg value="com.gym.objects.Workout"/>
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -47,11 +52,6 @@
 
     <bean id="attemptDao" class="com.gym.dao.impl.GenericDaoImpl">
         <constructor-arg value="com.gym.objects.Attempt"/>
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Program"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -78,11 +78,13 @@
     <bean id="expectedProgram1" class="com.gym.objects.Program">
         <constructor-arg index="0" value="Program for testing 2"/>
         <constructor-arg index="1" value="Description for testing 1"/>
+        <constructor-arg index="2" value="1"/>
     </bean>
 
     <bean id="expectedProgram2" class="com.gym.objects.Program">
         <constructor-arg index="0" value="Program for testing 2"/>
         <constructor-arg index="1" value="Description for testing 2"/>
+        <constructor-arg index="2" value="2"/>
     </bean>
 
     <bean id="expectedWorkout1" class="com.gym.objects.Workout">
@@ -90,6 +92,7 @@
         <constructor-arg index="1" value="Name 1"/>
         <constructor-arg index="2" value="Description 1"/>
         <constructor-arg index="3" value="0"/>
+        <constructor-arg index="4" value="1"/>
     </bean>
 
     <bean id="expectedWorkout2" class="com.gym.objects.Workout">
@@ -97,6 +100,7 @@
         <constructor-arg index="1" value="Name 2"/>
         <constructor-arg index="2" value="Description 2"/>
         <constructor-arg index="3" value="0"/>
+        <constructor-arg index="4" value="2"/>
     </bean>
 
     <bean id="date" class="java.sql.Date">

@@ -45,7 +45,7 @@ public class ExerciseServiceTest extends AbstractServiceTest{
     public void crudTest() {
         programService.create(expectedProgram1);
         workoutService.create(expectedWorkout1);
-        exerciseService.create(expectedExercise1);
+        idNotNull(exerciseService.create(expectedExercise1));
 
         Exercise actualExercise = exerciseService.read(expectedExercise1.getId());
         compare(actualExercise, expectedExercise1);

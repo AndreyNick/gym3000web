@@ -1,5 +1,6 @@
 package com.gym.objects;
 
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,12 +14,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "program")
-public class Program {
+
+public class Program implements HasNameAndDescription{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "program_id", unique = true, nullable = false)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -26,49 +28,53 @@ public class Program {
     @Column(name = "description")
     private String description;
 
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @GeneratedValue(generator = "increment")
     @Column(name = "order_number", unique = true, nullable = false)
-    private long orderNumber;
+    private int orderNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
+    @OrderBy("order_number")
     private List<Workout> workoutList;
 
     public Program(){}
 
-    public Program(String name, String description) {
+    public Program(String name, String description, int orderNumber) {
         this.name = name;
         this.description = description;
-    }
-
-    public long getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }
 
-    public long getId() {
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
