@@ -51,7 +51,7 @@ public class AttemptServiceTest extends AbstractServiceTest{
         programService.create(expectedProgram1);
         workoutService.create(expectedWorkout1);
         exerciseService.create(expectedExercise1);
-        attemptService.create(expectedAttempt1);
+        idNotNull(attemptService.create(expectedAttempt1));
 
         Attempt actualAttempt = attemptService.read(expectedAttempt1.getId());
         compare(actualAttempt, expectedAttempt1);
