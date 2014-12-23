@@ -3,6 +3,7 @@ package com.gym.objects;
 import com.gym.service.ProgramService;
 import com.gym.service.WorkoutService;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,7 +30,7 @@ public class SimpleTest {
     Workout expectedWorkout2;
 
     @Ignore
-    @org.junit.Test
+    @Test
     public void test(){
         programService.create(expectedProgram1);
         workoutService.create(expectedWorkout1);
