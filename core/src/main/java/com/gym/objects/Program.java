@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "program")
 
-public class Program implements HasNameAndDescription{
+public class Program {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,80 +35,5 @@ public class Program implements HasNameAndDescription{
     @OrderBy("order_number")
     private List<Workout> workoutList;
 
-    public Program(){}
 
-    public Program(String name, String description, int orderNumber) {
-        this.name = name;
-        this.description = description;
-        this.orderNumber = orderNumber;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Workout> getWorkoutList() {
-        return workoutList;
-    }
-
-    public void setWorkoutList(List<Workout> workoutList) {
-        this.workoutList = workoutList;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Program program = (Program) o;
-
-        if (!description.equals(program.description)) return false;
-        if (!name.equals(program.name)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + description.hashCode();
-        return result;
-    }
-
-    @Override
-    public String toString(){
-        return String.valueOf(getId()) + " " + getName() + " " + getDescription();
-    }
 }
