@@ -37,4 +37,6 @@ public class Attempt{
      */
     private String neededTimes;
 
+    private String notes;
+
 }

@@ -41,7 +41,7 @@
     </bean>
 
     <bean id="workoutDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Workout"/>
+        <constructor-arg value="com.gym.objects.ExerciseType"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -87,7 +87,7 @@
         <constructor-arg index="2" value="2"/>
     </bean>
 
-    <bean id="expectedWorkout1" class="com.gym.objects.Workout">
+    <bean id="expectedWorkout1" class="com.gym.objects.ExerciseType">
         <constructor-arg index="0" ref="expectedProgram1"/>
         <constructor-arg index="1" value="Name 1"/>
         <constructor-arg index="2" value="Description 1"/>
@@ -95,7 +95,7 @@
         <constructor-arg index="4" value="1"/>
     </bean>
 
-    <bean id="expectedWorkout2" class="com.gym.objects.Workout">
+    <bean id="expectedWorkout2" class="com.gym.objects.ExerciseType">
         <constructor-arg index="0" ref="expectedProgram1"/>
         <constructor-arg index="1" value="Name 2"/>
         <constructor-arg index="2" value="Description 2"/>

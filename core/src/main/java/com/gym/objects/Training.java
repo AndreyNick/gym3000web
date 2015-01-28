@@ -23,8 +23,6 @@ public class Training {
 
     private Date date;
 
-    private List<Exercise> exercisesList;
-
     private TrainingStatus status;
 
     private Double ownerWeight;
@@ -35,5 +33,5 @@ public class Training {
 
     private String notes;
 
-
+    private List<Exercise> exercisesList;
 }

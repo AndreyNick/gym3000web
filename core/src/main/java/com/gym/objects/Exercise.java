@@ -4,7 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -22,14 +21,20 @@ public class Exercise {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_id", nullable = false)
-    private Workout workout;
+    private ExerciseType exerciseType;
+
+    private Training training;
 
 
     @Column(name = "type_of_exercise")
     private String type;
 
+    private String notes;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<Attempt> attemptList;
+
+
 
 
 }
