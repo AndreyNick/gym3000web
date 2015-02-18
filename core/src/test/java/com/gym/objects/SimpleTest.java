@@ -3,6 +3,7 @@ package com.gym.objects;
 import com.gym.service.ProgramService;
 import com.gym.service.WorkoutService;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,20 +25,20 @@ public class SimpleTest {
     @Autowired
     Program expectedProgram1;
     @Autowired
-    Workout expectedWorkout1;
+    ExerciseType expectedExerciseType1;
     @Autowired
-    Workout expectedWorkout2;
+    ExerciseType expectedExerciseType2;
 
     @Ignore
-    @org.junit.Test
+    @Test
     public void test(){
         programService.create(expectedProgram1);
-        workoutService.create(expectedWorkout1);
-        workoutService.create(expectedWorkout2);
+        workoutService.create(expectedExerciseType1);
+        workoutService.create(expectedExerciseType2);
 
         Program program = programService.read(expectedProgram1.getId());
-        List<Workout> workoutList =  program.getWorkoutList();
-        for(Workout item:workoutList){
+        List<ExerciseType> exerciseTypeList =  program.getWorkoutList();
+        for(ExerciseType item: exerciseTypeList){
             System.out.println(item.getName());
         }
     }

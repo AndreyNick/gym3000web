@@ -4,7 +4,6 @@ import com.gym.service.ExerciseService;
 import com.gym.service.ProgramService;
 import com.gym.service.WorkoutService;
 import org.hibernate.ObjectNotFoundException;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class ExerciseServiceTest extends AbstractServiceTest{
     @Autowired
     Program expectedProgram1;
     @Autowired
-    Workout expectedWorkout1;
+    ExerciseType expectedExerciseType1;
 
     @Autowired
     Exercise expectedExercise1;
@@ -44,7 +43,7 @@ public class ExerciseServiceTest extends AbstractServiceTest{
     @Test(expected = ObjectNotFoundException.class)
     public void crudTest() {
         programService.create(expectedProgram1);
-        workoutService.create(expectedWorkout1);
+        workoutService.create(expectedExerciseType1);
         idNotNull(exerciseService.create(expectedExercise1));
 
         Exercise actualExercise = exerciseService.read(expectedExercise1.getId());
@@ -69,7 +68,7 @@ public class ExerciseServiceTest extends AbstractServiceTest{
         exerciseService.delete(expectedExercise1);
         exerciseService.delete(expectedExercise2);
 
-        workoutService.delete(expectedWorkout1);
+        workoutService.delete(expectedExerciseType1);
 
         programService.delete(expectedProgram1);
 
