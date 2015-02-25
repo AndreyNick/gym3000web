@@ -8,8 +8,7 @@ import java.util.List;
  *
  */
 
-@Entity
-@Table(name = "program")
+
 
 public class Program {
 

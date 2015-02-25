@@ -33,13 +33,13 @@
         </property>
     </bean>
 
-    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Program"/>
+    <bean id="ownerDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Owner"/>
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="programService" class="com.gym.service.ProgramService">
-        <constructor-arg ref="programDao"></constructor-arg>
+    <bean id="ownerService" class="com.gym.service.OwnerService">
+        <constructor-arg ref="ownerDao"></constructor-arg>
     </bean>
 
 </beans>

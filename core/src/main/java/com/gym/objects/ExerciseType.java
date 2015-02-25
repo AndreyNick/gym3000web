@@ -8,8 +8,7 @@ import java.util.List;
 /**
  * This class shows exercise type, for example push-ups or triceps exercise.
  */
-@Entity
-@Table(name = "workout")
+
 public class ExerciseType {
 
     private Long id;
