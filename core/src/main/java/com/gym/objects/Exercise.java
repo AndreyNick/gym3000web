@@ -9,8 +9,7 @@ import java.util.List;
 /**
  * Created by anni0913 on 27.11.2014.
  */
-@Entity
-@Table(name = "exercise")
+
 public class Exercise {
 
     @Id
@@ -19,9 +18,9 @@ public class Exercise {
     @Column(name = "exercise_id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_id", nullable = false)
-    private ExerciseType exerciseType;
+    private ExerciseType exerciseType;*/
 
     private Training training;
 
