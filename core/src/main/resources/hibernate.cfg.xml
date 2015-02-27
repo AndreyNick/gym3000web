@@ -6,5 +6,7 @@
     <session-factory>
         <mapping class="com.gym.objects.Owner"/>
         <mapping class="com.gym.objects.Training"/>
+        <mapping class="com.gym.objects.Exercise"/>
+        <mapping class="com.gym.objects.Attempt"/>
     </session-factory>
 </hibernate-configuration>
