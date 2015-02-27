@@ -42,4 +42,17 @@
         <constructor-arg ref="ownerDao"></constructor-arg>
     </bean>
 
+    <bean id="trainingDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Training"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="trainingService" class="com.gym.service.TrainingService">
+        <constructor-arg ref="trainingDao"></constructor-arg>
+    </bean>
+
+
+
+
+
 </beans>

@@ -33,4 +33,23 @@ public class Owner {
         this.name = name;
         this.registrationDate = registrationDate;
     }
+
+    public Owner() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 }
