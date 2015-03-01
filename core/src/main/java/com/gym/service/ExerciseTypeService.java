@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
  * Created by anni0913 on 28.11.2014.
  */
 @Service
-public class WorkoutService extends AbstractGenericService<ExerciseType, Long> {
+public class ExerciseTypeService extends AbstractGenericService<ExerciseType, Long> {
 
-    protected WorkoutService(GenericDao<ExerciseType, Long> dao) {
+    protected ExerciseTypeService(GenericDao<ExerciseType, Long> dao) {
         super(dao);
     }
 }

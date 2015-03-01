@@ -1,8 +1,8 @@
 
 delimiter $$
 
-DROP DATABASE `test1`$$
 
+DROP DATABASE `test1`$$
 CREATE DATABASE `test1`$$
 USE `test1`$$
 
@@ -31,6 +31,7 @@ CREATE TABLE `training` (
 CREATE TABLE `exercise` (
   `exercise_id` INT (11) NOT NULL AUTO_INCREMENT,
   `training_id` INT (11) NOT NULL,
+ /* `exercise_type_id` INT (11) NOT NULL,*/
   `exercise_load` VARCHAR (50),
   `note` VARCHAR (500),
   PRIMARY KEY (`exercise_id`)
@@ -46,4 +47,26 @@ CREATE TABLE `attempt` (
   `note` VARCHAR (500),
   PRIMARY KEY (`attempt_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
+CREATE TABLE `program` (
+  `program_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR (100),
+  `description` VARCHAR (500),
+  `note` VARCHAR (500),
+  `order_number` INT (11),
+  PRIMARY KEY (`program_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
+CREATE TABLE `exercise_type` (
+  `exercise_type_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `program_id` INT (11) NOT NULL,
+  `name` VARCHAR (100),
+  `description` VARCHAR (500),
+  `note` VARCHAR (500),
+  `picture` VARCHAR (100),
+  `order_number` INT (11),
+  PRIMARY KEY (`exercise_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
+
 

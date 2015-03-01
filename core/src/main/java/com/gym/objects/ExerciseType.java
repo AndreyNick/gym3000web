@@ -9,23 +9,95 @@ import java.util.List;
  * This class shows exercise type, for example push-ups or triceps exercise.
  */
 
+@Entity
+@Table(name = "exercise_type")
 public class ExerciseType {
 
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "exercise_type_id", unique = true, nullable = false)
     private Long id;
 
+    @Column(name = "program_id", nullable = false)
     private Program program;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "description")
     private String description;
 
-    private String notes;
+    @Column(name = "note")
+    private String note;
 
-    private int picture_id;
+    @Column(name = "picture")
+    private String picture;
 
+    @Column(name = "order_number")
     private int orderNumber;
 
-    private List<Exercise> exerciseList;
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise_type", cascade = CascadeType.ALL)
+    //private List<Exercise> exerciseList;
 
 
+    public ExerciseType(Program program, String name, String description, String note, String picture, int orderNumber) {
+        this.program = program;
+        this.name = name;
+        this.description = description;
+        this.note = note;
+        this.picture = picture;
+        this.orderNumber = orderNumber;
+    }
+
+    public ExerciseType() {
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 }

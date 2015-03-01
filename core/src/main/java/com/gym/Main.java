@@ -1,13 +1,7 @@
 package com.gym;
 
-import com.gym.objects.Attempt;
-import com.gym.objects.Exercise;
-import com.gym.objects.Owner;
-import com.gym.objects.Training;
-import com.gym.service.AttemptService;
-import com.gym.service.ExerciseService;
-import com.gym.service.OwnerService;
-import com.gym.service.TrainingService;
+import com.gym.objects.*;
+import com.gym.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,6 +24,9 @@ public class Main {
         ExerciseService exerciseService;
         AttemptService attemptService;
 
+        ProgramService programService;
+        ExerciseTypeService exerciseTypeService;
+
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("application_context.xml");
 
@@ -37,6 +34,9 @@ public class Main {
         trainingService = (TrainingService) context.getBean("trainingService");
         exerciseService = (ExerciseService)context.getBean("exerciseService");
         attemptService = (AttemptService) context.getBean("attemptService");
+
+        programService = (ProgramService) context.getBean("programService");
+        exerciseTypeService = (ExerciseTypeService)context.getBean("exerciseTypeService");
 
         Owner owner = new Owner("New Owner", Date.valueOf("2015-02-25"));
         ownerService.create(owner);
@@ -51,6 +51,11 @@ public class Main {
         Attempt attempt = new Attempt(exercise, 60.5, 60.5, 12, 12, "This is note");
         attemptService.create(attempt);
 
+        Program program = new Program("Name", "Description", "Note", 1);
+        programService.create(program);
+
+        ExerciseType exerciseType = new ExerciseType(program, "Name", "Description", "Note", "picture path", 1);
+        exerciseTypeService.create(exerciseType);
 
 
 

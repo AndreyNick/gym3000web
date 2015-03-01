@@ -69,7 +69,22 @@
         <constructor-arg ref="attemptDao"></constructor-arg>
     </bean>
 
+    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Program"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
+    <bean id="programService" class="com.gym.service.ProgramService">
+        <constructor-arg ref="programDao"></constructor-arg>
+    </bean>
 
+    <bean id="exerciseTypeDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.ExerciseType"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="exerciseTypeService" class="com.gym.service.ExerciseTypeService">
+        <constructor-arg ref="exerciseTypeDao"></constructor-arg>
+    </bean>
 
 </beans>
