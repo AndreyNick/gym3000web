@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:contest="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <contest:annotation-config/>
+    <contest:property-placeholder location="test_config.properties"/>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${db.driver}" />
+        <property name="url" value="${db.url}" />
+        <property name="username" value="${db.user}" />
+        <property name="password" value="${db.password}" />
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${db.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--DAO and Services-->
+    <bean id="ownerDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Owner"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="ownerService" class="com.gym.service.OwnerService">
+        <constructor-arg ref="ownerDao"></constructor-arg>
+    </bean>
+    <bean id="trainingDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Training"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="trainingService" class="com.gym.service.TrainingService">
+        <constructor-arg ref="trainingDao"></constructor-arg>
+    </bean>
+    <bean id="exerciseDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Exercise"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="exerciseService" class="com.gym.service.ExerciseService">
+        <constructor-arg ref="exerciseDao"></constructor-arg>
+    </bean>
+    <bean id="attemptDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Attempt"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="attemptService" class="com.gym.service.AttemptService">
+        <constructor-arg ref="attemptDao"></constructor-arg>
+    </bean>
+    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Program"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="programService" class="com.gym.service.ProgramService">
+        <constructor-arg ref="programDao"></constructor-arg>
+    </bean>
+    <bean id="exerciseTypeDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.ExerciseType"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="exerciseTypeService" class="com.gym.service.ExerciseTypeService">
+        <constructor-arg ref="exerciseTypeDao"></constructor-arg>
+    </bean>
+    <!--Test objects-->
+    <bean id="registrationDate" class="java.sql.Date" factory-method="valueOf">
+        <constructor-arg value="2015-02-25"/>
+    </bean>
+    <bean id="owner" class="com.gym.objects.Owner">
+        <constructor-arg value="Borat Sagdiev"/>
+        <constructor-arg>
+            <bean class="java.sql.Date" factory-method="valueOf">
+                <constructor-arg value="2015-02-25"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="training" class="com.gym.objects.Training">
+        <constructor-arg ref="owner" index="0"/>
+        <constructor-arg index="1">
+            <bean class="java.sql.Date" factory-method="valueOf">
+                <constructor-arg value="2015-03-14"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg value="PLANNED" index="2"/>
+        <constructor-arg value="77.5" index="3"/>
+        <constructor-arg index="4">
+            <bean class="java.sql.Time" factory-method="valueOf">
+                <constructor-arg value="16:30:00"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="5">
+            <bean class="java.sql.Time" factory-method="valueOf">
+                <constructor-arg value="17:30:00"/>
+            </bean>
+        </constructor-arg>
+        <constructor-arg value="This is note" index="6"/>
+        <constructor-arg value="1358.25" index="7"/>
+    </bean>
+    <bean id="program" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Legs day"/>
+        <constructor-arg index="1" value="Some legs training day"/>
+        <constructor-arg index="2" value="This is note"/>
+        <constructor-arg index="3" value="1"/>
+    </bean>
+    <bean id="exerciseType" class="com.gym.objects.ExerciseType">
+        <constructor-arg index="0" ref="program"/>
+        <constructor-arg index="1" value="Push ups"/>
+        <constructor-arg index="2" value="Standard push up exercise"/>
+        <constructor-arg index="3" value="This is note"/>
+        <constructor-arg index="4" value="path/to/the/picture"/>
+        <constructor-arg index="5" value="1"/>
+    </bean>
+    <bean id="exercise" class="com.gym.objects.Exercise">
+        <constructor-arg index="0" ref="training"/>
+        <constructor-arg index="1" ref="exerciseType"/>
+        <constructor-arg index="2" value="MIDDLE"/>
+        <constructor-arg index="3" value="This is note"/>
+    </bean>
+    <bean id="attempt" class="com.gym.objects.Attempt">
+        <constructor-arg index="0" ref="exercise"/>
+        <constructor-arg index="1" value="60.5"/>
+        <constructor-arg index="2" value="60.5"/>
+        <constructor-arg index="3" value="12"/>
+        <constructor-arg index="4" value="12"/>
+        <constructor-arg index="5" value="This is note"/>
+    </bean>
+</beans>

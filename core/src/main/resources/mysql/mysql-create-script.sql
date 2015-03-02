@@ -2,9 +2,9 @@
 delimiter $$
 
 
-DROP DATABASE `test1`$$
-CREATE DATABASE `test1`$$
-USE `test1`$$
+DROP DATABASE `gym_test`$$
+CREATE DATABASE `gym_test`$$
+USE `gym_test`$$
 
 
 CREATE TABLE `owner` (
