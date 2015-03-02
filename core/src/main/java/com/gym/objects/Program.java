@@ -32,7 +32,7 @@ public class Program {
     @Column(name = "order_number")
     private int orderNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "progrqam", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
     private List<ExerciseType> exerciseTypeList;
 
     public Program(String name, String description, String note, int orderNumber) {

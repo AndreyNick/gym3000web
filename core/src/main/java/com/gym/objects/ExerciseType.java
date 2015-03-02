@@ -19,7 +19,8 @@ public class ExerciseType {
     @Column(name = "exercise_type_id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "program_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "program_id", nullable = false)
     private Program program;
 
     @Column(name = "name", nullable = false)
@@ -37,8 +38,6 @@ public class ExerciseType {
     @Column(name = "order_number")
     private int orderNumber;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise_type", cascade = CascadeType.ALL)
-    //private List<Exercise> exerciseList;
 
 
     public ExerciseType(Program program, String name, String description, String note, String picture, int orderNumber) {

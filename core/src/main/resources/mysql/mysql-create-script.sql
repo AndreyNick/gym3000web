@@ -31,7 +31,7 @@ CREATE TABLE `training` (
 CREATE TABLE `exercise` (
   `exercise_id` INT (11) NOT NULL AUTO_INCREMENT,
   `training_id` INT (11) NOT NULL,
- /* `exercise_type_id` INT (11) NOT NULL,*/
+  `exercise_type_id` INT (11) NOT NULL,
   `exercise_load` VARCHAR (50),
   `note` VARCHAR (500),
   PRIMARY KEY (`exercise_id`)

@@ -29,9 +29,9 @@ public class Exercise {
     @JoinColumn(name = "training_id", nullable = false)
     private Training training;
 
-/*    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exercise_type_id", nullable = false)
-    private ExerciseType exerciseType;*/
+    private ExerciseType exerciseType;
 
     @Column(name = "exercise_load")
     private ExerciseLoad exerciseLoad;
@@ -42,8 +42,9 @@ public class Exercise {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
     private List<Attempt> attemptList;
 
-    public Exercise(Training training, ExerciseLoad exerciseLoad, String note) {
+    public Exercise(Training training, ExerciseType exerciseType, ExerciseLoad exerciseLoad, String note) {
         this.training = training;
+        this.exerciseType = exerciseType;
         this.exerciseLoad = exerciseLoad;
         this.note = note;
     }
@@ -57,6 +58,14 @@ public class Exercise {
 
     public void setTraining(Training training) {
         this.training = training;
+    }
+
+    public ExerciseType getExerciseType() {
+        return exerciseType;
+    }
+
+    public void setExerciseType(ExerciseType exerciseType) {
+        this.exerciseType = exerciseType;
     }
 
     public ExerciseLoad getExerciseLoad() {
