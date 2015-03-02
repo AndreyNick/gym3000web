@@ -77,6 +77,7 @@
     <bean id="exerciseTypeService" class="com.gym.service.ExerciseTypeService">
         <constructor-arg ref="exerciseTypeDao"></constructor-arg>
     </bean>
+
     <!--Test objects-->
     <bean id="registrationDate" class="java.sql.Date" factory-method="valueOf">
         <constructor-arg value="2015-02-25"/>

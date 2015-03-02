@@ -4,16 +4,11 @@ import com.gym.objects.*;
 import com.gym.service.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.sql.Date;
-import java.sql.Time;
-
 /**
- * Created by anni0913 on 02.03.2015.
+ * Test class for inner checking
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:test_context.xml")
