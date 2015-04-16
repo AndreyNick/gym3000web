@@ -91,4 +91,14 @@ public class Exercise {
     public void setAttemptList(List<Attempt> attemptList) {
         this.attemptList = attemptList;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString(){
+        return "Exercise id = " + id + ",\ntraining id = " + training.getId() + ", exercise type id = "
+                + exerciseType.getId() + ",\nexercise load: " + exerciseLoad;
+    }
 }

@@ -52,4 +52,13 @@ public class Owner {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString(){
+        return "Owner id = " + id + ",\nname: " + name + ", date of registration: " + registrationDate.toString();
+    }
 }

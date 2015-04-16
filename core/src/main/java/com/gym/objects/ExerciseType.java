@@ -99,4 +99,14 @@ public class ExerciseType {
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString(){
+        return "Exercise type id = " + id + ",\nparent program: " + program.getName() + ", name: " + name + ", descr: "
+                + description;
+    }
 }

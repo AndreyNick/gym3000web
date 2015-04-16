@@ -84,4 +84,13 @@ public class Program {
     public void setExerciseTypeList(List<ExerciseType> exerciseTypeList) {
         this.exerciseTypeList = exerciseTypeList;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString(){
+        return "Program id = " + id + ",\nname: " + name + ", descr: " + description;
+    }
 }

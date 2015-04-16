@@ -111,4 +111,15 @@ public class Attempt{
     public void setActualTimes(int actualTimes) {
         this.actualTimes = actualTimes;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString(){
+        return "Attempt id = " + id + ",\nexercise id = " + exercise.getId() +
+                ",\nestimateWeight: " + estimateWeight + " actualWeight: " + actualWeight + ",\nestimateTimes: "
+                + estimateTimes + ", actualTimes: " + actualTimes;
+    }
 }

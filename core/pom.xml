@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>gym3000web</groupId>
+            <artifactId>log</artifactId>
+            <version>${gym3000web.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
         </dependency>
