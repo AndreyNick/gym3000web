@@ -133,4 +133,13 @@ public class Training {
     public void setSummaryTrainingWeight(Double summaryTrainingWeight) {
         this.summaryTrainingWeight = summaryTrainingWeight;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString(){
+        return "Training id = " + id + ",\nOwner: " + owner.getName() + ", date: " + date.toString();
+    }
 }
