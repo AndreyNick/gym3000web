@@ -17,9 +17,8 @@ import java.util.Arrays;
 public class Logger {
 
     @AfterReturning(pointcut = "execution(* com.gym.service.AbstractGenericService.*(..))", returning = "PK")
-    public void log(JoinPoint joinPoint, Object PK) throws Throwable {
+    public void abstractGenericServiceLog(JoinPoint joinPoint, Object PK) throws Throwable {
         System.out.println(joinPoint.getSignature() + " " + Arrays.toString(joinPoint.getArgs()));
         System.out.println("PK = " + PK.toString());
-
     }
 }
