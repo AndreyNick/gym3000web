@@ -140,6 +140,6 @@ public class Training {
 
     @Override
     public String toString(){
-        return "Training id = " + id + ",\nOwner: " + owner.getName() + ", date: " + date.toString();
+        return "Training id = " + id + ", Owner id = " + owner.getId() + ", date of training: " + date.toString();
     }
 }

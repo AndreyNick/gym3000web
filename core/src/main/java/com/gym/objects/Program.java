@@ -91,6 +91,6 @@ public class Program {
 
     @Override
     public String toString(){
-        return "Program id = " + id + ",\nname: " + name + ", descr: " + description;
+        return "Program id = " + id + ", name: " + name + ", descr: " + description;
     }
 }

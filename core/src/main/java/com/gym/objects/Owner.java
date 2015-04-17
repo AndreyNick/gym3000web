@@ -59,6 +59,6 @@ public class Owner {
 
     @Override
     public String toString(){
-        return "Owner id = " + id + ",\nname: " + name + ", date of registration: " + registrationDate.toString();
+        return "Owner id = " + id + ", name: " + name + ", date of registration: " + registrationDate.toString();
     }
 }

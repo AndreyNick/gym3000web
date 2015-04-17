@@ -106,7 +106,7 @@ public class ExerciseType {
 
     @Override
     public String toString(){
-        return "Exercise type id = " + id + ",\nparent program: " + program.getName() + ", name: " + name + ", descr: "
+        return "Exercise type id = " + id + ", program id = " + program.getId() + ", name: " + name + ", descr: "
                 + description;
     }
 }

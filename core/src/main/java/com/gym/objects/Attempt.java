@@ -118,8 +118,8 @@ public class Attempt{
 
     @Override
     public String toString(){
-        return "Attempt id = " + id + ",\nexercise id = " + exercise.getId() +
-                ",\nestimateWeight: " + estimateWeight + " actualWeight: " + actualWeight + ",\nestimateTimes: "
+        return "Attempt id = " + id + ", exercise id = " + exercise.getId() +
+                ", estimateWeight: " + estimateWeight + " actualWeight: " + actualWeight + ", estimateTimes: "
                 + estimateTimes + ", actualTimes: " + actualTimes;
     }
 }

@@ -98,7 +98,7 @@ public class Exercise {
 
     @Override
     public String toString(){
-        return "Exercise id = " + id + ",\ntraining id = " + training.getId() + ", exercise type id = "
-                + exerciseType.getId() + ",\nexercise load: " + exerciseLoad;
+        return "Exercise id = " + id + ", training id = " + training.getId() + ", exercise type id = "
+                + exerciseType.getId() + ", exercise load: " + exerciseLoad;
     }
 }
