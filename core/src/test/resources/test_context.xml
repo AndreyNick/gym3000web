@@ -143,6 +143,6 @@
     </bean>
 
     <!--log-->
-    <bean id="logger" class="com.gym.Logger"></bean>
+    <bean id="logger" class="com.gym.Log"></bean>
 
 </beans>
