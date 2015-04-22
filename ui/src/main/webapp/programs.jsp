@@ -20,12 +20,10 @@
     <td>Name</td>
     <td>Description</td>
   </tr>
-  <c:forEach var="program" items="${programs}">
     <tr>
-      <td>${program.name}</td>
-      <td>${program.description}</td>
+      <td>${programs}</td>
+      <td>${programs}</td>
     </tr>
-  </c:forEach>
 </table>
 <br/>
 <a href="add-program">New program</a>

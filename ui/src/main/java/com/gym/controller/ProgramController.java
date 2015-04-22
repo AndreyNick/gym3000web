@@ -23,7 +23,7 @@ public class ProgramController {
 
     @RequestMapping(value = "/programs")
     public String allPayments(Model model) {
-        model.addAttribute("payments", programService.getAll());
+        model.addAttribute("programs", /*programService.getAll()*/"test");
         return "programs.jsp";
     }
 
