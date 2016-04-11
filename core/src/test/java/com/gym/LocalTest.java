@@ -25,12 +25,12 @@ public class LocalTest {
 
     @org.junit.Test
     public void test() {
-        ExerciseTemplate exerciseTemplate1 = new ExerciseTemplate("exerciseTemplate1");
-        ExerciseTemplate exerciseTemplate2 = new ExerciseTemplate("exerciseTemplate2");
-        List<ExerciseTemplate> list = new LinkedList<ExerciseTemplate>();
-        list.add(exerciseTemplate1);
-        list.add(exerciseTemplate2);
-        ProgramTemplate programTemplate = new ProgramTemplate("programTemplate", list);
+        ProgramTemplate programTemplate = new ProgramTemplate();
+        ExerciseTemplate exerciseTemplate1 = new ExerciseTemplate(programTemplate, "exerciseTemplate1");
+        ExerciseTemplate exerciseTemplate2 = new ExerciseTemplate(programTemplate, "exerciseTemplate2");
+
+        programTemplate.addExerciseTemplate(exerciseTemplate1);
+        programTemplate.addExerciseTemplate(exerciseTemplate2);
 
         programTemplateService.create(programTemplate);
 

@@ -17,7 +17,12 @@ public class ExerciseTemplate {
     @Column(name = "name", nullable = false)
     String name;
 
-    public ExerciseTemplate(String name) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "program_template_id", nullable = false)
+    ProgramTemplate programTemplate;
+
+    public ExerciseTemplate(ProgramTemplate programTemplate, String name) {
+        this.programTemplate = programTemplate;
         this.name = name;
     }
 
@@ -32,22 +37,19 @@ public class ExerciseTemplate {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "ExerciseTemplate{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ProgramTemplate programTemplate;
-
     public ProgramTemplate getProgramTemplates() {
         return programTemplate;
     }
 
     public void setProgramTemplates(ProgramTemplate programTemplates) {
         this.programTemplate = programTemplates;
+    }
+
+    @Override
+    public String toString() {
+        return "ExerciseTemplate{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -3,6 +3,7 @@ package com.gym.objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -22,11 +23,13 @@ public class ProgramTemplate {
     List<ExerciseTemplate> exerciseTemplateList;
 
     public ProgramTemplate(String name, List<ExerciseTemplate> exerciseTemplateList) {
+        exerciseTemplateList = new LinkedList<ExerciseTemplate>();
         this.name = name;
         this.exerciseTemplateList = exerciseTemplateList;
     }
 
     public ProgramTemplate() {
+        exerciseTemplateList = new LinkedList<ExerciseTemplate>();
     }
 
     public String getName() {
@@ -43,6 +46,10 @@ public class ProgramTemplate {
 
     public void setExerciseTemplateList(List<ExerciseTemplate> exerciseTemplateList) {
         this.exerciseTemplateList = exerciseTemplateList;
+    }
+
+    public void addExerciseTemplate(ExerciseTemplate exerciseTemplate) {
+        exerciseTemplateList.add(exerciseTemplate);
     }
 
     @Override

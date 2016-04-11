@@ -76,6 +76,7 @@ CREATE TABLE `program_template` (
 
 CREATE TABLE `exercise_template` (
   `exercise_template_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `program_template_id` INT (11) NOT NULL,
   `name` VARCHAR (100),
   PRIMARY KEY (`exercise_template_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
