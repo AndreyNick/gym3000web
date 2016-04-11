@@ -10,5 +10,8 @@
         <mapping class="com.gym.objects.Attempt"/>
         <mapping class="com.gym.objects.ExerciseType"/>
         <mapping class="com.gym.objects.Program"/>
+        <mapping class="com.gym.objects.ProgramTemplate"/>
+        <mapping class="com.gym.objects.ExerciseTemplate"/>
+
     </session-factory>
 </hibernate-configuration>

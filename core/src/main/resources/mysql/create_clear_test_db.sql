@@ -68,17 +68,5 @@ CREATE TABLE `exercise_type` (
   PRIMARY KEY (`exercise_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
-CREATE TABLE `program_template` (
-  `program_template_id` INT (11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (100),
-  PRIMARY KEY (`program_template_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
-
-CREATE TABLE `exercise_template` (
-  `exercise_template_id` INT (11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (100),
-  PRIMARY KEY (`exercise_template_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
-
 
 

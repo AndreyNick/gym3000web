@@ -9,4 +9,5 @@
        <bean id="programService" class="com.gym.stub.ProgramService">
               <constructor-arg ref="dao"/>
        </bean>
+
 </beans>
