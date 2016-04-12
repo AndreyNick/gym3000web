@@ -19,17 +19,18 @@ public class ProgramTemplate {
     @Column(name = "name", nullable = false)
     String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "programTemplate", cascade = CascadeType.ALL)
-    List<ExerciseTemplate> exerciseTemplateList;
 
-    public ProgramTemplate(String name, List<ExerciseTemplate> exerciseTemplateList) {
-        exerciseTemplateList = new LinkedList<ExerciseTemplate>();
-        this.name = name;
-        this.exerciseTemplateList = exerciseTemplateList;
-    }
+    @ManyToMany
+    @JoinTable(name="program_exercise_templates",
+            joinColumns={@JoinColumn(name="program_template_id")},
+            inverseJoinColumns={@JoinColumn(name="exercise_template_id")})
+    List<ExerciseTemplate> exerciseTemplateList = new LinkedList<ExerciseTemplate>();
 
     public ProgramTemplate() {
-        exerciseTemplateList = new LinkedList<ExerciseTemplate>();
+    }
+
+    public ProgramTemplate(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -51,6 +52,8 @@ public class ProgramTemplate {
     public void addExerciseTemplate(ExerciseTemplate exerciseTemplate) {
         exerciseTemplateList.add(exerciseTemplate);
     }
+
+
 
     @Override
     public String toString() {

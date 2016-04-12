@@ -47,4 +47,18 @@
     <bean id="exerciseTemplateService" class="com.gym.service.ExerciseTemplateService">
         <constructor-arg ref="exerciseTemplateDao"/>
     </bean>
+
+    <!--Objects-->
+    <bean id="exerciseTemplate1" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="exercise1"/>
+    </bean>
+    <bean id="exerciseTemplate2" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="exercise2"/>
+    </bean>
+    <bean id="programTemplate1" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="program1"/>
+    </bean>
+    <bean id="programTemplate2" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="program2"/>
+    </bean>
 </beans>
