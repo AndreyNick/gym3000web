@@ -1,8 +1,12 @@
 package com.gym;
 
+import com.gym.objects.Exercise;
 import com.gym.objects.ExerciseTemplate;
+import com.gym.objects.Program;
 import com.gym.objects.ProgramTemplate;
+import com.gym.service.ExerciseService;
 import com.gym.service.ExerciseTemplateService;
+import com.gym.service.ProgramService;
 import com.gym.service.ProgramTemplateService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +20,29 @@ public class LocalTest {
 
     @Autowired
     ProgramTemplateService programTemplateService;
-
     @Autowired
     ExerciseTemplateService exerciseTemplateService;
+    @Autowired
+    ProgramService programService;
+    @Autowired
+    ExerciseService exerciseService;
 
     @Autowired
     ExerciseTemplate exerciseTemplate1;
-
     @Autowired
     ExerciseTemplate exerciseTemplate2;
-
     @Autowired
     ProgramTemplate programTemplate1;
-
     @Autowired
     ProgramTemplate programTemplate2;
+    @Autowired
+    Exercise exercise1;
+    @Autowired
+    Exercise exercise2;
+    @Autowired
+    Program program1;
+    @Autowired
+    Program program2;
 
     @org.junit.Test
     public void test() {

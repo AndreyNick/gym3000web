@@ -7,5 +7,6 @@
         <mapping class="com.gym.objects.ProgramTemplate"/>
         <mapping class="com.gym.objects.ExerciseTemplate"/>
         <mapping class="com.gym.objects.Exercise"/>
+        <mapping class="com.gym.objects.Program"/>
     </session-factory>
 </hibernate-configuration>

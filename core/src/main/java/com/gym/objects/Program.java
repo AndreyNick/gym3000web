@@ -3,6 +3,7 @@ package com.gym.objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -23,26 +24,23 @@ public class Program {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "date", nullable = false)
+    private Date date;
 
-    @Column(name = "note")
-    private String note;
-
-    @Column(name = "order_number")
-    private int orderNumber;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program", cascade = CascadeType.ALL)
-    private List<ExerciseType> exerciseTypeList;
-
-    public Program(String name, String description, String note, int orderNumber) {
-        this.name = name;
-        this.description = description;
-        this.note = note;
-        this.orderNumber = orderNumber;
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
+    private List<Exercise> exerciseList;
 
     public Program() {
+    }
+
+
+    public Program(String name, Date date) {
+        this.name = name;
+        this.date = date;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -53,44 +51,19 @@ public class Program {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getNote() {
-        return note;
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public List<ExerciseType> getExerciseTypeList() {
-        return exerciseTypeList;
-    }
-
-    public void setExerciseTypeList(List<ExerciseType> exerciseTypeList) {
-        this.exerciseTypeList = exerciseTypeList;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public String toString(){
-        return "Program id = " + id + ", name: " + name + ", descr: " + description;
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 }

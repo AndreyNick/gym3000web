@@ -18,6 +18,10 @@ public class Exercise {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "program_id", nullable = false)
+    private Program program;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exercise_template_id", nullable = false)
     private ExerciseTemplate exerciseTemplate;
 
@@ -27,9 +31,8 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(String name, ExerciseTemplate exerciseTemplate) {
+    public Exercise(String name) {
         this.name = name;
-        this.exerciseTemplate = exerciseTemplate;
     }
 
     public Long getId() {
@@ -50,5 +53,13 @@ public class Exercise {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
     }
 }

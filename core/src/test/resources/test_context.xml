@@ -113,34 +113,6 @@
         <constructor-arg value="This is note" index="6"/>
         <constructor-arg value="1358.25" index="7"/>
     </bean>
-    <bean id="program" class="com.gym.objects.Program">
-        <constructor-arg index="0" value="Legs day"/>
-        <constructor-arg index="1" value="Some legs training day"/>
-        <constructor-arg index="2" value="This is note"/>
-        <constructor-arg index="3" value="1"/>
-    </bean>
-    <bean id="exerciseType" class="com.gym.objects.ExerciseType">
-        <constructor-arg index="0" ref="program"/>
-        <constructor-arg index="1" value="Push ups"/>
-        <constructor-arg index="2" value="Standard push up exercise"/>
-        <constructor-arg index="3" value="This is note"/>
-        <constructor-arg index="4" value="path/to/the/picture"/>
-        <constructor-arg index="5" value="1"/>
-    </bean>
-    <bean id="exercise" class="com.gym.objects.Exercise">
-        <constructor-arg index="0" ref="training"/>
-        <constructor-arg index="1" ref="exerciseType"/>
-        <constructor-arg index="2" value="MIDDLE"/>
-        <constructor-arg index="3" value="This is note"/>
-    </bean>
-    <bean id="attempt" class="com.gym.objects.Attempt">
-        <constructor-arg index="0" ref="exercise"/>
-        <constructor-arg index="1" value="60.5"/>
-        <constructor-arg index="2" value="60.5"/>
-        <constructor-arg index="3" value="12"/>
-        <constructor-arg index="4" value="12"/>
-        <constructor-arg index="5" value="This is note"/>
-    </bean>
 
     <!--log-->
     <bean id="logger" class="com.gym.Log"></bean>
