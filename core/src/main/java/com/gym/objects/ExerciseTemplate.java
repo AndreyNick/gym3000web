@@ -21,6 +21,9 @@ public class ExerciseTemplate {
     @ManyToMany(mappedBy="exerciseTemplateList")
     private List<ProgramTemplate> programTemplateList = new LinkedList<ProgramTemplate>();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exerciseTemplate")
+    private List<Exercise> exerciseList = new LinkedList<Exercise>();
+
     public ExerciseTemplate() {
     }
 
@@ -50,6 +53,14 @@ public class ExerciseTemplate {
 
     public void addProgramTemplate(ProgramTemplate programTemplate) {
         programTemplateList.add(programTemplate);
+    }
+
+    public List<Exercise> getExerciseList() {
+        return exerciseList;
+    }
+
+    public void setExerciseList(List<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 
     @Override

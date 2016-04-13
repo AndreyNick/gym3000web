@@ -6,5 +6,6 @@
     <session-factory>
         <mapping class="com.gym.objects.ProgramTemplate"/>
         <mapping class="com.gym.objects.ExerciseTemplate"/>
+        <mapping class="com.gym.objects.Exercise"/>
     </session-factory>
 </hibernate-configuration>

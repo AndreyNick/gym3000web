@@ -28,6 +28,14 @@ CREATE TABLE `program_exercise_templates` (
   CONSTRAINT `fk_exercise_template` FOREIGN KEY (`exercise_template_id`) REFERENCES `exercise_template` (`exercise_template_id`)
 ) DEFAULT CHARSET=utf8$$
 
+CREATE TABLE `exercise` (
+  `exercise_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `exercise_template_id`  INT (11) NOT NULL,
+  `name` VARCHAR (100),
+  PRIMARY KEY (`exercise_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
+
 
 
 

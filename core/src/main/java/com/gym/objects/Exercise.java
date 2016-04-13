@@ -6,18 +6,10 @@ import javax.persistence.*;
 
 import java.util.List;
 
-/**
- * Created by anni0913 on 27.11.2014.
- */
+
 @Entity
 @Table(name = "exercise")
 public class Exercise {
-
-    public enum ExerciseLoad {
-        SMALL,
-        MIDDLE,
-        LARGE
-    }
 
     @Id
     @GeneratedValue(generator="increment")
@@ -26,79 +18,37 @@ public class Exercise {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "training_id", nullable = false)
-    private Training training;
+    @JoinColumn(name = "exercise_template_id", nullable = false)
+    private ExerciseTemplate exerciseTemplate;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "exercise_type_id", nullable = false)
-    private ExerciseType exerciseType;
-
-    @Column(name = "exercise_load")
-    private ExerciseLoad exerciseLoad;
-
-    @Column(name = "note")
-    private String note;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise", cascade = CascadeType.ALL)
-    private List<Attempt> attemptList;
-
-    public Exercise(Training training, ExerciseType exerciseType, ExerciseLoad exerciseLoad, String note) {
-        this.training = training;
-        this.exerciseType = exerciseType;
-        this.exerciseLoad = exerciseLoad;
-        this.note = note;
-    }
+    @Column(name = "name")
+    private String name;
 
     public Exercise() {
     }
 
-    public Training getTraining() {
-        return training;
-    }
-
-    public void setTraining(Training training) {
-        this.training = training;
-    }
-
-    public ExerciseType getExerciseType() {
-        return exerciseType;
-    }
-
-    public void setExerciseType(ExerciseType exerciseType) {
-        this.exerciseType = exerciseType;
-    }
-
-    public ExerciseLoad getExerciseLoad() {
-        return exerciseLoad;
-    }
-
-    public void setExerciseLoad(ExerciseLoad exerciseLoad) {
-        this.exerciseLoad = exerciseLoad;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public List<Attempt> getAttemptList() {
-        return attemptList;
-    }
-
-    public void setAttemptList(List<Attempt> attemptList) {
-        this.attemptList = attemptList;
+    public Exercise(String name, ExerciseTemplate exerciseTemplate) {
+        this.name = name;
+        this.exerciseTemplate = exerciseTemplate;
     }
 
     public Long getId() {
         return id;
     }
 
-    @Override
-    public String toString(){
-        return "Exercise id = " + id + ", training id = " + training.getId() + ", exercise type id = "
-                + exerciseType.getId() + ", exercise load: " + exerciseLoad;
+    public ExerciseTemplate getExerciseTemplate() {
+        return exerciseTemplate;
+    }
+
+    public void setExerciseTemplate(ExerciseTemplate exerciseTemplate) {
+        this.exerciseTemplate = exerciseTemplate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
