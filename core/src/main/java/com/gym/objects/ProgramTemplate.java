@@ -14,23 +14,26 @@ public class ProgramTemplate {
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     @Column(name = "program_template_id", unique = true, nullable = false)
-    Long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
-    String name;
-
+    private String name;
 
     @ManyToMany
     @JoinTable(name="program_exercise_templates",
             joinColumns={@JoinColumn(name="program_template_id")},
             inverseJoinColumns={@JoinColumn(name="exercise_template_id")})
-    List<ExerciseTemplate> exerciseTemplateList = new LinkedList<ExerciseTemplate>();
+    private List<ExerciseTemplate> exerciseTemplateList = new LinkedList<ExerciseTemplate>();
 
     public ProgramTemplate() {
     }
 
     public ProgramTemplate(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -54,12 +57,16 @@ public class ProgramTemplate {
     }
 
 
-
     @Override
     public String toString() {
+        String exerciseTemplates = "";
+        for(ExerciseTemplate item:exerciseTemplateList) {
+            exerciseTemplates += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+        }
         return "ProgramTemplate{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", exerciseTemplateList=[" + exerciseTemplates + ']' +
                 '}';
     }
 }

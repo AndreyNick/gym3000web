@@ -1,7 +1,6 @@
 package com.gym.objects;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,20 +13,23 @@ public class ExerciseTemplate {
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     @Column(name = "exercise_template_id", unique = true, nullable = false)
-    Long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
-    String name;
+    private String name;
 
     @ManyToMany(mappedBy="exerciseTemplateList")
-    List<ProgramTemplate> programTemplateList = new LinkedList<ProgramTemplate>();
-
+    private List<ProgramTemplate> programTemplateList = new LinkedList<ProgramTemplate>();
 
     public ExerciseTemplate() {
     }
 
     public ExerciseTemplate(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -52,9 +54,14 @@ public class ExerciseTemplate {
 
     @Override
     public String toString() {
+        String programTemplates = "";
+        for(ProgramTemplate item:programTemplateList) {
+            programTemplates += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+        }
         return "ExerciseTemplate{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", programTemplateList=[" + programTemplates + ']' +
                 '}';
     }
 }

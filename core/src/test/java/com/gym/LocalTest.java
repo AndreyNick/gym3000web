@@ -35,18 +35,23 @@ public class LocalTest {
     @org.junit.Test
     public void test() {
 
-        Long programTempId1 = programTemplateService.create(programTemplate1);
+        /*Long programTempId1 = programTemplateService.create(programTemplate1);
         Long programTempId2 = programTemplateService.create(programTemplate2);
 
         Long exerciseTempId1 = exerciseTemplateService.create(exerciseTemplate1);
         Long exerciseTempId2 = exerciseTemplateService.create(exerciseTemplate2);
 
         programTemplate1.addExerciseTemplate(exerciseTemplate1);
-        programTemplateService.update(programTemplate1);
-        programTemplate1.addExerciseTemplate(exerciseTemplate1);
-        programTemplateService.update(programTemplate1);
+        programTemplateService.update(programTemplate1);*/
+        //programTemplate1.addExerciseTemplate(exerciseTemplate1);
+        //programTemplateService.update(programTemplate1);
 
 
+        ProgramTemplate pt = programTemplateService.read(new Long(1));
+
+
+
+        System.out.println(pt);
 
 
 
