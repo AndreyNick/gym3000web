@@ -4,10 +4,4 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean id="dao" class="com.gym.stub.ProgramDAO"></bean>
-
-       <bean id="programService" class="com.gym.stub.ProgramService">
-              <constructor-arg ref="dao"/>
-       </bean>
-
 </beans>

@@ -7,9 +7,6 @@ import org.aspectj.lang.annotation.Aspect;
 
 import java.util.Arrays;
 
-/**
- * Created by anni0913 on 16.04.2015.
- */
 @Aspect
 public class Log {
 

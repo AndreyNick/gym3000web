@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:local_test_context.xml")
-public class LocalTest {
+@ContextConfiguration("classpath:temporary_test_context.xml")
+public class TemporaryTest {
 
     @Autowired
     ProgramTemplateService programTemplateService;
@@ -58,17 +58,17 @@ public class LocalTest {
         //programTemplate1.addExerciseTemplate(exerciseTemplate1);
         //programTemplateService.update(programTemplate1);
 
+        exerciseTemplateService.create(exerciseTemplate1);
+        exerciseTemplateService.create(exerciseTemplate2);
+        programService.create(program1);
+        programService.create(program2);
+        exercise1.setProgram(program1);
 
-        ProgramTemplate pt = programTemplateService.read(new Long(1));
-
-
-
-        System.out.println(pt);
-
-
-
-
-
+        exercise1.setExerciseTemplate(exerciseTemplate1);
+        exercise2.setProgram(program2);
+        exercise2.setExerciseTemplate(exerciseTemplate2);
+        exerciseService.create(exercise1);
+        exerciseService.create(exercise2);
 
     }
 
