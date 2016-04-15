@@ -67,8 +67,10 @@ public class TemporaryTest {
         exercise1.setExerciseTemplate(exerciseTemplate1);
         exercise2.setProgram(program2);
         exercise2.setExerciseTemplate(exerciseTemplate2);
-        exerciseService.create(exercise1);
+        Long exercise1Id = exerciseService.create(exercise1);
         exerciseService.create(exercise2);
+
+
 
     }
 
