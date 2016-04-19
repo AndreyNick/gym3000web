@@ -75,4 +75,27 @@ public class ExerciseTemplate {
                 ", programTemplateList=[" + programTemplates + ']' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExerciseTemplate)) return false;
+
+        ExerciseTemplate that = (ExerciseTemplate) o;
+
+        if (exerciseList != null ? !exerciseList.equals(that.exerciseList) : that.exerciseList != null) return false;
+        if (!name.equals(that.name)) return false;
+        if (programTemplateList != null ? !programTemplateList.equals(that.programTemplateList) : that.programTemplateList != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (programTemplateList != null ? programTemplateList.hashCode() : 0);
+        result = 31 * result + (exerciseList != null ? exerciseList.hashCode() : 0);
+        return result;
+    }
 }

@@ -66,4 +66,27 @@ public class Program {
     public void setExerciseList(List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Program)) return false;
+
+        Program program = (Program) o;
+
+        if (!date.equals(program.date)) return false;
+        if (exerciseList != null ? !exerciseList.equals(program.exerciseList) : program.exerciseList != null)
+            return false;
+        if (!name.equals(program.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + (exerciseList != null ? exerciseList.hashCode() : 0);
+        return result;
+    }
 }

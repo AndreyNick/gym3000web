@@ -62,4 +62,27 @@ public class Exercise {
     public void setProgram(Program program) {
         this.program = program;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Exercise)) return false;
+
+        Exercise exercise = (Exercise) o;
+
+        if (exerciseTemplate != null ? !exerciseTemplate.equals(exercise.exerciseTemplate) : exercise.exerciseTemplate != null)
+            return false;
+        if (!name.equals(exercise.name)) return false;
+        if (!program.equals(exercise.program)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = program.hashCode();
+        result = 31 * result + (exerciseTemplate != null ? exerciseTemplate.hashCode() : 0);
+        result = 31 * result + name.hashCode();
+        return result;
+    }
 }
