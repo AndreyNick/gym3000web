@@ -52,35 +52,13 @@ public class TemporaryTest {
     Long exerciseId2;
     Long programId1;
     Long programId2;
+    Long programTemplateId1;
+    Long programTemplateId2;
 
 
-
-
-    public void test() {
-        /*Long programTempId1 = programTemplateService.create(programTemplate1);
-        Long programTempId2 = programTemplateService.create(programTemplate2);
-
-        Long exerciseTempId1 = exerciseTemplateService.create(exerciseTemplate1);
-        Long exerciseTempId2 = exerciseTemplateService.create(exerciseTemplate2);
-
-        programTemplate1.addExerciseTemplate(exerciseTemplate1);
-        programTemplateService.update(programTemplate1);*/
-        //programTemplate1.addExerciseTemplate(exerciseTemplate1);
-        //programTemplateService.update(programTemplate1);
-
-        exerciseTemplateService.create(exerciseTemplate1);
-        exerciseTemplateService.create(exerciseTemplate2);
-        programService.create(program1);
-        programService.create(program2);
-        exercise1.setProgram(program1);
-
-        exercise1.setExerciseTemplate(exerciseTemplate1);
-        exercise2.setProgram(program2);
-        exercise2.setExerciseTemplate(exerciseTemplate2);
-        Long exercise1Id = exerciseService.create(exercise1);
-        exerciseService.create(exercise2);
-    }
-
+    /**
+     * ExerciseTemplate could be created without ProgramTemplate
+     */
     @Test
     public void createReadExerciseTemplate() {
         exerciseTempId1 = exerciseTemplateService.create(exerciseTemplate1);
@@ -91,6 +69,21 @@ public class TemporaryTest {
 
         Assert.assertEquals(exerciseTemplate1, et1);
         Assert.assertEquals(exerciseTemplate2, et2);
+    }
+
+    /**
+     * ProgramTemplate could be created without ExerciseTemplates list
+     */
+    @Test
+    public void createReadProgramTemplate() {
+        programTemplateId1 = programTemplateService.create(programTemplate1);
+        programTemplateId2 = programTemplateService.create(programTemplate2);
+
+        ProgramTemplate pt1 = programTemplateService.read(programTemplateId1);
+        ProgramTemplate pt2 = programTemplateService.read(programTemplateId2);
+
+        Assert.assertEquals(programTemplate1, pt1);
+        Assert.assertEquals(programTemplate2, pt2);
     }
 
     @Test
@@ -106,17 +99,21 @@ public class TemporaryTest {
 
     }
 
+
     @Test
     public void createReadExercise() {
         exercise1.setExerciseTemplate(exerciseTemplate1);
         exercise2.setExerciseTemplate(exerciseTemplate2);
         exercise1.setProgram(program1);
-        exercise2.setProgram(program2);
+        exercise2.setProgram(program1);
         exerciseId1 = exerciseService.create(exercise1);
         exerciseId2 = exerciseService.create(exercise2);
 
         Exercise e1 = exerciseService.read(exerciseId1);
         Exercise e2 = exerciseService.read(exerciseId2);
+
+
+        System.out.println(e1 + "\n" + programService.read(program1.getId()));   //todo check why exercise list in program is empty
 
         Assert.assertEquals(exercise1, e1);
         Assert.assertEquals(exercise2, e2);

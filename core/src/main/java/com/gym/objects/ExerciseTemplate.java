@@ -66,13 +66,18 @@ public class ExerciseTemplate {
     @Override
     public String toString() {
         String programTemplates = "";
+        String exercises = "";
         for(ProgramTemplate item:programTemplateList) {
             programTemplates += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+        }
+        for(Exercise item:exerciseList) {
+            exercises += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
         }
         return "ExerciseTemplate{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", programTemplateList=[" + programTemplates + ']' +
+                ", exerciseList=[" + exercises + ']' +
                 '}';
     }
 

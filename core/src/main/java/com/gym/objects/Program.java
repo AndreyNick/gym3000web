@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class Program {
     private Date date;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
-    private List<Exercise> exerciseList;
+    private List<Exercise> exerciseList = new LinkedList<Exercise>();
 
     public Program() {
     }
@@ -88,5 +89,18 @@ public class Program {
         result = 31 * result + date.hashCode();
         result = 31 * result + (exerciseList != null ? exerciseList.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        String exercises = "";
+        for(Exercise item : exerciseList) {
+            exercises += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+        }
+        return "Program{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", exerciseList=[" + exercises + ']' +
+                '}';
     }
 }
