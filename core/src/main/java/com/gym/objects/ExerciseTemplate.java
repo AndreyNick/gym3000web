@@ -2,12 +2,13 @@ package com.gym.objects;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import javax.xml.ws.handler.Handler;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
 @Table(name = "exercise_template")
-public class ExerciseTemplate {
+public class ExerciseTemplate implements HasIdAndName {
 
     @Id
     @GeneratedValue(generator="increment")

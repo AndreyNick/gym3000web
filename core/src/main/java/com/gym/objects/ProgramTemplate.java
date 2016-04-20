@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "program_template")
-public class ProgramTemplate {
+public class ProgramTemplate implements HasIdAndName {
 
     @Id
     @GeneratedValue(generator="increment")

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "exercise")
-public class Exercise {
+public class Exercise implements HasIdAndName {
 
     @Id
     @GeneratedValue(generator="increment")
@@ -91,7 +91,7 @@ public class Exercise {
         return "Exercise{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Program='[" + program.getId() + "]\'" +
+                ", Program='[{id=" + program.getId() + ", name='" + program.getName() + "']'" +
                 '}';
     }
 }
