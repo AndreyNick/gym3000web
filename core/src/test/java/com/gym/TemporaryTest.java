@@ -9,6 +9,7 @@ import com.gym.service.ExerciseTemplateService;
 import com.gym.service.ProgramService;
 import com.gym.service.ProgramTemplateService;
 import junit.framework.Assert;
+import org.hibernate.ObjectNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +106,45 @@ public class TemporaryTest {
         programTemplateService.update(programTemplate);
         ProgramTemplate pt = programTemplateService.read(programTemplate.getId());
         Assert.assertEquals(programTemplate, pt);
+    }
+
+    @Test
+    public void updateProgram() {
+        program.setName("name was changed");
+        programService.update(program);
+        Program p = programService.read(program.getId());
+        Assert.assertEquals(program, p);
+    }
+
+    @Test
+    public void updateExercise() {
+        exercise.setName("name was changed");
+        exerciseService.update(exercise);
+        Exercise e = exerciseService.read(exercise.getId());
+        Assert.assertEquals(exercise, e);
+    }
+
+    @Test
+     public void deleteExerciseTemplate() throws ObjectNotFoundException{
+        exerciseTemplateService.delete(exerciseTemplate);
+        exerciseTemplateService.read(exerciseTemplate.getId());
+    }
+
+    @Test
+    public void deleteExercise() throws ObjectNotFoundException{
+        exerciseService.delete(exercise);
+        exerciseService.read(exercise.getId());
+    }
+
+    @Test
+    public void deleteProgramTemplate() throws ObjectNotFoundException{
+        programTemplateService.delete(programTemplate);
+        programTemplateService.read(programTemplate.getId());
+    }
+
+    @Test
+    public void deleteProgram() throws ObjectNotFoundException{
+        programService.delete(program);
+        programService.read(program.getId());
     }
 }
