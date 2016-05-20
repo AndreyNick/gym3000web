@@ -24,6 +24,7 @@
     </properties>
 
     <dependencyManagement>
+
         <dependencies>
             <dependency>
                 <groupId>junit</groupId>
@@ -178,4 +179,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 </project>
