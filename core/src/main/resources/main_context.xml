@@ -11,6 +11,7 @@
     <contest:annotation-config/>
     <contest:property-placeholder location="config.properties"/>
     <tx:annotation-driven transaction-manager="transactionManager" />
+    <import resource="service_context.xml"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${db.driver}" />

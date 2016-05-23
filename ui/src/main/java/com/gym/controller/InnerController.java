@@ -1,6 +1,9 @@
 package com.gym.controller;
 
+import com.gym.service.ExerciseService;
+import com.gym.service.ExerciseTemplateService;
 import com.gym.service.ProgramService;
+import com.gym.service.ProgramTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +18,26 @@ public class InnerController {
     @Autowired
     ProgramService programService;
 
+    @Autowired
+    ProgramTemplateService programTemplateService;
+
+    @Autowired
+    ExerciseService exerciseService;
+
+    @Autowired
+    ExerciseTemplateService exerciseTemplateService;
+
+
+
     @RequestMapping(value = "/")
     public String home() {
-        return "redirect:/inner";
+        return "redirect:/p_temp";
     }
 
-    @RequestMapping(value = "/inner")
+    @RequestMapping(value = "/p_temp")
     public String welcome(Map<String, Object> map) {
-        map.put("program", programService.readAll().toString());
-        return "inner";
+        map.put("program_templates_list", programTemplateService.readAll());
+        return "p_temp";
     }
 
 }

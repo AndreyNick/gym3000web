@@ -11,6 +11,10 @@
     <packaging>war</packaging>
     <name>gym3000web-ui</name>
 
+    <build>
+        <finalName>gym3000-ui</finalName>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>gym3000web</groupId>
@@ -55,8 +59,4 @@
             <artifactId>jstl</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>gym3000-ui</finalName>
-    </build>
 </project>
