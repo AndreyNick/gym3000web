@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <contest:annotation-config/>
-    <contest:property-placeholder location="config.properties"/>
+    <contest:property-placeholder location="classpath:config.properties"/>
     <tx:annotation-driven transaction-manager="transactionManager" />
     <import resource="service_context.xml"/>
 
@@ -26,7 +26,7 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="hibernate.cfg.xml"/>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${db.dialect}</prop>
