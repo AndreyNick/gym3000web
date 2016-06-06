@@ -13,16 +13,33 @@
 <h2>Program Templates</h2>
 
 
-<c:if test="${!empty program_templates_list}">
+<form:form method="post" action="p_temp/add" commandName="programTemplate">
+    <table>
+        <tr>
+            <td><form:label path="name">
+                name
+            </form:label></td>
+            <td><form:input path="name"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="add"/></td>
+        </tr>
+    </table>
+</form:form>
+
+
+<c:if test="${!empty programTemplateList}">
     <table class="data">
         <tr>
             <th>name</th>
             <th>exercise templates list</th>
+            <th>&nbsp;</th>
         </tr>
-        <c:forEach items="${program_templates_list}" var="program_template">
+        <c:forEach items="${programTemplateList}" var="programTemplate">
             <tr>
-                <td>${program_template.name}</td>
-                <td>${program_template.exerciseTemplateList}</td>
+                <td>${programTemplate.name}</td>
+                <td>${programTemplate.exerciseTemplateList}</td>
+                <td><a href="p_temp/delete/${programTemplate.id}">delete</a></td>
             </tr>
         </c:forEach>
     </table>

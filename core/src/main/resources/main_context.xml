@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:contest="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:contest="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       ">
 
     <contest:annotation-config/>
     <contest:property-placeholder location="classpath:config.properties"/>
     <tx:annotation-driven transaction-manager="transactionManager" />
-    <import resource="service_context.xml"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${db.driver}" />
@@ -33,5 +34,38 @@
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
+    </bean>
+    <!--DAO and Services-->
+    <bean id="programTemplateDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.ProgramTemplate"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="programTemplateService" class="com.gym.service.ProgramTemplateService">
+        <constructor-arg ref="programTemplateDao"/>
+    </bean>
+    <bean id="exerciseTemplateDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.ExerciseTemplate"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="exerciseTemplateService" class="com.gym.service.ExerciseTemplateService">
+        <constructor-arg ref="exerciseTemplateDao"/>
+    </bean>
+    <bean id="exerciseDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Exercise"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="exerciseService" class="com.gym.service.ExerciseService">
+        <constructor-arg ref="exerciseDao"/>
+    </bean>
+    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Program"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="programService" class="com.gym.service.ProgramService">
+        <constructor-arg ref="programDao"/>
+    </bean>
+
+    <bean id="programTemplate" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="program"/>
     </bean>
 </beans>

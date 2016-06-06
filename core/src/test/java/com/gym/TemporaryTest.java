@@ -43,15 +43,9 @@ public class TemporaryTest {
     Program program;
 
 
-    //@Test
+    @Test
     public void test() {
-        //programService.create(program1);
-        //exerciseTemplateService.create(exerciseTemplate1);
 
-        //exercise1.setProgram(programService.read((long) 1));
-        //exercise1.setExerciseTemplate(exerciseTemplateService.read((long) 1));
-        //exerciseService.create(exercise1);
-        System.out.println(exerciseService.read((long) 1));
     }
 
 
@@ -147,4 +141,5 @@ public class TemporaryTest {
         programService.delete(program);
         programService.read(program.getId());
     }
+
 }
