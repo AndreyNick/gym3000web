@@ -1,7 +1,6 @@
 package com.gym.objects;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.LinkedList;
@@ -25,11 +24,12 @@ public class Program implements HasIdAndName{
     @Column(name = "name", nullable = false)
     private String name;
 
+    //@DateTimeFormat(pattern = "dd.MM.yy")
     @Column(name = "date", nullable = false)
     private Date date;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
-    private List<Exercise> exerciseList = new LinkedList<Exercise>();
+    private List<Exercise> exerciseList = new LinkedList<>();
 
     public Program() {
     }
@@ -78,9 +78,8 @@ public class Program implements HasIdAndName{
         if (!date.equals(program.date)) return false;
         if (exerciseList != null ? !exerciseList.equals(program.exerciseList) : program.exerciseList != null)
             return false;
-        if (!name.equals(program.name)) return false;
+        return name.equals(program.name);
 
-        return true;
     }
 
     @Override

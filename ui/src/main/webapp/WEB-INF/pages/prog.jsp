@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +31,8 @@
                 </form:label>
             </td>
             <td>
-                <form:input type="text" path="date" class="date" pattern="dd.MM.yy"/>
+                <fmt:formatDate value="${program.date}" pattern="dd.MM.yy" var="programDate"/>
+                <form:input path="date" value="${programDate}"/>
             </td>
         </tr>
         <tr>
@@ -46,7 +48,7 @@
             <th>Date</th>
             <th>&nbsp;</th>
         </tr>
-        <c:forEach items="${programtList}" var="program">
+        <c:forEach items="${programList}" var="program">
             <tr>
                 <td>${program.name}</td>
                 <td>${program.date}</td>
