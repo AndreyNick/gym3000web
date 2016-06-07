@@ -11,6 +11,7 @@
 </head>
 <body>
 <h2>Exercise Templates</h2>
+<h3><a href="/welcome">Home</a></h3>
 
 
 <form:form method="post" action="e_temp/add" commandName="exerciseTemplate">
@@ -33,10 +34,12 @@
         <tr>
             <th>name</th>
             <th>&nbsp;</th>
+            <th>&nbsp;</th>
         </tr>
         <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
             <tr>
                 <td>${exerciseTemplate.name}</td>
+                <td><a href="e_temp/delete/${exerciseTemplate.id}">delete</a></td>
                 <td><a href="e_temp/delete/${exerciseTemplate.id}">delete</a></td>
             </tr>
         </c:forEach>

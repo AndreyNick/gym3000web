@@ -18,23 +18,23 @@ public class ProgramController {
     @Autowired
     ProgramService programService;
 
-    @RequestMapping(value = "/prog")
+    @RequestMapping(value = "/prog_list")
     public String printPrograms(Map<String, Object> map) {
         map.put("program", new Program());
         map.put("programList", programService.readAll());
-        return "prog";
+        return "prog_list";
     }
 
     @RequestMapping("/prog/delete/{id}")
     public String deleteProgram(@PathVariable("id") Long id) {
         programService.delete(programService.read(id));
-        return "redirect:/prog";
+        return "redirect:/prog_list";
     }
 
-    @RequestMapping(value = "/prog/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/prog_list/add", method = RequestMethod.POST)
     public String addProgram(@ModelAttribute("program") Program program,
                              BindingResult result) {
         programService.create(program);
-        return "redirect:/prog";
+        return "redirect:/prog_list";
     }
 }

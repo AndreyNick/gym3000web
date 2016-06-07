@@ -11,6 +11,7 @@
 </head>
 <body>
 <h2>Program Templates</h2>
+<h3><a href="/welcome">Home</a></h3>
 
 
 <form:form method="post" action="p_temp/add" commandName="programTemplate">

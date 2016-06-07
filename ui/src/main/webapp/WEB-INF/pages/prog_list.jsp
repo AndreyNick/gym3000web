@@ -8,17 +8,43 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Programs</title>
+    <title>Programs List</title>
 <body>
 
-<h2>Programs</h2>
+<h2>Programs List</h2>
 
-<form:form method="post" action="prog/add" commandName="program">
+<h3><a href="/welcome">Home</a></h3>
+
+
+<c:if test="${!empty programList}">
+    <table class="data">
+        <tr>
+            <td colspan="3">List of programs</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>&nbsp;</th>
+        </tr>
+        <c:forEach items="${programList}" var="program">
+            <tr>
+                <td><a href="some_link/${program.id}">${program.name}</a></td>
+                <td>${program.date}</td>
+                <td><a href="prog_list/delete/${program.id}">Delete</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
+
+<form:form method="post" action="prog_list/add" commandName="program">
     <table>
         <tr>
+        <tr>
+            <td colspan="2">Add program</td>
+        </tr>
             <td>
                 <form:label path="name">
-                    name
+                    Name
                 </form:label></td>
             <td>
                 <form:input path="name"/>
@@ -27,35 +53,18 @@
         <tr>
             <td>
                 <form:label path="date" >
-                    date
+                    Date (yyyy-MM-dd)
                 </form:label>
             </td>
             <td>
-                <fmt:formatDate value="${program.date}" pattern="dd.MM.yy" var="programDate"/>
+                <fmt:formatDate value="${program.date}" pattern="yyyy-MM-dd" var="programDate"/>
                 <form:input path="date" value="${programDate}"/>
             </td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="add"/></td>
+            <td colspan="2"><input type="submit" value="Add"/></td>
         </tr>
     </table>
 </form:form>
-
-<c:if test="${!empty programList}">
-    <table class="data">
-        <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${programList}" var="program">
-            <tr>
-                <td>${program.name}</td>
-                <td>${program.date}</td>
-                <td><a href="prog/delete/${program.id}">delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
 </body>
 </html>
