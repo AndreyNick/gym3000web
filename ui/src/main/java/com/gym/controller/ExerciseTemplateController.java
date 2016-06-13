@@ -19,23 +19,23 @@ public class ExerciseTemplateController {
     @Autowired
     ExerciseTemplateService exerciseTemplateService;
 
-    @RequestMapping(value = "/e_temp")
+    @RequestMapping(value = "/e_temp_list")
     public String printPrograms(Map<String, Object> map) {
         map.put("exerciseTemplate", new Program());
         map.put("exerciseTemplateList", exerciseTemplateService.readAll());
-        return "e_temp";
+        return "e_temp_list";
     }
 
-    @RequestMapping("/e_temp/delete/{id}")
+    @RequestMapping("/e_temp_list/delete/{id}")
     public String deleteProgram(@PathVariable("id") Long id) {
         exerciseTemplateService.delete(exerciseTemplateService.read(id));
-        return "redirect:/e_temp";
+        return "redirect:/e_temp_list";
     }
 
-    @RequestMapping(value = "/e_temp/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/e_temp_list/add", method = RequestMethod.POST)
     public String addProgram(@ModelAttribute("exercise") ExerciseTemplate exerciseTemplate,
                              BindingResult result) {
         exerciseTemplateService.create(exerciseTemplate);
-        return "redirect:/e_temp";
+        return "redirect:/e_temp_list";
     }
 }

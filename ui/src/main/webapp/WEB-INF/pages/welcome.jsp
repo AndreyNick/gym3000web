@@ -13,8 +13,8 @@
 
 <h2>List of links</h2>
 
-<h3><a href="/p_temp">Program Templates</a></h3>
-<h3><a href="/e_temp">Exercise Templates</a></h3>
+<h3><a href="/p_temp_list">Program Templates List</a></h3>
+<h3><a href="/e_temp_list">Exercise Templates List</a></h3>
 <h3><a href="/prog_list">Programs List</a></h3>
 
 </body>

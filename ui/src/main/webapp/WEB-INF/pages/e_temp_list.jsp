@@ -14,37 +14,41 @@
 <h3><a href="/welcome">Home</a></h3>
 
 
-<form:form method="post" action="e_temp/add" commandName="exerciseTemplate">
-    <table>
-        <tr>
-            <td><form:label path="name">
-                name
-            </form:label></td>
-            <td><form:input path="name"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="add"/></td>
-        </tr>
-    </table>
-</form:form>
-
-
 <c:if test="${!empty exerciseTemplateList}">
     <table class="data">
+
         <tr>
-            <th>name</th>
-            <th>&nbsp;</th>
+            <td colspan="2" align="center">Exercise Templates List</td>
+        </tr>
+        <tr>
+            <th>Name</th>
             <th>&nbsp;</th>
         </tr>
         <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
             <tr>
                 <td>${exerciseTemplate.name}</td>
-                <td><a href="e_temp/delete/${exerciseTemplate.id}">delete</a></td>
-                <td><a href="e_temp/delete/${exerciseTemplate.id}">delete</a></td>
+                <td><a href="e_temp_list/delete/${exerciseTemplate.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
 </c:if>
+
+<form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
+    <table>
+        <tr>
+            <td colspan="2" align="center">Add Exercise Template</td>
+        </tr>
+        <tr>
+            <td><form:label path="name">
+                Name
+            </form:label></td>
+            <td><form:input path="name"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add"/></td>
+        </tr>
+    </table>
+</form:form>
 
 </body>
 </html>
