@@ -16,7 +16,7 @@
 <c:if test="${!empty programTemplateList}">
     <table class="data">
         <tr>
-            <td colspan="2" align="center">Program Templates List</td>
+            <td colspan="2" align="center">Program Templates List:</td>
         </tr>
         <tr>
             <th>Name</th>
@@ -34,7 +34,7 @@
 <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
     <table>
         <tr>
-            <td colspan="2" align="center">Add Program Template</td>
+            <td colspan="2" align="center">Add Program Template:</td>
         </tr>
         <tr>
             <td><form:label path="name">

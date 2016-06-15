@@ -63,6 +63,7 @@ public class ProgramTemplateController {
         return "redirect:/p_temp/" + programTemplateId;
     }
 
+    //doesn't work for "old" binds
     @RequestMapping(value = "/p_temp/{programTemplateId}/unbind/{exerciseTemplateId}")
     public String unbindExerciseTemplateFromProgramTemplate(
             @PathVariable("programTemplateId") Long programTemplateId,

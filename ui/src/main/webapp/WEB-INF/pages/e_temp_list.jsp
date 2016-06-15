@@ -18,7 +18,7 @@
     <table class="data">
 
         <tr>
-            <td colspan="2" align="center">Exercise Templates List</td>
+            <td colspan="2" align="center">Exercise Templates List:</td>
         </tr>
         <tr>
             <th>Name</th>
@@ -26,7 +26,7 @@
         </tr>
         <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
             <tr>
-                <td>${exerciseTemplate.name}</td>
+                <td><a href="e_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
                 <td><a href="e_temp_list/delete/${exerciseTemplate.id}">Delete</a></td>
             </tr>
         </c:forEach>
@@ -36,7 +36,7 @@
 <form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
     <table>
         <tr>
-            <td colspan="2" align="center">Add Exercise Template</td>
+            <td colspan="2" align="center">Add Exercise Template:</td>
         </tr>
         <tr>
             <td><form:label path="name">

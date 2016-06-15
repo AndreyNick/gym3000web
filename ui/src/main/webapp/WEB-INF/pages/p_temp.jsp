@@ -14,11 +14,12 @@
 
 
 <spring:url value="/p_temp/${programTemplate.id}" var="programTemplateUrl" />
+<spring:url value="/e_temp" var="exerciseTemplateUrl" />
 
 <c:if test="${!empty exerciseTemplateList}">
     <table class="data">
         <tr>
-            <td colspan="2" align="center">${programTemplate.name}</td>
+            <td colspan="2" align="center">${programTemplate.name}:</td>
         </tr>
         <tr>
             <th>Name</th>
@@ -36,7 +37,7 @@
 <c:if test="${!empty exerciseTemplateListAll}">
     <table class="data">
         <tr>
-            <td colspan="2" align="center">Program Templates List</td>
+            <td colspan="2" align="center">Program Templates List:</td>
         </tr>
         <tr>
             <th>Name</th>
@@ -44,7 +45,7 @@
         </tr>
         <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
             <tr>
-                <td><a href="p_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
+                <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
                 <td><a href="${programTemplateUrl}/bind/${exerciseTemplate.id}">Bind</a></td>
             </tr>
         </c:forEach>
