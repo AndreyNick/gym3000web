@@ -42,31 +42,9 @@ public class ProgramTemplateController {
         return "redirect:/p_temp_list";
     }
 
-    @RequestMapping("/p_temp/unbind/{programTemplateId}/{exerciseTemplateId}")
-    public String unbindExerciseTemplateFromProgramTemplate(
-            @PathVariable("programTemplateId") Long programTemplateId,
-            @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
-        ProgramTemplate pt = programTemplateService.read(programTemplateId);
-        List<ExerciseTemplate> etl = pt.getExerciseTemplateList();
-        etl.remove(exerciseTemplateService.read(exerciseTemplateId));
-        programTemplateService.update(pt);
-        return "redirect:/p_temp_list/" + programTemplateId;
-    }
-
-    @RequestMapping("/p_temp/p_temp/bind/{programTemplateId}/{exerciseTemplateId}")
-    public String bindExerciseTemplateFromProgramTemplate(
-            @PathVariable("programTemplateId") Long programTemplateId,
-            @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
-        ProgramTemplate pt = programTemplateService.read(programTemplateId);
-        List<ExerciseTemplate> etl = pt.getExerciseTemplateList();
-        etl.add(exerciseTemplateService.read(exerciseTemplateId));
-        programTemplateService.update(pt);
-        return "redirect:/p_temp_list/" + programTemplateId;
-    }
-
     @RequestMapping("/p_temp/{id}")
-    public String ProgramTemplate(@PathVariable("id") Long id,  Map<String, Object> map) {
-        ProgramTemplate pt = programTemplateService.read(id);
+    public String singleProgramTemplate(Map<String, Object> map, @PathVariable("id") Long id) {
+        ProgramTemplate pt =  programTemplateService.read(id);
         map.put("programTemplate", pt);
         map.put("exerciseTemplate", new ExerciseTemplate());
         map.put("exerciseTemplateList", pt.getExerciseTemplateList());
@@ -74,7 +52,25 @@ public class ProgramTemplateController {
         return "/p_temp";
     }
 
+    @RequestMapping(value = "/p_temp/{programTemplateId}/bind/{exerciseTemplateId}")
+    public String bindExerciseTemplateToProgramTemplate(
+            @PathVariable("programTemplateId") Long programTemplateId,
+            @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
+        ProgramTemplate pt = programTemplateService.read(programTemplateId);
+        List<ExerciseTemplate> etl = pt.getExerciseTemplateList();
+        etl.add(exerciseTemplateService.read(exerciseTemplateId));
+        programTemplateService.update(pt);
+        return "redirect:/p_temp/" + programTemplateId;
+    }
 
-
-
+    @RequestMapping(value = "/p_temp/{programTemplateId}/unbind/{exerciseTemplateId}")
+    public String unbindExerciseTemplateFromProgramTemplate(
+            @PathVariable("programTemplateId") Long programTemplateId,
+            @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
+        ProgramTemplate pt = programTemplateService.read(programTemplateId);
+        List<ExerciseTemplate> etl = pt.getExerciseTemplateList();
+        etl.remove(exerciseTemplateService.read(exerciseTemplateId));
+        programTemplateService.update(pt);
+        return "redirect:/p_temp/" + programTemplateId;
+    }
 }

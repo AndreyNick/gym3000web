@@ -13,6 +13,8 @@
 <h3><a href="/p_temp_list">Program Templates list</a> <a href="/e_temp_list">Exercise Templates list</a></h3>
 
 
+<spring:url value="/p_temp/${programTemplate.id}" var="programTemplateUrl" />
+
 <c:if test="${!empty exerciseTemplateList}">
     <table class="data">
         <tr>
@@ -25,39 +27,29 @@
         <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
             <tr>
                 <td>${exerciseTemplate.name}</td>
-                <td><a href="p_temp/unbind/?e=${exerciseTemplate.id},p=${programTemplate.id}">Unbind</a></td>
+                <td><a href="${programTemplateUrl}/unbind/${exerciseTemplate.id}">Unbind</a></td>
             </tr>
         </c:forEach>
     </table>
 </c:if>
 
-<form method="post" action="p_temp/bind/${programTemplate.id}/">
-    /*action="p_temp/bind/${programTemplate.id}"*/
-    <table>
+<c:if test="${!empty exerciseTemplateListAll}">
+    <table class="data">
         <tr>
-            <td colspan="2" align="center">Bind Exercise Template</td>
+            <td colspan="2" align="center">Program Templates List</td>
         </tr>
         <tr>
-            <td>
-                Exercise Template name
-            </td>
-            <td>
-                <label>
-                    <select name="id">
-                        <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
-                            <option value="${exerciseTemplate.id}">${exerciseTemplate.name}</option>
-                        </c:forEach>
-                    </select>
-                </label>
-            </td>
+            <th>Name</th>
+            <th>&nbsp;</th>
         </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Bind"/></td>
-        </tr>
+        <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
+            <tr>
+                <td><a href="p_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
+                <td><a href="${programTemplateUrl}/bind/${exerciseTemplate.id}">Bind</a></td>
+            </tr>
+        </c:forEach>
     </table>
-</form>
-
-
+</c:if>
 
 </body>
 </html>
