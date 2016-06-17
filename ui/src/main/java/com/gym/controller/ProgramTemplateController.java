@@ -1,5 +1,6 @@
 package com.gym.controller;
 
+import com.gym.factory.ProgramFactory;
 import com.gym.objects.ExerciseTemplate;
 import com.gym.objects.ProgramTemplate;
 import com.gym.service.ExerciseTemplateService;
@@ -21,6 +22,8 @@ public class ProgramTemplateController {
     @Autowired
     ExerciseTemplateService exerciseTemplateService;
 
+    ProgramFactory programFactory;
+
 
     @RequestMapping(value = "/p_temp_list")
     public String programTemplateList(Map<String, Object> map) {
@@ -32,6 +35,13 @@ public class ProgramTemplateController {
     @RequestMapping("/p_temp_list/delete/{id}")
     public String deleteProgramTemplate(@PathVariable("id") Long id) {
         programTemplateService.delete(programTemplateService.read(id));
+        return "redirect:/p_temp_list";
+    }
+
+    @RequestMapping("/p_temp_list/create_program/{id}")
+    public String createNewProgramByProgramTemplate(@PathVariable("id") Long id) {
+        programFactory = new ProgramFactory();
+        programFactory.createProgram(programTemplateService.read(id));
         return "redirect:/p_temp_list";
     }
 
@@ -63,7 +73,6 @@ public class ProgramTemplateController {
         return "redirect:/p_temp/" + programTemplateId;
     }
 
-    //doesn't work for "old" binds
     @RequestMapping(value = "/p_temp/{programTemplateId}/unbind/{exerciseTemplateId}")
     public String unbindExerciseTemplateFromProgramTemplate(
             @PathVariable("programTemplateId") Long programTemplateId,

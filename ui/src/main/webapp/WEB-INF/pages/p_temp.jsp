@@ -51,6 +51,7 @@
         </c:forEach>
     </table>
 </c:if>
+<%--<form:errors path="bind" />--%>
 
 </body>
 </html>

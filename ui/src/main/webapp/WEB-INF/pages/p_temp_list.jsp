@@ -21,11 +21,13 @@
         <tr>
             <th>Name</th>
             <th>&nbsp;</th>
+            <th>&nbsp;</th>
         </tr>
         <c:forEach items="${programTemplateList}" var="programTemplate">
             <tr>
                 <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
                 <td><a href="p_temp_list/delete/${programTemplate.id}">Delete</a></td>
+                <td><a href="p_temp_list/create_program/${programTemplate.id}">Create Program</a></td>
             </tr>
         </c:forEach>
     </table>

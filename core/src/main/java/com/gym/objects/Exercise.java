@@ -31,6 +31,12 @@ public class Exercise implements HasIdAndName {
     public Exercise() {
     }
 
+    public Exercise(Program program, ExerciseTemplate exerciseTemplate, String name) {
+        this.program = program;
+        this.exerciseTemplate = exerciseTemplate;
+        this.name = name;
+    }
+
     public Exercise(String name) {
         this.name = name;
     }

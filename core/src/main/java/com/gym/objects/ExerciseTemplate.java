@@ -89,10 +89,12 @@ public class ExerciseTemplate implements HasIdAndName {
 
         ExerciseTemplate that = (ExerciseTemplate) o;
 
-        if (exerciseList != null ? !exerciseList.equals(that.exerciseList) : that.exerciseList != null) return false;
+        /*if (exerciseList != null ? !exerciseList.equals(that.exerciseList) : that.exerciseList != null) return false;*/
         if (!name.equals(that.name)) return false;
-        if (programTemplateList != null ? !programTemplateList.equals(that.programTemplateList) : that.programTemplateList != null)
-            return false;
+        /*if (programTemplateList != null ? !programTemplateList.equals(that.programTemplateList) : that.programTemplateList != null)
+            return false;*/
+
+        //TODO correct equals method
 
         return true;
     }
