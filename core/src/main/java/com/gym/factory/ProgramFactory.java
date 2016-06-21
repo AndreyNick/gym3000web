@@ -19,6 +19,7 @@ public class ProgramFactory {
     @Autowired
     ExerciseService exerciseService;
 
+    //todo: decide how to name programs
     public void createProgram(ProgramTemplate programTemplate) {
         Program newProgram = new Program(programTemplate.getName(), new Date(System.currentTimeMillis()));
         programService.create(newProgram);

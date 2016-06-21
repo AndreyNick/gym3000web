@@ -68,4 +68,6 @@
     <bean id="programTemplate" class="com.gym.objects.ProgramTemplate">
         <constructor-arg index="0" value="program"/>
     </bean>
+
+    <bean id="programFactory" class="com.gym.factory.ProgramFactory"/>
 </beans>

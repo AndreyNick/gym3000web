@@ -28,7 +28,7 @@
         </tr>
         <c:forEach items="${programList}" var="program">
             <tr>
-                <td><a href="some_link/${program.id}">${program.name}</a></td>
+                <td><a href="prog/${program.id}">${program.name}</a></td>
                 <td>${program.date}</td>
                 <td><a href="prog_list/delete/${program.id}">Delete</a></td>
             </tr>

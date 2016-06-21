@@ -65,11 +65,17 @@
 
 
     <!--Objects-->
-    <bean id="exerciseTemplate" class="com.gym.objects.ExerciseTemplate">
-        <constructor-arg index="0" value="exercise"/>
+    <bean id="exerciseTemplate1" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="exerciseTemplate1"/>
     </bean>
-    <bean id="programTemplate" class="com.gym.objects.ProgramTemplate">
-        <constructor-arg index="0" value="program"/>
+    <bean id="exerciseTemplate2" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="exerciseTemplate2"/>
+    </bean>
+    <bean id="programTemplate1" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="programTemplate1"/>
+    </bean>
+    <bean id="programTemplate2" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="programTemplate2"/>
     </bean>
     <bean id="exercise" class="com.gym.objects.Exercise">
         <constructor-arg index="0" value="exercise"/>

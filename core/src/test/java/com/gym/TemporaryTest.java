@@ -31,10 +31,13 @@ public class TemporaryTest {
     ExerciseService exerciseService;
 
     @Autowired
-    ExerciseTemplate exerciseTemplate;
-
+    ExerciseTemplate exerciseTemplate1;
     @Autowired
-    ProgramTemplate programTemplate;
+    ProgramTemplate programTemplate1;
+    @Autowired
+    ExerciseTemplate exerciseTemplate2;
+    @Autowired
+    ProgramTemplate programTemplate2;
 
     @Autowired
     Exercise exercise;
@@ -44,8 +47,19 @@ public class TemporaryTest {
 
 
     @Test
-    public void test() {
+    public void multipleBindSameExerciseTemplate() {
+        programTemplateService.create(programTemplate1);
+        programTemplateService.create(programTemplate2);
+        exerciseTemplateService.create(exerciseTemplate1);
+        exerciseTemplateService.create(exerciseTemplate2);
 
+        ProgramTemplate pt = programTemplateService.read(programTemplate1.getId());
+        ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate1.getId());
+        pt.addExerciseTemplate(et);
+        pt.addExerciseTemplate(et);
+        programTemplateService.update(pt);
+        pt.addExerciseTemplate(et);
+        programTemplateService.update(pt);
     }
 
 
@@ -55,9 +69,9 @@ public class TemporaryTest {
 
     @Test
     public void createReadExerciseTemplate() {
-        exerciseTemplateService.create(exerciseTemplate);
-        ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate.getId());
-        Assert.assertEquals(exerciseTemplate, et);
+        exerciseTemplateService.create(exerciseTemplate1);
+        ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate1.getId());
+        Assert.assertEquals(exerciseTemplate1, et);
     }
 
     /**
@@ -65,9 +79,9 @@ public class TemporaryTest {
      */
     @Test
     public void createReadProgramTemplate() {
-        programTemplateService.create(programTemplate);
-        ProgramTemplate pt = programTemplateService.read(programTemplate.getId());
-        Assert.assertEquals(programTemplate, pt);
+        programTemplateService.create(programTemplate1);
+        ProgramTemplate pt = programTemplateService.read(programTemplate1.getId());
+        Assert.assertEquals(programTemplate1, pt);
     }
 
     @Test
@@ -79,7 +93,7 @@ public class TemporaryTest {
 
     @Test
     public void createReadExercise() {
-        exercise.setExerciseTemplate(exerciseTemplate);
+        exercise.setExerciseTemplate(exerciseTemplate1);
         exercise.setProgram(program);
         exerciseService.create(exercise);
         Exercise e = exerciseService.read(exercise.getId());
@@ -88,18 +102,18 @@ public class TemporaryTest {
 
     @Test
     public void updateExerciseTemplate() {
-        exerciseTemplate.setName("name was changed");
-        exerciseTemplateService.update(exerciseTemplate);
-        ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate.getId());
-        Assert.assertEquals(exerciseTemplate, et);
+        exerciseTemplate1.setName("name was changed");
+        exerciseTemplateService.update(exerciseTemplate1);
+        ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate1.getId());
+        Assert.assertEquals(exerciseTemplate1, et);
     }
 
     @Test
     public void updateProgramTemplate() {
-        programTemplate.setName("name was changed");
-        programTemplateService.update(programTemplate);
-        ProgramTemplate pt = programTemplateService.read(programTemplate.getId());
-        Assert.assertEquals(programTemplate, pt);
+        programTemplate1.setName("name was changed");
+        programTemplateService.update(programTemplate1);
+        ProgramTemplate pt = programTemplateService.read(programTemplate1.getId());
+        Assert.assertEquals(programTemplate1, pt);
     }
 
     @Test
@@ -120,8 +134,8 @@ public class TemporaryTest {
 
     @Test
      public void deleteExerciseTemplate() throws ObjectNotFoundException{
-        exerciseTemplateService.delete(exerciseTemplate);
-        exerciseTemplateService.read(exerciseTemplate.getId());
+        exerciseTemplateService.delete(exerciseTemplate1);
+        exerciseTemplateService.read(exerciseTemplate1.getId());
     }
 
     @Test
@@ -132,8 +146,8 @@ public class TemporaryTest {
 
     @Test
     public void deleteProgramTemplate() throws ObjectNotFoundException{
-        programTemplateService.delete(programTemplate);
-        programTemplateService.read(programTemplate.getId());
+        programTemplateService.delete(programTemplate1);
+        programTemplateService.read(programTemplate1.getId());
     }
 
     @Test

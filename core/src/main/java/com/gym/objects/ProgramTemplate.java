@@ -69,4 +69,21 @@ public class ProgramTemplate implements HasIdAndName {
                 ", exerciseTemplateList=[" + exerciseTemplates + ']' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProgramTemplate)) return false;
+
+        ProgramTemplate template = (ProgramTemplate) o;
+
+        if (!name.equals(template.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

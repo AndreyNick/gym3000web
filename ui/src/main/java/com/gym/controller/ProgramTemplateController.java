@@ -22,6 +22,7 @@ public class ProgramTemplateController {
     @Autowired
     ExerciseTemplateService exerciseTemplateService;
 
+    @Autowired
     ProgramFactory programFactory;
 
 
@@ -40,8 +41,8 @@ public class ProgramTemplateController {
 
     @RequestMapping("/p_temp_list/create_program/{id}")
     public String createNewProgramByProgramTemplate(@PathVariable("id") Long id) {
-        programFactory = new ProgramFactory();
-        programFactory.createProgram(programTemplateService.read(id));
+        ProgramTemplate pt = programTemplateService.read(id);
+        programFactory.createProgram(pt);
         return "redirect:/p_temp_list";
     }
 

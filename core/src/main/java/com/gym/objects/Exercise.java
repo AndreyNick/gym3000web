@@ -86,7 +86,7 @@ public class Exercise implements HasIdAndName {
 
     @Override
     public int hashCode() {
-        int result = program.hashCode();
+        int result = name.hashCode();
         result = 31 * result + (exerciseTemplate != null ? exerciseTemplate.hashCode() : 0);
         result = 31 * result + name.hashCode();
         return result;
