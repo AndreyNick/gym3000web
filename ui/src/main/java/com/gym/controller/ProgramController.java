@@ -34,6 +34,7 @@ public class ProgramController {
     public String printPrograms(Map<String, Object> map) {
         map.put("program", new Program());
         map.put("programList", programService.readAll());
+        System.out.println("programService.readAll() = " + programService.readAll());
         return "prog_list";
     }
 
@@ -57,8 +58,9 @@ public class ProgramController {
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
         map.put("exerciseList", p.getExerciseList());
-        System.out.println(p.getExerciseList());
+        System.out.println("exerciseList:\n" + p.getExerciseList());
         map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
+        System.out.println("exerciseTemplateListAll:\n" + exerciseTemplateService.readAll());
         return "/prog";
     }
 

@@ -4,11 +4,14 @@ import com.gym.dao.GenericDao;
 import com.gym.objects.Exercise;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+
 /**
- * Created by anni0913 on 28.11.2014.
+ * Service for Exercise object
  */
 @Service
-public class ExerciseService extends AbstractGenericService<Exercise, Long> {
+public class ExerciseService
+        extends AbstractGenericService<Exercise, Long> {
 
     protected ExerciseService(GenericDao<Exercise, Long> dao) {
         super(dao);

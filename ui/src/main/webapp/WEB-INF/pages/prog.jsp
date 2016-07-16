@@ -7,12 +7,15 @@
 
 <html>
 <head>
+    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Program</title>
 </head>
 <body>
 <h2>${program.name}</h2>
 <spring:url value="/prog/${program.id}" var="programUrl" />
 <spring:url value="/e_temp" var="exerciseTemplateUrl" />
+<h3><a href="/prog_list">All programs</a></h3>
 
 <c:if test="${!empty exerciseList}">
     <table class="data">

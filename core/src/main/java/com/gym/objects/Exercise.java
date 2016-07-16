@@ -94,10 +94,9 @@ public class Exercise implements HasIdAndName {
 
     @Override
     public String toString() {
-        return "Exercise{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", Program='[{id=" + program.getId() + ", name='" + program.getName() + "']'" +
+        return "\nExercise{id=" + id + ", name='" + name +
+                ", \n\tProgram='[{id=" + program.getId() + ", name='" + program.getName() + "']'" +
+                ", \n\tExerciseTemplate='[{id=" + exerciseTemplate.getId() + ", name='" + exerciseTemplate.getName() + "']'" +
                 '}';
     }
 }

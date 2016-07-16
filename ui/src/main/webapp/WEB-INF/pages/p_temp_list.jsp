@@ -7,6 +7,8 @@
 
 <html>
 <head>
+    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Program Templates</title>
 </head>
 <body>

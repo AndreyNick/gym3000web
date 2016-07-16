@@ -69,16 +69,14 @@ public class ExerciseTemplate implements HasIdAndName {
         String programTemplates = "";
         String exercises = "";
         for(ProgramTemplate item:programTemplateList) {
-            programTemplates += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+            programTemplates += "\n\t\t{id=" + item.getId() + ", name='" + item.getName() + "\'}";
         }
         for(Exercise item:exerciseList) {
-            exercises += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+            exercises += "\n\t\t{id=" + item.getId() + ", name='" + item.getName() + "\'}";
         }
-        return "ExerciseTemplate{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", programTemplateList=[" + programTemplates + ']' +
-                ", exerciseList=[" + exercises + ']' +
+        return "\nExerciseTemplate{id=" + id + ", name='" + name +
+                "', \n\tprogramTemplateList=[" + programTemplates + ']' +
+                ", \n\texerciseList=[" + exercises + ']' +
                 '}';
     }
 
@@ -89,12 +87,7 @@ public class ExerciseTemplate implements HasIdAndName {
 
         ExerciseTemplate that = (ExerciseTemplate) o;
 
-        /*if (exerciseList != null ? !exerciseList.equals(that.exerciseList) : that.exerciseList != null) return false;*/
         if (!name.equals(that.name)) return false;
-        /*if (programTemplateList != null ? !programTemplateList.equals(that.programTemplateList) : that.programTemplateList != null)
-            return false;*/
-
-        //TODO correct equals method
 
         return true;
     }

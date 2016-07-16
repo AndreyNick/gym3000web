@@ -2,17 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:contest="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-       ">
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <contest:annotation-config/>
-    <contest:property-placeholder location="classpath:config.properties"/>
+    <contest:property-placeholder location="test_config.properties"/>
     <tx:annotation-driven transaction-manager="transactionManager" />
+    <aop:aspectj-autoproxy />
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${db.driver}" />
@@ -27,7 +23,7 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <property name="configLocation" value="hibernate.cfg.xml"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${db.dialect}</prop>
@@ -35,6 +31,7 @@
             </props>
         </property>
     </bean>
+
     <!--DAO and Services-->
     <bean id="programTemplateDao" class="com.gym.dao.impl.GenericDaoImpl">
         <constructor-arg value="com.gym.objects.ProgramTemplate"/>
@@ -64,9 +61,4 @@
     <bean id="programService" class="com.gym.service.ProgramService">
         <constructor-arg ref="programDao"/>
     </bean>
-    <bean id="programTemplate" class="com.gym.objects.ProgramTemplate">
-        <constructor-arg index="0" value="program"/>
-    </bean>
-    <bean id="programFactory" class="com.gym.factory.ProgramFactory"/>
-    <bean id="programHelper" class="com.gym.helper.ProgramHelper"/>
 </beans>

@@ -29,7 +29,7 @@ public class Program implements HasIdAndName{
     private Date date;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
-    private List<Exercise> exerciseList = new LinkedList<>();
+    private List<Exercise> exerciseList = new LinkedList<Exercise>();
 
     public Program() {
     }
@@ -68,6 +68,14 @@ public class Program implements HasIdAndName{
         this.exerciseList = exerciseList;
     }
 
+    public void addExercise(Exercise exercise) {
+        exerciseList.add(exercise);
+    }
+
+    public void deleteExercise(Exercise exercise) {
+        exerciseList.remove(exercise);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,8 +86,9 @@ public class Program implements HasIdAndName{
         if (!date.equals(program.date)) return false;
         if (exerciseList != null ? !exerciseList.equals(program.exerciseList) : program.exerciseList != null)
             return false;
-        return name.equals(program.name);
+        if (!name.equals(program.name)) return false;
 
+        return true;
     }
 
     @Override
@@ -94,12 +103,10 @@ public class Program implements HasIdAndName{
     public String toString() {
         String exercises = "";
         for(Exercise item : exerciseList) {
-            exercises += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+            exercises += "\n\t\t{id=" + item.getId() + ", name='" + item.getName() + "\'}";
         }
-        return "Program{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", exerciseList=[" + exercises + ']' +
+        return "\nProgram{id=" + id + ", name='" + name +
+                "', \n\texerciseList=[" + exercises + ']' +
                 '}';
     }
 }

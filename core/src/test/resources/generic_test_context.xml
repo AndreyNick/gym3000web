@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="dao_services_configs_context.xml"/>
+
+    <!--Objects-->
+    <!--Exercise Templates-->
+    <bean id="exerciseTemplate1" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="Basic crunches"/>
+    </bean>
+    <bean id="exerciseTemplate2" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="Push Ups"/>
+    </bean>
+    <bean id="exerciseTemplate3" class="com.gym.objects.ExerciseTemplate">
+        <constructor-arg index="0" value="Butterfly chest muscles training"/>
+    </bean>
+
+    <!--Program Templates-->
+    <bean id="programTemplate1" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="Basic crunches T"/>
+    </bean>
+    <bean id="programTemplate2" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="Push Ups T"/>
+    </bean>
+    <bean id="programTemplate3" class="com.gym.objects.ProgramTemplate">
+        <constructor-arg index="0" value="Butterfly T"/>
+    </bean>
+
+    <!--Exercises-->
+    <bean id="exercise1" class="com.gym.objects.Exercise">
+        <property name="program" ref="program1"/>
+        <property name="exerciseTemplate" ref="exerciseTemplate1"/>
+        <property name="name" value="Test Exercise name"/>
+    </bean>
+
+    <!--Programs-->
+    <bean id="program1" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Day 1 Program"/>
+        <constructor-arg index="1">
+            <bean class="java.sql.Date" factory-method="valueOf">
+                <constructor-arg value="2016-04-14"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="program2" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Day 2 Program"/>
+        <constructor-arg index="1">
+            <bean class="java.sql.Date" factory-method="valueOf">
+                <constructor-arg value="2016-05-21"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="equalProgram1" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Program that should be equals"/>
+        <constructor-arg index="1">
+            <bean class="java.sql.Date" factory-method="valueOf">
+                <constructor-arg value="2016-07-21"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="equalProgram2" class="com.gym.objects.Program">
+        <constructor-arg index="0" value="Program that should be equals"/>
+        <constructor-arg index="1">
+            <bean class="java.sql.Date" factory-method="valueOf">
+                <constructor-arg value="2016-07-21"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+</beans>

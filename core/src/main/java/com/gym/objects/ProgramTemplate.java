@@ -61,12 +61,10 @@ public class ProgramTemplate implements HasIdAndName {
     public String toString() {
         String exerciseTemplates = "";
         for(ExerciseTemplate item:exerciseTemplateList) {
-            exerciseTemplates += "{id=" + item.getId() + ", name='" + item.getName() + "\'}";
+            exerciseTemplates += "\n\t\t{id=" + item.getId() + ", name='" + item.getName() + "\'}";
         }
-        return "ProgramTemplate{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", exerciseTemplateList=[" + exerciseTemplates + ']' +
+        return "\nProgramTemplate{id=" + id + ", name='" + name +
+                "', \n\texerciseTemplateList=[" + exerciseTemplates + ']' +
                 '}';
     }
 
