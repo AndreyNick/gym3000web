@@ -7,18 +7,24 @@
 
 <html>
 <head>
-    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Program</title>
 </head>
-<body>
-<h2>${program.name}</h2>
 <spring:url value="/prog/${program.id}" var="programUrl" />
 <spring:url value="/e_temp" var="exerciseTemplateUrl" />
-<h3><a href="/prog_list">All programs</a></h3>
-
+<body>
+<div class="header">
+    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+    <a href="<c:url value="/prog_list"/>">PROGRAMS</a>
+</div>
+<div class="main">
+<h1>${program.name}</h1>
 <c:if test="${!empty exerciseList}">
     <table class="data">
+        <tr>
+            <td align="center">Exercise List:</td>
+        </tr>
         <tr>
             <th>name</th>
             <th>&nbsp;</th>
@@ -35,7 +41,7 @@
 <c:if test="${!empty exerciseTemplateListAll}">
     <table class="data">
         <tr>
-            <td align="center">Exercise Templates List:</td>
+            <td align="center">All Exercise Templates List:</td>
         </tr>
         <tr>
             <th>Name</th>
@@ -49,6 +55,9 @@
         </c:forEach>
     </table>
 </c:if>
-
+</div>
+<div class="footer">
+    <a>TEST VERSION</a>
+</div>
 </body>
 </html>

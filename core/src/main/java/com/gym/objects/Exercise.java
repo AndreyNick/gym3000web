@@ -17,7 +17,7 @@ public class Exercise implements HasIdAndName {
     @Column(name = "exercise_id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "program_id", nullable = false)
     private Program program;
 

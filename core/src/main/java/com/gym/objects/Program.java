@@ -28,7 +28,7 @@ public class Program implements HasIdAndName{
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "program")
     private List<Exercise> exerciseList = new LinkedList<Exercise>();
 
     public Program() {

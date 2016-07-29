@@ -7,13 +7,16 @@
 
 <html>
 <head>
-    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Exercise Templates</title>
 </head>
 <body>
-<h2>Exercise Templates</h2>
-<h3><a href="/welcome">Home</a></h3>
+<div class="header">
+    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+</div>
+<div class="main">
+<h1>Exercise Templates</h1>
 
 
 <c:if test="${!empty exerciseTemplateList}">
@@ -51,6 +54,11 @@
         </tr>
     </table>
 </form:form>
+</div>
+<div class="footer">
+    <a>TEST VERSION</a>
+</div>
+
 
 </body>
 </html>

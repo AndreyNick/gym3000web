@@ -7,16 +7,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Programs List</title>
 <body>
-
-<h2>Programs List</h2>
-
-<h3><a href="/welcome">Home</a></h3>
-
-
+<div class="header">
+    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+</div>
+<div class="main">
+<h1>Programs List</h1>
 <c:if test="${!empty programList}">
     <table class="data">
         <tr>
@@ -36,7 +35,6 @@
         </c:forEach>
     </table>
 </c:if>
-
 <form:form method="post" action="prog_list/add" commandName="program">
     <table>
         <tr>
@@ -67,5 +65,9 @@
         </tr>
     </table>
 </form:form>
+</div>
+<div class="footer">
+    <a>TEST VERSION</a>
+</div>
 </body>
 </html>

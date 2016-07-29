@@ -7,14 +7,16 @@
 
 <html>
 <head>
-    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Exercise</title>
 </head>
 <body>
-<h2>Exercise</h2>
-
-
+<div class="header">
+    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+</div>
+<div class="main">
+<h1>Exercise</h1>
 <form:form method="post" action="exer/add" commandName="exercise">
     <table>
         <tr>
@@ -28,7 +30,6 @@
         </tr>
     </table>
 </form:form>
-
 
 <c:if test="${!empty exerciseList}">
     <table class="data">
@@ -44,6 +45,11 @@
         </c:forEach>
     </table>
 </c:if>
+
+</div>
+<div class="footer">
+    <a>TEST VERSION</a>
+</div>
 
 </body>
 </html>

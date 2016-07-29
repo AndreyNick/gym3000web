@@ -6,18 +6,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link href="<c:url value="/WEB-INF/css/main.css" />" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Program Template</title>
 </head>
-<body>
-<h2>${programTemplate.name}</h2>
-<h3><a href="/p_temp_list">Program Templates list</a> <a href="/e_temp_list">Exercise Templates list</a></h3>
-
-
 <spring:url value="/p_temp/${programTemplate.id}" var="programTemplateUrl" />
 <spring:url value="/e_temp" var="exerciseTemplateUrl" />
-
+<body>
+<div class="header">
+    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+    <a href="<c:url value="/p_temp_list"/>">PROGRAM TEMPLATES</a>
+    <a href="<c:url value="/e_temp_list"/>">EXERCISE TEMPLATES</a>
+</div>
+<div class="main">
+<h1>${programTemplate.name}</h1>
 <c:if test="${!empty exerciseTemplateList}">
     <table class="data">
         <tr>
@@ -53,6 +55,9 @@
         </c:forEach>
     </table>
 </c:if>
-
+</div>
+<div class="footer">
+    <a>TEST VERSION</a>
+</div>
 </body>
 </html>
