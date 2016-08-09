@@ -1,10 +1,13 @@
 package com.gym.service;
 
 import com.gym.dao.GenericDao;
+import com.gym.dao.impl.ExerciseDaoImpl;
 import com.gym.objects.Exercise;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Service for Exercise object
@@ -13,7 +16,15 @@ import java.io.Serializable;
 public class ExerciseService
         extends AbstractGenericService<Exercise, Long> {
 
-    protected ExerciseService(GenericDao<Exercise, Long> dao) {
+    private ExerciseDaoImpl edi;
+
+    protected ExerciseService(ExerciseDaoImpl dao) {
         super(dao);
+        edi = dao;
+    }
+
+    @Transactional
+    public List<Exercise> getExercisesByProgramId(Long programId) {
+        return edi.getExercisesByProgramId(programId);
     }
 }

@@ -55,7 +55,7 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
         return list;
     }
 
-    private Session getSession() {
+    protected Session getSession() {
         if (session == null) {
             session = sessionFactory.openSession();
             }
