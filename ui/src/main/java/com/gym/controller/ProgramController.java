@@ -53,8 +53,8 @@ public class ProgramController {
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
-        map.put("exerciseList", p.getExerciseList());
-        System.out.println("exerciseList:\n" + p.getExerciseList());
+        map.put("exerciseList", exerciseService.getExercisesByProgramId(p.getId()));
+        System.out.println("exerciseList:\n" + exerciseService.getExercisesByProgramId(p.getId()));
         map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
         System.out.println("exerciseTemplateListAll:\n" + exerciseTemplateService.readAll());
         return "/prog";

@@ -1,8 +1,8 @@
 package com.gym.dao.impl;
 
 import com.gym.objects.Exercise;
+import org.hibernate.Query;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class ExerciseDaoImpl extends GenericDaoImpl {
@@ -12,8 +12,9 @@ public class ExerciseDaoImpl extends GenericDaoImpl {
     }
 
     public List<Exercise> getExercisesByProgramId(Long programId) {
-        List<Exercise> exerciseList = new LinkedList<>();
-        return exerciseList;
+        Query query = getSession().createQuery("from Exercise where program.id = :programId");
+        query.setParameter("programId", programId);
+        List list = query.list();
+        return list;
     }
-
 }
