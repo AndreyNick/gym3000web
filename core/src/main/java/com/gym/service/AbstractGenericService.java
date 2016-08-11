@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 
 
+/**
+ * Generic service
+ */
 @Service
 public class AbstractGenericService<T, PK extends Serializable> {
 

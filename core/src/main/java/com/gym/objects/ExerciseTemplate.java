@@ -2,10 +2,14 @@ package com.gym.objects;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import javax.xml.ws.handler.Handler;
 import java.util.LinkedList;
 import java.util.List;
 
+
+/**
+ * This class provides templates of exercises. Exercise objects are created by ExerciseTemplate.
+ * We can create a lot of Exercises from one template.
+ */
 @Entity
 @Table(name = "exercise_template")
 public class ExerciseTemplate implements HasIdAndName {

@@ -6,6 +6,11 @@ import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This is the class for program template.
+ * A program could be created from ProgramTemplate, but it doesn't contain the link to a template.
+ * Program could be created even without template.
+ */
 @Entity
 @Table(name = "program_template")
 public class ProgramTemplate implements HasIdAndName {

@@ -20,6 +20,4 @@ public class ProgramHelper {
     @Autowired
     ExerciseTemplateService exerciseTemplateService;
 
-    /*public void createProgram(Program program) {
-    }*/
 }

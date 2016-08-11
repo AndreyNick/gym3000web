@@ -49,26 +49,4 @@ public class ExerciseTemplateController {
         map.put("programTemplateList", et.getProgramTemplateList());
         return "/e_temp";
     }
-
-   /* @RequestMapping(value = "/p_temp/{programTemplateId}/bind/{exerciseTemplateId}")
-    public String bindExerciseTemplateToProgramTemplate(
-            @PathVariable("programTemplateId") Long programTemplateId,
-            @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
-        ProgramTemplate pt = programTemplateService.read(programTemplateId);
-        List<ExerciseTemplate> etl = pt.getExerciseTemplateList();
-        etl.add(exerciseTemplateService.read(exerciseTemplateId));
-        programTemplateService.update(pt);
-        return "redirect:/p_temp/" + programTemplateId;
-    }
-
-    @RequestMapping(value = "/p_temp/{programTemplateId}/unbind/{exerciseTemplateId}")
-    public String unbindExerciseTemplateFromProgramTemplate(
-            @PathVariable("programTemplateId") Long programTemplateId,
-            @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
-        ProgramTemplate pt = programTemplateService.read(programTemplateId);
-        List<ExerciseTemplate> etl = pt.getExerciseTemplateList();
-        etl.remove(exerciseTemplateService.read(exerciseTemplateId));
-        programTemplateService.update(pt);
-        return "redirect:/p_temp/" + programTemplateId;
-    }*/
 }

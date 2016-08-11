@@ -2,9 +2,15 @@ package com.gym.dao.impl;
 
 import com.gym.objects.Exercise;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * The extension of GenericDaoImpl. It contains extra method that regular CRUD couldn't contain
+ */
+
+@Repository
 public class ExerciseDaoImpl extends GenericDaoImpl {
 
     protected ExerciseDaoImpl() {

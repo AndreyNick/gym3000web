@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WelcomeController {
 
-    public WelcomeController() {
-    }
-
     @RequestMapping(value = "/")
     public String home() {
         return "redirect:/welcome";

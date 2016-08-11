@@ -7,8 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class keeps ExerciseType list. It can be called like 'ExerciseType group'.
- * Program shows list of the exercise names which you should do during training
+ * This class keeps Exercises list. It can be called like 'Exercises group'.
+ * Program shows list of the exercise names which you should do during training.
+ * It also contains the date of training.
  */
 
 @Entity
