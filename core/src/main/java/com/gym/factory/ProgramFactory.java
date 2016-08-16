@@ -21,11 +21,18 @@ public class ProgramFactory {
 
     //todo: decide how to name programs
     public void createProgram(ProgramTemplate programTemplate) {
-        Program newProgram = new Program(programTemplate.getName(), new Date(System.currentTimeMillis()));
+        Program newProgram = new Program(programTemplate.getName(),
+                new Date(System.currentTimeMillis()),
+                programTemplate.getDescription(),
+                programTemplate.getNote());
         programService.create(newProgram);
         List<ExerciseTemplate> exerciseTemplateList = programTemplate.getExerciseTemplateList();
         for(ExerciseTemplate exerciseTemplate:exerciseTemplateList) {
-            exerciseService.create(new Exercise(newProgram, exerciseTemplate, exerciseTemplate.getName()));
+            exerciseService.create(new Exercise(newProgram,
+                    exerciseTemplate,
+                    exerciseTemplate.getName(),
+                    exerciseTemplate.getDescription(),
+                    exerciseTemplate.getNote()));
         }
     }
 }

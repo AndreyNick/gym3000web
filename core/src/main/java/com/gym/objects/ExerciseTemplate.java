@@ -29,7 +29,19 @@ public class ExerciseTemplate implements HasIdAndName {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exerciseTemplate")
     private List<Exercise> exerciseList = new LinkedList<Exercise>();
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "note")
+    private String note;
+
     public ExerciseTemplate() {
+    }
+
+    public ExerciseTemplate(String name, String description, String note) {
+        this.name = name;
+        this.description = description;
+        this.note = note;
     }
 
     public ExerciseTemplate(String name) {
@@ -68,6 +80,44 @@ public class ExerciseTemplate implements HasIdAndName {
         this.exerciseList = exerciseList;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExerciseTemplate)) return false;
+
+        ExerciseTemplate that = (ExerciseTemplate) o;
+
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (!name.equals(that.name)) return false;
+        if (note != null ? !note.equals(that.note) : that.note != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        return result;
+    }
+
     @Override
     public String toString() {
         String programTemplates = "";
@@ -82,25 +132,5 @@ public class ExerciseTemplate implements HasIdAndName {
                 "', \n\tprogramTemplateList=[" + programTemplates + ']' +
                 ", \n\texerciseList=[" + exercises + ']' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ExerciseTemplate)) return false;
-
-        ExerciseTemplate that = (ExerciseTemplate) o;
-
-        if (!name.equals(that.name)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + (programTemplateList != null ? programTemplateList.hashCode() : 0);
-        result = 31 * result + (exerciseList != null ? exerciseList.hashCode() : 0);
-        return result;
     }
 }

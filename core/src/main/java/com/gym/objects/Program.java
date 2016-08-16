@@ -32,13 +32,20 @@ public class Program implements HasIdAndName{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
     private List<Exercise> exerciseList = new LinkedList<Exercise>();
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "note")
+    private String note;
+
     public Program() {
     }
 
-
-    public Program(String name, Date date) {
+    public Program(String name, Date date, String description, String note) {
         this.name = name;
         this.date = date;
+        this.description = description;
+        this.note = note;
     }
 
     public Long getId() {
@@ -77,6 +84,22 @@ public class Program implements HasIdAndName{
         exerciseList.remove(exercise);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,9 +108,11 @@ public class Program implements HasIdAndName{
         Program program = (Program) o;
 
         if (!date.equals(program.date)) return false;
+        if (description != null ? !description.equals(program.description) : program.description != null) return false;
         if (exerciseList != null ? !exerciseList.equals(program.exerciseList) : program.exerciseList != null)
             return false;
         if (!name.equals(program.name)) return false;
+        if (note != null ? !note.equals(program.note) : program.note != null) return false;
 
         return true;
     }
@@ -97,6 +122,8 @@ public class Program implements HasIdAndName{
         int result = name.hashCode();
         result = 31 * result + date.hashCode();
         result = 31 * result + (exerciseList != null ? exerciseList.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
         return result;
     }
 

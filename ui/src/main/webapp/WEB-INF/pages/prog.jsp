@@ -20,40 +20,63 @@
 </div>
 <div class="main">
 <h1>${program.name}</h1>
-<c:if test="${!empty exerciseList}">
-    <table class="data">
-        <tr>
-            <td align="center">Exercise List:</td>
-        </tr>
-        <tr>
-            <th>name</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${exerciseList}" var="exercise">
-            <tr>
-                <td>${exercise.name}</td>
-                <td><a href="${programUrl}/delete/${exercise.id}">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+    <%--<form:form commandName="description" action="/your/url">
+        <form:input path="program" placeholder="description" value="${program.description}"/>
+    </form:form>
 
+    <form:form commandName="note" action="/your/url">
+        <form:input path="program" placeholder="note" value="${program.note}"/>
+    </form:form>--%>
+
+    <c:choose>
+        <c:when test="${!empty exerciseList}">
+            <table class="data">
+                <tr>
+                    <td align="center">Exercise List:</td>
+                </tr>
+                <tr>
+                    <th>name</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach items="${exerciseList}" var="exercise">
+                    <tr>
+                        <td>${exercise.name}</td>
+                        <td><a href="${programUrl}/delete/${exercise.id}">Delete</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <a>There is no Exercises in this programs yet<br />You can add</a>
+            <br />
+        </c:otherwise>
+    </c:choose>
+
+    <c:choose>
+        <c:when test="${!empty exerciseTemplateListAll}">
+            <table class="data">
+                <tr>
+                    <td align="center">All Exercise Templates List:</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
+                    <tr>
+                        <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
+                        <td><a href="${programUrl}/add/${exerciseTemplate.id}">Add Template</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <a>There is no ExerciseTemplates in DB<br />You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>
+            <br />
+        </c:otherwise>
+    </c:choose>
 <c:if test="${!empty exerciseTemplateListAll}">
-    <table class="data">
-        <tr>
-            <td align="center">All Exercise Templates List:</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
-            <tr>
-                <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
-                <td><a href="${programUrl}/add/${exerciseTemplate.id}">Add Template</a></td>
-            </tr>
-        </c:forEach>
-    </table>
+
 </c:if>
 </div>
 <div class="footer">

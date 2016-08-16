@@ -30,7 +30,19 @@ public class ProgramTemplate implements HasIdAndName {
             inverseJoinColumns={@JoinColumn(name="exercise_template_id")})
     private List<ExerciseTemplate> exerciseTemplateList = new LinkedList<ExerciseTemplate>();
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "note")
+    private String note;
+
     public ProgramTemplate() {
+    }
+
+    public ProgramTemplate(String name, String description, String note) {
+        this.name = name;
+        this.description = description;
+        this.note = note;
     }
 
     public ProgramTemplate(String name) {
@@ -61,6 +73,47 @@ public class ProgramTemplate implements HasIdAndName {
         exerciseTemplateList.add(exerciseTemplate);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProgramTemplate)) return false;
+
+        ProgramTemplate template = (ProgramTemplate) o;
+
+        if (description != null ? !description.equals(template.description) : template.description != null)
+            return false;
+        if (exerciseTemplateList != null ? !exerciseTemplateList.equals(template.exerciseTemplateList) : template.exerciseTemplateList != null)
+            return false;
+        if (!name.equals(template.name)) return false;
+        if (note != null ? !note.equals(template.note) : template.note != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (exerciseTemplateList != null ? exerciseTemplateList.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        return result;
+    }
 
     @Override
     public String toString() {
@@ -71,22 +124,5 @@ public class ProgramTemplate implements HasIdAndName {
         return "\nProgramTemplate{id=" + id + ", name='" + name +
                 "', \n\texerciseTemplateList=[" + exerciseTemplates + ']' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProgramTemplate)) return false;
-
-        ProgramTemplate template = (ProgramTemplate) o;
-
-        if (!name.equals(template.name)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
     }
 }

@@ -66,7 +66,7 @@ public class ProgramController {
             @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
         Program p = programService.read(programId);
         ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplateId);
-        Exercise exercise = new Exercise(p, et, et.getName());
+        Exercise exercise = new Exercise(p, et, et.getName(),et.getDescription(), et.getNote());
         p.addExercise(exercise);
         exerciseService.create(exercise);
         programService.update(p);

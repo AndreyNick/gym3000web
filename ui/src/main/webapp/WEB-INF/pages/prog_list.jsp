@@ -19,17 +19,21 @@
 <c:if test="${!empty programList}">
     <table class="data">
         <tr>
-            <td colspan="3">List of programs</td>
+            <td colspan="5">List of programs</td>
         </tr>
         <tr>
             <th>Name</th>
             <th>Date</th>
+            <th>Description</th>
+            <th>Note</th>
             <th>&nbsp;</th>
         </tr>
         <c:forEach items="${programList}" var="program">
             <tr>
                 <td><a href="prog/${program.id}">${program.name}</a></td>
                 <td>${program.date}</td>
+                <td>${program.description}</td>
+                <td>${program.note}</td>
                 <td><a href="prog_list/delete/${program.id}">Delete</a></td>
             </tr>
         </c:forEach>
@@ -38,9 +42,9 @@
 <form:form method="post" action="prog_list/add" commandName="program">
     <table>
         <tr>
-        <tr>
             <td colspan="2">Add program</td>
         </tr>
+        <tr>
             <td>
                 <form:label path="name">
                     Name
@@ -58,6 +62,24 @@
             <td>
                 <fmt:formatDate value="${program.date}" pattern="yyyy-MM-dd" var="programDate"/>
                 <form:input path="date" value="${programDate}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="description">
+                    Description
+                </form:label></td>
+            <td>
+                <form:input path="description"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="note">
+                    Note
+                </form:label></td>
+            <td>
+                <form:input path="note"/>
             </td>
         </tr>
         <tr>
