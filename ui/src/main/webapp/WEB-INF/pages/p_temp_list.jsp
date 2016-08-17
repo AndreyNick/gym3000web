@@ -17,25 +17,36 @@
 </div>
 <div class="main">
 <h1>Program Templates</h1>
-<c:if test="${!empty programTemplateList}">
-    <table class="data">
-        <tr>
-            <td colspan="2" align="center">Program Templates List:</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${programTemplateList}" var="programTemplate">
-            <tr>
-                <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
-                <td><a href="p_temp_list/delete/${programTemplate.id}">Delete</a></td>
-                <td><a href="p_temp_list/create_program/${programTemplate.id}">Create Program</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+
+    <c:choose>
+        <c:when test="${!empty programTemplateList}">
+            <table class="data">
+                <tr>
+                    <td colspan="2" align="center">Program Templates List:</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Note</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach items="${programTemplateList}" var="programTemplate">
+                    <tr>
+                        <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
+                        <td>${programTemplate.description}</td>
+                        <td>${programTemplate.note}</td>
+                        <td><a href="p_temp_list/delete/${programTemplate.id}">Delete</a></td>
+                        <td><a href="p_temp_list/create_program/${programTemplate.id}">Create Program</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <a>There is no Program Templates<br />You can add teb below:</a>
+            <br />
+        </c:otherwise>
+    </c:choose>
 
 <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
     <table>
@@ -43,13 +54,37 @@
             <td colspan="2" align="center">Add Program Template:</td>
         </tr>
         <tr>
-            <td><form:label path="name">
-                Name
-            </form:label></td>
-            <td><form:input path="name"/></td>
+            <td>
+                <form:label path="name">
+                    Name
+                </form:label>
+            </td>
+            <td>
+                <form:input path="name"/>
+            </td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="add"/></td>
+            <td>
+                <form:label path="description">
+                    Description
+                </form:label>
+            </td>
+            <td>
+                <form:input path="description"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form:label path="note">
+                    Note
+                </form:label>
+            </td>
+            <td>
+                <form:input path="note"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add new Program Template"/></td>
         </tr>
     </table>
 </form:form>

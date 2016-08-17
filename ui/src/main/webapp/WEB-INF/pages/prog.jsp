@@ -20,13 +20,9 @@
 </div>
 <div class="main">
 <h1>${program.name}</h1>
-    <%--<form:form commandName="description" action="/your/url">
-        <form:input path="program" placeholder="description" value="${program.description}"/>
-    </form:form>
 
-    <form:form commandName="note" action="/your/url">
-        <form:input path="program" placeholder="note" value="${program.note}"/>
-    </form:form>--%>
+    <h4>${program.description}</h4>
+    <h4>${program.note}</h4>
 
     <c:choose>
         <c:when test="${!empty exerciseList}">
@@ -75,9 +71,6 @@
             <br />
         </c:otherwise>
     </c:choose>
-<c:if test="${!empty exerciseTemplateListAll}">
-
-</c:if>
 </div>
 <div class="footer">
     <a>TEST VERSION</a>

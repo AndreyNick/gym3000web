@@ -18,23 +18,32 @@
     <a href="<c:url value="/e_temp_list"/>">EXERCISE TEMPLATES</a>
 </div>
 <div class="main">
-<h2>${exerciseTemplate.name}</h2>
+    <h1>${exerciseTemplate.name}</h1>
+    <h4>${exerciseTemplate.description}</h4>
+    <h4>${exerciseTemplate.note}</h4>
 
-<c:if test="${!empty programTemplateList}">
-    <table class="data">
-        <tr>
-            <td colspan="2" align="center">This ${exerciseTemplate.name} was bind to ProgramTemplates:</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-        </tr>
-        <c:forEach items="${programTemplateList}" var="programTemplate">
-            <tr>
-                <td><a href="${programTemplateUrl}/${programTemplate.id}">${programTemplate.name}</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+
+    <c:choose>
+        <c:when test="${!empty programTemplateList}">
+            <table class="data">
+                <tr>
+                    <td colspan="2" align="center">This ${exerciseTemplate.name} was bind to ProgramTemplates:</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                <c:forEach items="${programTemplateList}" var="programTemplate">
+                    <tr>
+                        <td><a href="${programTemplateUrl}/${programTemplate.id}">${programTemplate.name}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <a>This ExerciseTemplate isn't used in any ProgramTemplate</a>
+            <br />
+        </c:otherwise>
+    </c:choose>
 </div>
 <div class="footer">
     <a>TEST VERSION</a>

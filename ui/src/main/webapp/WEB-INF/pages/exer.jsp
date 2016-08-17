@@ -16,7 +16,10 @@
     <a class="home" href="<c:url value="/welcome"/>">HOME</a>
 </div>
 <div class="main">
-<h1>Exercise</h1>
+    <h1>${exercise.name}</h1>
+
+    <h4>${exercise.description}</h4>
+    <h4>${exercise.note}</h4>
 <form:form method="post" action="exer/add" commandName="exercise">
     <table>
         <tr>

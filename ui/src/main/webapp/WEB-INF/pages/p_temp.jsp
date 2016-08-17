@@ -20,41 +20,63 @@
 </div>
 <div class="main">
 <h1>${programTemplate.name}</h1>
-<c:if test="${!empty exerciseTemplateList}">
-    <table class="data">
-        <tr>
-            <td colspan="2" align="center">${programTemplate.name}:</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
-            <tr>
-                <td>${exerciseTemplate.name}</td>
-                <td><a href="${programTemplateUrl}/unbind/${exerciseTemplate.id}">Unbind</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+<h4>${programTemplate.description}</h4>
+<h4>${programTemplate.note}</h4>
 
-<c:if test="${!empty exerciseTemplateListAll}">
-    <table class="data">
-        <tr>
-            <td colspan="2" align="center">Program Templates List:</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
-            <tr>
-                <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
-                <td><a href="${programTemplateUrl}/bind/${exerciseTemplate.id}">Bind</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+    <c:choose>
+        <c:when test="${!empty exerciseTemplateList}">
+            <table class="data">
+                <tr>
+                    <td colspan="2" align="center">Exercise Templates List:</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Note</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
+                    <tr>
+                        <td>${exerciseTemplate.name}</td>
+                        <td>${exerciseTemplate.description}</td>
+                        <td>${exerciseTemplate.note}</td>
+                        <td><a href="${programTemplateUrl}/unbind/${exerciseTemplate.id}">Unbind</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <a>There is no Exercise Templates under this Program Template<br />You can bind them from the list below:</a>
+            <br />
+        </c:otherwise>
+    </c:choose>
+    <c:choose>
+        <c:when test="${!empty exerciseTemplateListAll}">
+            <table class="data">
+                <tr>
+                    <td colspan="2" align="center">Program Templates List:</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Note</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
+                    <tr>
+                        <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
+                        <td>${exerciseTemplate.description}</td>
+                        <td>${exerciseTemplate.note}</td>
+                        <td><a href="${programTemplateUrl}/bind/${exerciseTemplate.id}">Bind</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <a>There is no Exercise Templates in DB<br />You can create them <a href="<c:url value="/e_temp_list"/>">here</a></a>
+            <br />
+        </c:otherwise>
+    </c:choose>
 </div>
 <div class="footer">
     <a>TEST VERSION</a>
