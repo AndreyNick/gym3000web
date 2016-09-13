@@ -21,6 +21,7 @@
     <h3><a href="<c:url value="/p_temp_list"/>">Program Templates List</a></h3>
     <h3><a href="<c:url value="/e_temp_list"/>">Exercise Templates List</a></h3>
     <h3><a href="<c:url value="/prog_list"/>">Programs List</a></h3>
+    <div class="footer_place"></div>
 </div>
 <div class="footer">
     <a>TEST VERSION</a>

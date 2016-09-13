@@ -71,6 +71,7 @@
             <br />
         </c:otherwise>
     </c:choose>
+    <div class="footer_place"></div>
 </div>
 <div class="footer">
     <a>TEST VERSION</a>

@@ -87,6 +87,7 @@
         </tr>
     </table>
 </form:form>
+    <div class="footer_place"></div>
 </div>
 <div class="footer">
     <a>TEST VERSION</a>

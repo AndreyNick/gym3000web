@@ -1,4 +1,5 @@
-body {
+html, body {
+    height: 100%;
     color: #757575;
     font-family: ProximaNova,Arial,sans-serif;
     font-size: 14px;
@@ -32,11 +33,20 @@ th, td {
 }
 .main {
     padding-top: 25px;
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -30px;
 }
 .footer {
+    height: 30px;
     width: 1400px;
-    position: fixed;
     bottom: 0;
     padding: 1rem;
     background-color: #efefef;
+}
+.push {
+    height: 30px;
+    width: 1400px;
+    bottom: 0;
+    padding: 1rem;
 }
