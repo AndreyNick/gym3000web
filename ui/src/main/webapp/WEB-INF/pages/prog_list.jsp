@@ -20,7 +20,7 @@
         <c:if test="${!empty programList}">
             <table class="data">
                 <tr>
-                    <td colspan="5">List of programs</td>
+                    <td colspan="5">List of programs:</td>
                 </tr>
                 <tr>
                     <th>Name</th>
@@ -43,7 +43,7 @@
         <form:form method="post" action="prog_list/add" commandName="program">
             <table>
                 <tr>
-                    <td colspan="2">Add program</td>
+                    <td colspan="2">Add program:</td>
                 </tr>
                 <tr>
                     <td>

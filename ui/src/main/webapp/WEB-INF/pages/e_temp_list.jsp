@@ -23,7 +23,7 @@
             <c:when test="${!empty exerciseTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="5">List of programs</td>
+                        <td colspan="5">List of programs:</td>
                     </tr>
                     <tr>
                         <th>Name</th>

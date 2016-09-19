@@ -7,8 +7,10 @@ import com.gym.service.ExerciseTemplateService;
 import com.gym.service.ProgramTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.Map;
@@ -47,8 +49,7 @@ public class ProgramTemplateController {
     }
 
     @RequestMapping(value = "/p_temp_list/add", method = RequestMethod.POST)
-    public String addProgramTemplate(@ModelAttribute("programTemplate") ProgramTemplate programTemplate,
-                             BindingResult result) {
+    public String addProgramTemplate(@ModelAttribute("programTemplate") ProgramTemplate programTemplate) {
         programTemplateService.create(programTemplate);
         return "redirect:/p_temp_list";
     }
@@ -61,6 +62,32 @@ public class ProgramTemplateController {
         map.put("exerciseTemplateList", pt.getExerciseTemplateList());
         map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
         return "/p_temp";
+    }
+
+    @RequestMapping("/p_temp/{id}/edit_form")
+    public String editFormSingleProgramTemplate(Map<String, Object> map, @PathVariable("id") Long id) {
+        ProgramTemplate pt =  programTemplateService.read(id);
+        map.put("programTemplate", pt);
+        map.put("exerciseTemplate", new ExerciseTemplate());
+        map.put("exerciseTemplateList", pt.getExerciseTemplateList());
+        map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
+        map.put("edit", true);
+        return "/p_temp";
+    }
+
+    @RequestMapping(value = "/p_temp/{id}/edit", method = RequestMethod.POST)
+    public String editSingleProgramTemplate(@ModelAttribute("programTemplate") ProgramTemplate programTemplate,
+                                            @PathVariable("id") Long id) {
+
+        ProgramTemplate pt = programTemplateService.read(id);
+        pt.setName(programTemplate.getName());
+        pt.setDescription(programTemplate.getDescription());
+        pt.setNote(programTemplate.getNote());
+        programTemplateService.update(pt);
+        return "redirect:/p_temp/" + id;
+        //i think it would be better to get full programTemplate from jsp and update it
+        //not find it by id and update
+        //todo: think about it
     }
 
     @RequestMapping(value = "/p_temp/{programTemplateId}/bind/{exerciseTemplateId}")

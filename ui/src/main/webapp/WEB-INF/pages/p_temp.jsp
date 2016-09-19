@@ -20,10 +20,58 @@
         <a href="<c:url value="/e_temp_list"/>">EXERCISE TEMPLATES</a>
     </div>
     <div id="main">
-        <h1>${programTemplate.name}</h1>
-        <h4>${programTemplate.description}</h4>
-        <h4>${programTemplate.note}</h4>
-
+        <c:choose>
+            <c:when test="${edit}">
+                <form:form method="post" action="${programTemplateUrl}/edit" commandName="programTemplate">
+                    <table>
+                        <tr>
+                            <td colspan="2" align="center">Edit Program Template:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="name">
+                                    Name
+                                </form:label>
+                            </td>
+                            <td>
+                                <form:input path="name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="description">
+                                    Description
+                                </form:label>
+                            </td>
+                            <td>
+                                <form:input path="description"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="note">
+                                    Note
+                                </form:label>
+                            </td>
+                            <td>
+                                <form:input path="note"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="Save"/></td>
+                        </tr>
+                    </table>
+                </form:form>
+            </c:when>
+            <c:otherwise>
+                <h1>${programTemplate.name}</h1>
+                <h4>${programTemplate.description}</h4>
+                <h4>${programTemplate.note}</h4>
+                <form method="post" action="${programTemplateUrl}/edit_form">
+                    <input type="submit" value="Edit"/>
+                </form>
+            </c:otherwise>
+        </c:choose>
         <c:choose>
             <c:when test="${!empty exerciseTemplateList}">
                 <table class="data">

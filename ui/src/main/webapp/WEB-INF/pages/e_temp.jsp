@@ -27,7 +27,7 @@
             <c:when test="${!empty programTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="2" align="center">This ${exerciseTemplate.name} was bind to ProgramTemplates:</td>
+                        <td colspan="2" align="center">ExerciseTemplate "${exerciseTemplate.name}" is bound to ProgramTemplates:</td>
                     </tr>
                     <tr>
                         <th>Name</th>
