@@ -12,82 +12,84 @@
     <title>Exercise Templates</title>
 </head>
 <body>
-<div class="header">
-    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
-</div>
-<div class="main">
-<h1>Exercise Templates</h1>
+<div id="wrap">
+    <div id="header">
+        <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+    </div>
+    <div id="main">
+        <h1>Exercise Templates</h1>
 
-    <c:choose>
-        <c:when test="${!empty exerciseTemplateList}">
-            <table class="data">
-                <tr>
-                    <td colspan="5">List of programs</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Note</th>
-                    <th>&nbsp;</th>
-                </tr>
-                <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
+        <c:choose>
+            <c:when test="${!empty exerciseTemplateList}">
+                <table class="data">
                     <tr>
-                        <td><a href="e_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
-                        <td>${exerciseTemplate.description}</td>
-                        <td>${exerciseTemplate.note}</td>
-                        <td><a href="e_temp_list/delete/${exerciseTemplate.id}">Delete</a></td>
+                        <td colspan="5">List of programs</td>
                     </tr>
-                </c:forEach>
-            </table>
-        </c:when>
-        <c:otherwise>
-            <a>There is no Exercise Templates<br />You can add teb below:</a>
-            <br />
-        </c:otherwise>
-    </c:choose>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Note</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
+                        <tr>
+                            <td><a href="e_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
+                            <td>${exerciseTemplate.description}</td>
+                            <td>${exerciseTemplate.note}</td>
+                            <td><a href="e_temp_list/delete/${exerciseTemplate.id}">Delete</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <a>There is no Exercise Templates<br />You can add teb below:</a>
+                <br />
+            </c:otherwise>
+        </c:choose>
 
-<form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
-    <table>
-        <tr>
-            <td colspan="2" align="center">Add Exercise Template:</td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="name">
-                    Name
-                </form:label>
-            </td>
-            <td>
-                <form:input path="name"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="description">
-                    Description
-                </form:label>
-            </td>
-            <td>
-                <form:input path="description"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="note">
-                    Note
-                </form:label>
-            </td>
-            <td>
-                <form:input path="note"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add"/></td>
-        </tr>
-    </table>
-</form:form>
+        <form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
+            <table>
+                <tr>
+                    <td colspan="2" align="center">Add Exercise Template:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="name">
+                            Name
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="description">
+                            Description
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="description"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="note">
+                            Note
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="note"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Add"/></td>
+                </tr>
+            </table>
+        </form:form>
+    </div>
 </div>
-<div class="footer">
+<div id="footer">
     <a>TEST VERSION</a>
 </div>
 

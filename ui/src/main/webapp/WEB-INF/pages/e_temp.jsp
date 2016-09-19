@@ -12,40 +12,41 @@
 </head>
 <spring:url value="/p_temp" var="programTemplateUrl" />
 <body>
-<div class="header">
-    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
-    <a href="<c:url value="/p_temp_list"/>">PROGRAM TEMPLATES</a>
-    <a href="<c:url value="/e_temp_list"/>">EXERCISE TEMPLATES</a>
-</div>
-<div class="main">
-    <h1>${exerciseTemplate.name}</h1>
-    <h4>${exerciseTemplate.description}</h4>
-    <h4>${exerciseTemplate.note}</h4>
+<div id="wrap">
+    <div id="header">
+        <a class="id" href="<c:url value="/welcome"/>">HOME</a>
+        <a href="<c:url value="/p_temp_list"/>">PROGRAM TEMPLATES</a>
+        <a href="<c:url value="/e_temp_list"/>">EXERCISE TEMPLATES</a>
+    </div>
+    <div id="main">
+        <h1>${exerciseTemplate.name}</h1>
+        <h4>${exerciseTemplate.description}</h4>
+        <h4>${exerciseTemplate.note}</h4>
 
-
-    <c:choose>
-        <c:when test="${!empty programTemplateList}">
-            <table class="data">
-                <tr>
-                    <td colspan="2" align="center">This ${exerciseTemplate.name} was bind to ProgramTemplates:</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                </tr>
-                <c:forEach items="${programTemplateList}" var="programTemplate">
+        <c:choose>
+            <c:when test="${!empty programTemplateList}">
+                <table class="data">
                     <tr>
-                        <td><a href="${programTemplateUrl}/${programTemplate.id}">${programTemplate.name}</a></td>
+                        <td colspan="2" align="center">This ${exerciseTemplate.name} was bind to ProgramTemplates:</td>
                     </tr>
-                </c:forEach>
-            </table>
-        </c:when>
-        <c:otherwise>
-            <a>This ExerciseTemplate isn't used in any ProgramTemplate</a>
-            <br />
-        </c:otherwise>
-    </c:choose>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    <c:forEach items="${programTemplateList}" var="programTemplate">
+                        <tr>
+                            <td><a href="${programTemplateUrl}/${programTemplate.id}">${programTemplate.name}</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <a>This ExerciseTemplate isn't used in any ProgramTemplate</a>
+                <br />
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
-<div class="footer">
+<div id="footer">
     <a>TEST VERSION</a>
 </div>
 
