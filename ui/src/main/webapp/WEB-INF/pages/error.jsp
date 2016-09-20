@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>gym3000</title>
+    <title>Error</title>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
 </head>
 <body>
@@ -18,10 +18,8 @@
         <a id="sign_out">SIGN OUT</a>
     </div>
     <div id="main">
-        <h1>List of links</h1>
-        <h3><a href="<c:url value="/p_temp_list"/>">Program Templates List</a></h3>
-        <h3><a href="<c:url value="/e_temp_list"/>">Exercise Templates List</a></h3>
-        <h3><a href="<c:url value="/prog_list"/>">Programs List</a></h3>
+        <h1>There is no such page</h1>
+        <h2>You can back HOME page</h2>
     </div>
 </div>
 <div id="footer">

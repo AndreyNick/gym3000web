@@ -44,7 +44,7 @@
                                 </form:label>
                             </td>
                             <td>
-                                <form:input path="description"/>
+                                <form:textarea path="description"/>
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +54,7 @@
                                 </form:label>
                             </td>
                             <td>
-                                <form:input path="note"/>
+                                <form:textarea path="note"/>
                             </td>
                         </tr>
                         <tr>
@@ -65,8 +65,8 @@
             </c:when>
             <c:otherwise>
                 <h1>${programTemplate.name}</h1>
-                <h4>${programTemplate.description}</h4>
-                <h4>${programTemplate.note}</h4>
+                <h2>Description: ${programTemplate.description}</h2>
+                <h2>Note: ${programTemplate.note}</h2>
                 <form method="post" action="${programTemplateUrl}/edit_form">
                     <input type="submit" value="Edit"/>
                 </form>
@@ -76,7 +76,7 @@
             <c:when test="${!empty exerciseTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="4" align="center">Exercise Templates List:</td>
+                        <td colspan="4" align="center">ExerciseTemplates are bound to this ProgramTemplate:</td>
                     </tr>
                     <tr>
                         <th>Name</th>
@@ -95,7 +95,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no Exercise Templates under this Program Template<br />You can bind them from the list below:</a>
+                <a>There is no ExerciseTemplates under this ProgramTemplate<br />You can bind them from the list below:</a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -103,7 +103,7 @@
             <c:when test="${!empty exerciseTemplateListAll}">
                 <table class="data">
                     <tr>
-                        <td colspan="4" align="center">Program Templates List:</td>
+                        <td colspan="4" align="center">All ProgramTemplates in DB:</td>
                     </tr>
                     <tr>
                         <th>Name</th>
@@ -122,7 +122,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no Exercise Templates in DB<br />You can create them <a href="<c:url value="/e_temp_list"/>">here</a></a>
+                <a>There is no ExerciseTemplates in DB<br />You can create them <a href="<c:url value="/e_temp_list"/>">here</a></a>
                 <br />
             </c:otherwise>
         </c:choose>

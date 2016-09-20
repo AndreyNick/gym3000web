@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -42,11 +41,35 @@ public class ExerciseTemplateController {
     }
 
     @RequestMapping("/e_temp/{id}")
-    public String singleProgramTemplate(Map<String, Object> map, @PathVariable("id") Long id) {
+    public String singleExerciseTemplate(Map<String, Object> map, @PathVariable("id") Long id) {
         ExerciseTemplate et = exerciseTemplateService.read(id);
         map.put("exerciseTemplate", et);
         map.put("programTemplate", new ProgramTemplate());
         map.put("programTemplateList", et.getProgramTemplateList());
         return "/e_temp";
+    }
+
+    @RequestMapping("/e_temp/{id}/edit_form")
+    public String formEditSingleExerciseTemplate(Map<String, Object> map, @PathVariable("id") Long id) {
+        ExerciseTemplate et = exerciseTemplateService.read(id);
+        map.put("exerciseTemplate", et);
+        map.put("programTemplate", new ProgramTemplate());
+        map.put("programTemplateList", et.getProgramTemplateList());
+        map.put("edit", true);
+        return "/e_temp";
+    }
+
+    @RequestMapping(value = "/e_temp/{id}/edit", method = RequestMethod.POST)
+    public String editSingleExerciseTemplate(@ModelAttribute("exerciseTemplate") ExerciseTemplate exerciseTemplate,
+                                            @PathVariable("id") Long id) {
+        //I think it would be better to get full exerciseTemplate from jsp and update it
+        //not find it by id and update
+        //todo: think about it
+        ExerciseTemplate et = exerciseTemplateService.read(id);
+        et.setName(exerciseTemplate.getName());
+        et.setDescription(exerciseTemplate.getDescription());
+        et.setNote(exerciseTemplate.getNote());
+        exerciseTemplateService.update(et);
+        return "redirect:/e_temp/" + id;
     }
 }

@@ -8,7 +8,7 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Program Templates</title>
+    <title>ProgramTemplates</title>
 </head>
 <body>
 <div id="wrap">
@@ -16,13 +16,13 @@
         <a id="home" href="<c:url value="/welcome"/>">HOME</a>
     </div>
     <div id="main">
-        <h1>Program Templates</h1>
+        <h1>ProgramTemplates</h1>
 
         <c:choose>
             <c:when test="${!empty programTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="2" align="center">Program Templates List:</td>
+                        <td colspan="5" align="center">Program Templates List:</td>
                     </tr>
                     <tr>
                         <th>Name</th>
@@ -43,7 +43,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no Program Templates<br />You can add teb below:</a>
+                <a>There is no ProgramTemplates<br />You can add teb below:</a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -51,7 +51,7 @@
         <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
             <table>
                 <tr>
-                    <td colspan="2" align="center">Add Program Template:</td>
+                    <td colspan="2" align="center">Add ProgramTemplate:</td>
                 </tr>
                 <tr>
                     <td>
@@ -70,7 +70,7 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="description"/>
+                        <form:textarea path="description"/>
                     </td>
                 </tr>
                 <tr>
@@ -80,11 +80,11 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="note"/>
+                        <form:textarea path="note"/>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Add new Program Template"/></td>
+                    <td colspan="2"><input type="submit" value="Add new ProgramTemplate"/></td>
                 </tr>
             </table>
         </form:form>

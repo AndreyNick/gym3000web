@@ -9,7 +9,7 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Exercise Templates</title>
+    <title>ExerciseTemplates</title>
 </head>
 <body>
 <div id="wrap">
@@ -17,7 +17,7 @@
         <a class="home" href="<c:url value="/welcome"/>">HOME</a>
     </div>
     <div id="main">
-        <h1>Exercise Templates</h1>
+        <h1>ExerciseTemplates</h1>
 
         <c:choose>
             <c:when test="${!empty exerciseTemplateList}">
@@ -42,7 +42,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no Exercise Templates<br />You can add teb below:</a>
+                <a>There is no ExerciseTemplates<br />You can add teb below:</a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -50,7 +50,7 @@
         <form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
             <table>
                 <tr>
-                    <td colspan="2" align="center">Add Exercise Template:</td>
+                    <td colspan="2" align="center">Add ExerciseTemplate:</td>
                 </tr>
                 <tr>
                     <td>
@@ -69,7 +69,7 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="description"/>
+                        <form:textarea path="description"/>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +79,7 @@
                         </form:label>
                     </td>
                     <td>
-                        <form:input path="note"/>
+                        <form:textarea path="note"/>
                     </td>
                 </tr>
                 <tr>
