@@ -8,27 +8,28 @@
 <html>
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
-    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>ProgramTemplates</title>
 </head>
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>">HOME</a>
+        <a id="home" href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        <span id="lang"><a href="?lang=en">EN</a>|<a href="?lang=ru">RU</a></span>
     </div>
     <div id="main">
-        <h1>ProgramTemplates</h1>
+        <h1><spring:message code="message.program_templates"/></h1>
 
         <c:choose>
             <c:when test="${!empty programTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="5" align="center">Program Templates List:</td>
+                        <td colspan="5" align="center"><spring:message code="message.program_templates_list"/></td>
                     </tr>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Note</th>
+                        <th><spring:message code="message.name"/></th>
+                        <th><spring:message code="message.description"/></th>
+                        <th><spring:message code="message.note"/></th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -37,14 +38,14 @@
                             <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
                             <td>${programTemplate.description}</td>
                             <td>${programTemplate.note}</td>
-                            <td><a href="p_temp_list/delete/${programTemplate.id}">Delete</a></td>
-                            <td><a href="p_temp_list/create_program/${programTemplate.id}">Create Program</a></td>
+                            <td><a href="p_temp_list/delete/${programTemplate.id}"><spring:message code="message.delete"/></a></td>
+                            <td><a href="p_temp_list/create_program/${programTemplate.id}"><spring:message code="message.create_program"/></a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no ProgramTemplates<br />You can add teb below:</a>
+                <a><spring:message code="message.no_program_templates"/></a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -52,12 +53,12 @@
         <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
             <table>
                 <tr>
-                    <td colspan="2" align="center">Add ProgramTemplate:</td>
+                    <td colspan="2" align="center"><spring:message code="message.add_program_template"/></td>
                 </tr>
                 <tr>
                     <td>
                         <springForm:label path="name">
-                            Name
+                            <spring:message code="message.name"/>
                         </springForm:label>
                     </td>
                     <td>
@@ -68,7 +69,7 @@
                 <tr>
                     <td>
                         <springForm:label path="description">
-                            Description
+                            <spring:message code="message.description"/>
                         </springForm:label>
                     </td>
                     <td>
@@ -79,7 +80,7 @@
                 <tr>
                     <td>
                         <springForm:label path="note">
-                            Note
+                            <spring:message code="message.note"/>
                         </springForm:label>
                     </td>
                     <td>
@@ -88,14 +89,14 @@
                     <td><springForm:errors path="note" cssClass="error" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Add new ProgramTemplate"/></td>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.add_program_template"/>"/></td>
                 </tr>
             </table>
         </form:form>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
 
 </body>

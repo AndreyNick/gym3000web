@@ -34,7 +34,10 @@ th, td {
 }
 
 #home {
-    padding-right: 70%;
+    float: left;
+}
+#lang {
+    float: right;
 }
 
 #header {
