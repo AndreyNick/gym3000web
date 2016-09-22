@@ -7,24 +7,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>gym3000</title>
+    <title><spring:message code="message.gym3000_title"/></title>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
 </head>
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        </span>
         <span id="lang">
-            <a href="?lang=en">EN</a>
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
-            <a href="?lang=ru">RU</a>
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
         </span>
     </div>
     <div id="main">
         <h1><spring:message code="message.list_of_links"/></h1>
-        <h3><a href="<c:url value="/p_temp_list"/>">Program Templates List</a></h3>
-        <h3><a href="<c:url value="/e_temp_list"/>">Exercise Templates List</a></h3>
-        <h3><a href="<c:url value="/prog_list"/>">Programs List</a></h3>
+        <h3><a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates_list"/></a></h3>
+        <h3><a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates_list"/></a></h3>
+        <h3><a href="<c:url value="/prog_list"/>"><spring:message code="message.programs_list"/></a></h3>
     </div>
 </div>
 <div id="footer">

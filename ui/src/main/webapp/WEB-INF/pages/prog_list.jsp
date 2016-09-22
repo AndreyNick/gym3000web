@@ -9,24 +9,31 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Programs List</title>
+    <title><spring:message code="message.gym3000_title"/></title>
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>">HOME</a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        </span>
+        <span id="lang">
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
     </div>
     <div id="main">
-        <h1>Programs List</h1>
+        <h1><spring:message code="message.programs_list"/></h1>
         <c:if test="${!empty programList}">
             <table class="data">
                 <tr>
-                    <td colspan="5">List of programs:</td>
+                    <td colspan="5"><spring:message code="message.list_programs"/></td>
                 </tr>
                 <tr>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Note</th>
+                    <th><spring:message code="message.name"/></th>
+                    <th><spring:message code="message.date"/></th>
+                    <th><spring:message code="message.description"/></th>
+                    <th><spring:message code="message.note"/></th>
                     <th>&nbsp;</th>
                 </tr>
                 <c:forEach items="${programList}" var="program">
@@ -35,7 +42,7 @@
                         <td>${program.date}</td>
                         <td>${program.description}</td>
                         <td>${program.note}</td>
-                        <td><a href="prog_list/delete/${program.id}">Delete</a></td>
+                        <td><a href="prog_list/delete/${program.id}"><spring:message code="message.delete"/></a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -43,12 +50,12 @@
         <form:form method="post" action="prog_list/add" commandName="program">
             <table>
                 <tr>
-                    <td colspan="2">Add program:</td>
+                    <td colspan="2"><spring:message code="message.add_program"/></td>
                 </tr>
                 <tr>
                     <td>
                         <form:label path="name">
-                            Name
+                            <spring:message code="message.name"/>
                         </form:label></td>
                     <td>
                         <form:input path="name"/>
@@ -57,7 +64,7 @@
                 <tr>
                     <td>
                         <form:label path="date" >
-                            Date (yyyy-MM-dd)
+                            <spring:message code="message.date"/> (yyyy-MM-dd)
                         </form:label>
                     </td>
                     <td>
@@ -68,31 +75,30 @@
                 <tr>
                     <td>
                         <form:label path="description">
-                            Description
+                            <spring:message code="message.description"/>
                         </form:label></td>
                     <td>
-                        <form:input path="description"/>
+                        <form:textarea path="description"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <form:label path="note">
-                            Note
+                            <spring:message code="message.note"/>
                         </form:label></td>
                     <td>
-                        <form:input path="note"/>
+                        <form:textarea path="note"/>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Add"/></td>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
                 </tr>
             </table>
         </form:form>
-        <div class="footer_place"></div>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
 </body>
 </html>

@@ -9,26 +9,33 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>ExerciseTemplates</title>
+    <title><spring:message code="message.gym3000_title"/></title>
 </head>
 <body>
 <div id="wrap">
     <div id="header">
-        <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        </span>
+        <span id="lang">
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
     </div>
     <div id="main">
-        <h1>ExerciseTemplates</h1>
+        <h1><spring:message code="message.exercise_templates"/></h1>
 
         <c:choose>
             <c:when test="${!empty exerciseTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="5">List of programs:</td>
+                        <td colspan="5"><spring:message code="message.programs_list"/></td>
                     </tr>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Note</th>
+                        <th><spring:message code="message.name"/></th>
+                        <th><spring:message code="message.description"/></th>
+                        <th><spring:message code="message.note"/></th>
                         <th>&nbsp;</th>
                     </tr>
                     <c:forEach items="${exerciseTemplateList}" var="exerciseTemplate">
@@ -36,13 +43,13 @@
                             <td><a href="e_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
                             <td>${exerciseTemplate.description}</td>
                             <td>${exerciseTemplate.note}</td>
-                            <td><a href="e_temp_list/delete/${exerciseTemplate.id}">Delete</a></td>
+                            <td><a href="e_temp_list/delete/${exerciseTemplate.id}"><spring:message code="message.delete"/></a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no ExerciseTemplates<br />You can add teb below:</a>
+                <a><spring:message code="message.no_exercise_templates"/><br /><spring:message code="massage.you_can_add_them"/></a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -50,12 +57,12 @@
         <form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
             <table>
                 <tr>
-                    <td colspan="2" align="center">Add ExerciseTemplate:</td>
+                    <td colspan="2" align="center"><spring:message code="message.add_exercise_template"/></td>
                 </tr>
                 <tr>
                     <td>
                         <form:label path="name">
-                            Name
+                            <spring:message code="message.name"/>
                         </form:label>
                     </td>
                     <td>
@@ -65,7 +72,7 @@
                 <tr>
                     <td>
                         <form:label path="description">
-                            Description
+                            <spring:message code="message.description"/>
                         </form:label>
                     </td>
                     <td>
@@ -75,7 +82,7 @@
                 <tr>
                     <td>
                         <form:label path="note">
-                            Note
+                            <spring:message code="message.note"/>
                         </form:label>
                     </td>
                     <td>
@@ -83,16 +90,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Add"/></td>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
                 </tr>
             </table>
         </form:form>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
-
-
 </body>
 </html>

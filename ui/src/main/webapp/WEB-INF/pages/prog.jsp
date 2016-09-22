@@ -16,34 +16,99 @@
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>">HOME</a>
-        <a href="<c:url value="/prog_list"/>">PROGRAMS</a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+            <a href="<c:url value="/prog_list"/>"><spring:message code="message.programs"/></a>
+        </span>
+        <span id="lang">
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
     </div>
     <div id="main">
-        <h1>${program.name}</h1>
-        <h4>${program.description}</h4>
-        <h4>${program.note}</h4>
+        <c:choose>
+            <c:when test="${edit}">
+                <form:form method="post" action="${programUrl}/edit" commandName="program">
+                    <table>
+                        <tr>
+                            <td colspan="2"><spring:message code="message.add_program"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="name">
+                                    <spring:message code="message.name"/>
+                                </form:label></td>
+                            <td>
+                                <form:input path="name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="date" >
+                                    <spring:message code="message.date"/> (yyyy-MM-dd)
+                                </form:label>
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${program.date}" pattern="yyyy-MM-dd" var="programDate"/>
+                                <form:input path="date" value="${programDate}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="description">
+                                    <spring:message code="message.description"/>
+                                </form:label></td>
+                            <td>
+                                <form:textarea path="description"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form:label path="note">
+                                    <spring:message code="message.note"/>
+                                </form:label></td>
+                            <td>
+                                <form:textarea path="note"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
+                        </tr>
+                    </table>
+                </form:form>
+            </c:when>
+            <c:otherwise>
+                <h1>${program.name}</h1>
+                <h2><spring:message code="message.date"/>: ${program.date}</h2>
+                <h2><spring:message code="message.description"/>: ${program.description}</h2>
+                <h2><spring:message code="message.note"/>: ${program.note}</h2>
+                <form method="post" action="${programUrl}/edit_form">
+                    <input type="submit" value="<spring:message code="message.edit"/>"/>
+                </form>
+            </c:otherwise>
+        </c:choose>
 
         <c:choose>
             <c:when test="${!empty exerciseList}">
                 <table class="data">
                     <tr>
-                        <td align="center">Exercise List:</td>
+                        <td align="center"><spring:message code="message.exercise_list"/></td>
                     </tr>
                     <tr>
-                        <th>name</th>
+                        <th><spring:message code="message.name"/></th>
                         <th>&nbsp;</th>
                     </tr>
                     <c:forEach items="${exerciseList}" var="exercise">
                         <tr>
                             <td>${exercise.name}</td>
-                            <td><a href="${programUrl}/delete/${exercise.id}">Delete</a></td>
+                            <td><a href="${programUrl}/delete/${exercise.id}"><spring:message code="message.delete"/></a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no Exercises in this programs yet<br />You can add</a>
+                <a><spring:message code="message.no_exercises_in_program"/><br /><spring:message code="message.you_can_add_them"/></a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -52,29 +117,29 @@
             <c:when test="${!empty exerciseTemplateListAll}">
                 <table class="data">
                     <tr>
-                        <td align="center">All Exercise Templates List:</td>
+                        <td align="center"><spring:message code="message.all_exercise_templates_list"/></td>
                     </tr>
                     <tr>
-                        <th>Name</th>
+                        <th><spring:message code="message.name"/></th>
                         <th>&nbsp;</th>
                     </tr>
                     <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
                         <tr>
                             <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
-                            <td><a href="${programUrl}/add/${exerciseTemplate.id}">Add Template</a></td>
+                            <td><a href="${programUrl}/add/${exerciseTemplate.id}"><spring:message code="message.add"/></a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
-                <a>There is no ExerciseTemplates in DB<br />You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>
+                <a><spring:message code="message.no_exercise_templates"/><br />You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>
                 <br />
             </c:otherwise>
         </c:choose>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
 </body>
 </html>

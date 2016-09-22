@@ -33,7 +33,7 @@ th, td {
     text-align: left;
 }
 
-#home {
+#links {
     float: left;
 }
 #lang {
@@ -43,6 +43,7 @@ th, td {
 #header {
     padding: 20px;
     background-color: #efefef;
+    text-transform: uppercase;
 }
 
 #main {
@@ -51,6 +52,7 @@ th, td {
 }
 
 #footer {
+    text-transform: uppercase;
     width: 1400px;
     background-color: #efefef;
     position: relative;

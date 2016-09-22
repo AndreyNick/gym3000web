@@ -7,23 +7,23 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Error</title>
+    <title><spring:message code="message.gym3000_title"/></title>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
 </head>
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>">HOME</a>
-        <a id="sign_in">SIGN IN</a>
-        <a id="sign_out">SIGN OUT</a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        </span>
     </div>
     <div id="main">
-        <h1>There is no such page</h1>
-        <h2>You can back HOME page</h2>
+        <h1><spring:message code="message.no_such_page"/></h1>
+        <h2><spring:message code="message.back_home_page"/></h2>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
 </body>
 </html>

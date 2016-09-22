@@ -8,6 +8,7 @@ import com.gym.service.ExerciseTemplateService;
 import com.gym.service.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,39 @@ public class ProgramController {
         map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
         System.out.println("exerciseTemplateListAll:\n" + exerciseTemplateService.readAll());
         return "/prog";
+    }
+
+    @RequestMapping("/prog/{id}/edit_form")
+    public String editFormSingleProgram(Map<String, Object> map, @PathVariable("id") Long id) {
+        Program p =  programService.read(id);
+        map.put("program", p);
+        map.put("exercise", new Exercise());
+        map.put("exerciseTemplate", new ExerciseTemplate());
+        map.put("exerciseList", exerciseService.getExercisesByProgramId(p.getId()));
+        map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
+        map.put("edit", true);
+        return "/prog";
+    }
+
+    @RequestMapping(value = "/prog/{id}/edit", method = RequestMethod.POST)
+    public String editSingleProgramTemplate(@ModelAttribute("programTemplate") /*@Validated*/ Program program,
+                                            @PathVariable("id") Long id,
+                                            BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("ERROR.");
+            return "redirect:/prog/" + id + "/edit_form";
+        } else {
+            Program p = programService.read(id);
+            p.setName(program.getName());
+            p.setDescription(program.getDescription());
+            p.setNote(program.getNote());
+            p.setDate(program.getDate());
+            programService.update(p);
+            return "redirect:/prog/" + id;
+            //i think it would be better to get full program from jsp and update it
+            //not find it by id and update
+            //todo: think about it
+        }
     }
 
     @RequestMapping(value = "/prog/{programId}/add/{exerciseTemplateId}")

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,7 +58,7 @@ public class ProgramTemplateController {
     }
 
     @RequestMapping(value = "/p_temp_list/add", method = RequestMethod.POST)
-    public String addProgramTemplate(@ModelAttribute("programTemplate") @Validated ProgramTemplate programTemplate,
+    public String addProgramTemplate(@ModelAttribute("programTemplate") /*@Validated*/ ProgramTemplate programTemplate,
                                      BindingResult result) {
         if (result.hasErrors()) {
               System.out.println("ERROR");

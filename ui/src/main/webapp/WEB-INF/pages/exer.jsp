@@ -9,12 +9,21 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Exercise</title>
+    <title><spring:message code="message.gym3000_title"/></title>
 </head>
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>">HOME</a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+            <a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates"/></a>
+            <a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates"/></a>
+        </span>
+        <span id="lang">
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
     </div>
     <div id="main">
         <h1>${exercise.name}</h1>

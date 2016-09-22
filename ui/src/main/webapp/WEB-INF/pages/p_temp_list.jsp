@@ -9,13 +9,19 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ProgramTemplates</title>
+    <title><spring:message code="message.gym3000_title"/></title>
 </head>
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
-        <span id="lang"><a href="?lang=en">EN</a>|<a href="?lang=ru">RU</a></span>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+        </span>
+        <span id="lang">
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
     </div>
     <div id="main">
         <h1><spring:message code="message.program_templates"/></h1>
@@ -45,7 +51,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a><spring:message code="message.no_program_templates"/></a>
+                <a><spring:message code="message.no_program_templates"/><br /><spring:message code="massage.you_can_add_them"/></a>
                 <br />
             </c:otherwise>
         </c:choose>
@@ -89,7 +95,7 @@
                     <td><springForm:errors path="note" cssClass="error" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="<spring:message code="message.add_program_template"/>"/></td>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
                 </tr>
             </table>
         </form:form>

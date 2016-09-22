@@ -8,16 +8,23 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>ExerciseTemplate</title>
+    <title><spring:message code="message.gym3000_title"/></title>
 </head>
 <spring:url value="/p_temp" var="programTemplateUrl" />
 <spring:url value="/e_temp" var="exerciseTemplateUrl" />
 <body>
 <div id="wrap">
     <div id="header">
-        <a id="home" href="<c:url value="/welcome"/>">HOME</a>
-        <a href="<c:url value="/p_temp_list"/>">PROGRAM TEMPLATES</a>
-        <a href="<c:url value="/e_temp_list"/>">EXERCISE TEMPLATES</a>
+        <span id="links">
+            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+            <a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates"/></a>
+            <a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates"/></a>
+        </span>
+        <span id="lang">
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
     </div>
     <div id="main">
         <c:choose>
@@ -25,12 +32,12 @@
                 <form:form method="post" action="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit" commandName="exerciseTemplate">
                     <table>
                         <tr>
-                            <td colspan="2" align="center">Edit ExerciseTemplate:</td>
+                            <td colspan="2" align="center"><spring:message code="message.edit_exercise_template"/></td>
                         </tr>
                         <tr>
                             <td>
                                 <form:label path="name">
-                                    Name
+                                    <spring:message code="message.name"/>
                                 </form:label>
                             </td>
                             <td>
@@ -40,7 +47,7 @@
                         <tr>
                             <td>
                                 <form:label path="description">
-                                    Description
+                                    <spring:message code="message.description"/>
                                 </form:label>
                             </td>
                             <td>
@@ -50,7 +57,7 @@
                         <tr>
                             <td>
                                 <form:label path="note">
-                                    Note
+                                    <spring:message code="message.note"/>
                                 </form:label>
                             </td>
                             <td>
@@ -58,17 +65,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="submit" value="Save"/></td>
+                            <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
                         </tr>
                     </table>
                 </form:form>
             </c:when>
             <c:otherwise>
                 <h1>${exerciseTemplate.name}</h1>
-                <h2>Description: ${exerciseTemplate.description}</h2>
-                <h2>Note: ${exerciseTemplate.note}</h2>
+                <h2><spring:message code="message.description"/>: ${exerciseTemplate.description}</h2>
+                <h2><spring:message code="message.note"/>: ${exerciseTemplate.note}</h2>
                 <form method="post" action="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit_form">
-                    <input type="submit" value="Edit"/>
+                    <input type="submit" value="<spring:message code="message.edit"/>"/>
                 </form>
             </c:otherwise>
         </c:choose>
@@ -76,10 +83,10 @@
             <c:when test="${!empty programTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="2" align="center">ExerciseTemplate "${exerciseTemplate.name}" is bound to ProgramTemplates:</td>
+                        <td colspan="2" align="center"><spring:message code="message.exercise_template_bound_program_templates"/></td>
                     </tr>
                     <tr>
-                        <th>Name</th>
+                        <th><spring:message code="message.name"/></th>
                     </tr>
                     <c:forEach items="${programTemplateList}" var="programTemplate">
                         <tr>
@@ -89,14 +96,14 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a>This ExerciseTemplate isn't used in any ProgramTemplate</a>
+                <a><spring:message code="message.exercise_template_dont_used_by_program_template"/></a>
                 <br />
             </c:otherwise>
         </c:choose>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
 
 
