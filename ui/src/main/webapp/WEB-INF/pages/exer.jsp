@@ -27,42 +27,14 @@
     </div>
     <div id="main">
         <h1>${exercise.name}</h1>
-        <h4>${exercise.description}</h4>
-        <h4>${exercise.note}</h4>
+        <h2><spring:message code="message.description"/>: ${exercise.description}</h2>
+        <h2><spring:message code="message.name"/>: ${exercise.note}</h2>
 
-        <form:form method="post" action="exer/add" commandName="exercise">
-            <table>
-                <tr>
-                    <td><form:label path="name">
-                        name
-                    </form:label></td>
-                    <td><form:input path="name"/></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="add"/></td>
-                </tr>
-            </table>
-        </form:form>
-
-        <c:if test="${!empty exerciseList}">
-            <table class="data">
-                <tr>
-                    <th>name</th>
-                    <th>&nbsp;</th>
-                </tr>
-                <c:forEach items="${exerciseList}" var="exercise">
-                    <tr>
-                        <td>${exercise.name}</td>
-                        <td><a href="exer/delete/${exercise.id}">delete</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:if>
+        <h2><spring:message code="message.programs"/>: <a href="prog/${program.id}">${program.name}</a></h2>
     </div>
 </div>
 <div id="footer">
-    <a>TEST VERSION</a>
+    <a><spring:message code="message.test_version"/></a>
 </div>
-
 </body>
 </html>

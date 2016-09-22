@@ -12,6 +12,7 @@
     <title>Program</title>
 </head>
 <spring:url value="/prog/${program.id}" var="programUrl" />
+<spring:url value="/exer/${exercise.id}" var="exerciseUrl" />
 <spring:url value="/e_temp" var="exerciseTemplateUrl" />
 <body>
 <div id="wrap">
@@ -93,7 +94,7 @@
             <c:when test="${!empty exerciseList}">
                 <table class="data">
                     <tr>
-                        <td align="center"><spring:message code="message.exercise_list"/></td>
+                        <td colspan="2" align="center"><spring:message code="message.exercise_list"/></td>
                     </tr>
                     <tr>
                         <th><spring:message code="message.name"/></th>
@@ -101,6 +102,7 @@
                     </tr>
                     <c:forEach items="${exerciseList}" var="exercise">
                         <tr>
+                            <%--<td><a href="${exerciseUrl}">${exercise.name}</a></td>--%>
                             <td>${exercise.name}</td>
                             <td><a href="${programUrl}/delete/${exercise.id}"><spring:message code="message.delete"/></a></td>
                         </tr>
@@ -117,7 +119,7 @@
             <c:when test="${!empty exerciseTemplateListAll}">
                 <table class="data">
                     <tr>
-                        <td align="center"><spring:message code="message.all_exercise_templates_list"/></td>
+                        <td colspan="2" align="center"><spring:message code="message.all_exercise_templates_list"/></td>
                     </tr>
                     <tr>
                         <th><spring:message code="message.name"/></th>

@@ -33,9 +33,10 @@ th, td {
     text-align: left;
 }
 
-#links {
+/*#links {
     float: left;
-}
+}*/
+
 #lang {
     float: right;
 }
