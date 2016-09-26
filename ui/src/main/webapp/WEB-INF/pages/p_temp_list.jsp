@@ -51,7 +51,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a><spring:message code="message.no_program_templates"/><br /><spring:message code="massage.you_can_add_them"/></a>
+                <a><spring:message code="message.no_program_templates"/><br /><spring:message code="message.you_can_add_them"/></a>
                 <br />
             </c:otherwise>
         </c:choose>
