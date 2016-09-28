@@ -19,10 +19,10 @@ public class ExerciseController {
     ExerciseService exerciseService;
 
     @RequestMapping(value = "/exer/{id}", method = RequestMethod.GET)
-    public String singleProgram(Map<String, Object> map, @PathVariable("id") Long id) {
-        Exercise e =  exerciseService.read(id);
+    public String singleProgram(Map<String, Object> map,
+                                @PathVariable("id") Long id) {
+        Exercise e = exerciseService.read(id);
         Program p = e.getProgram();
-
         map.put("exercise", e);
         map.put("program", p);
         return "/exer";
