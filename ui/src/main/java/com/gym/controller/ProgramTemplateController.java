@@ -2,6 +2,7 @@ package com.gym.controller;
 
 import com.gym.factory.ProgramFactory;
 import com.gym.objects.ExerciseTemplate;
+import com.gym.objects.Owner;
 import com.gym.objects.ProgramTemplate;
 import com.gym.service.ExerciseTemplateService;
 import com.gym.service.ProgramTemplateService;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -51,9 +53,12 @@ public class ProgramTemplateController {
     }
 
     @RequestMapping("/p_temp_list/create_program/{id}")
-    public String createNewProgramByProgramTemplate(@PathVariable("id") Long id) {
+    public String createNewProgramByProgramTemplate(@PathVariable("id") Long id,
+                                                    HttpSession session) {
+
         ProgramTemplate pt = programTemplateService.read(id);
-        programFactory.createProgram(pt);
+        Owner owner = (Owner)session.getAttribute("owner");
+        programFactory.createProgram(pt, owner);
         return "redirect:/p_temp_list";
     }
 

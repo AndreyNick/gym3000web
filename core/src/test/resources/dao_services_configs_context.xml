@@ -53,11 +53,17 @@
     <bean id="exerciseService" class="com.gym.service.ExerciseService">
         <constructor-arg ref="exerciseDao"/>
     </bean>
-    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Program"/>
+    <bean id="programDao" class="com.gym.dao.impl.ProgramDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="programService" class="com.gym.service.ProgramService">
         <constructor-arg ref="programDao"/>
+    </bean>
+    <bean id="ownerDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Owner"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="ownerService" class="com.gym.service.OwnerService">
+        <constructor-arg ref="ownerDao"/>
     </bean>
 </beans>

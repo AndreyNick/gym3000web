@@ -6,6 +6,12 @@ DROP DATABASE `gym`$$
 CREATE DATABASE `gym`$$
 USE `gym`$$
 
+CREATE TABLE `owner` (
+  `owner_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR (1000) NOT NULL,
+  PRIMARY KEY (`owner_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
 CREATE TABLE `program_template` (
   `program_template_id` INT (11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR (1000) NOT NULL,
@@ -45,6 +51,7 @@ CREATE TABLE `exercise` (
 
 CREATE TABLE `program` (
   `program_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `owner_id` INT (11) NOT NULL,
   `name` VARCHAR (1000) NOT NULL,
   `description` VARCHAR (10000),
   `note` VARCHAR (10000),

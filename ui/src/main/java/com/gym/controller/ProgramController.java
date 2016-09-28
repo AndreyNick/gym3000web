@@ -2,21 +2,23 @@ package com.gym.controller;
 
 import com.gym.objects.Exercise;
 import com.gym.objects.ExerciseTemplate;
+import com.gym.objects.Owner;
 import com.gym.objects.Program;
 import com.gym.service.ExerciseService;
 import com.gym.service.ExerciseTemplateService;
+import com.gym.service.OwnerService;
 import com.gym.service.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("owner")
+@Scope("session")
 public class ProgramController {
 
     @Autowired
@@ -28,11 +30,15 @@ public class ProgramController {
     @Autowired
     ExerciseService exerciseService;
 
+    @Autowired
+    OwnerService ownerService;
+
     @RequestMapping(value = "/prog_list", method = RequestMethod.GET)
-    public String printPrograms(Map<String, Object> map) {
+    public String printPrograms(Map<String, Object> map,
+                                HttpSession session) {
+        Owner owner = (Owner)session.getAttribute("owner");
         map.put("program", new Program());
-        map.put("programList", programService.readAll());
-        System.out.println("programService.readAll() = " + programService.readAll());
+        map.put("programList", programService.getProgramsByOwnerId(owner.getId()));
         return "prog_list";
     }
 
@@ -43,7 +49,10 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog_list/add", method = RequestMethod.POST)
-    public String addProgram(@ModelAttribute("program") Program program) {
+    public String addProgram(@ModelAttribute("program") Program program,
+                             HttpSession session) {
+        Owner owner = (Owner)session.getAttribute("owner");
+        program.setOwner(ownerService.read(owner.getId()));
         programService.create(program);
         return "redirect:/prog_list";
     }
@@ -55,9 +64,7 @@ public class ProgramController {
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
         map.put("exerciseList", exerciseService.getExercisesByProgramId(p.getId()));
-        System.out.println("exerciseList:\n" + exerciseService.getExercisesByProgramId(p.getId()));
         map.put("exerciseTemplateListAll", exerciseTemplateService.readAll());
-        System.out.println("exerciseTemplateListAll:\n" + exerciseTemplateService.readAll());
         return "/prog";
     }
 

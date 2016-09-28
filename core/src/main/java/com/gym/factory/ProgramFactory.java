@@ -1,9 +1,6 @@
 package com.gym.factory;
 
-import com.gym.objects.Exercise;
-import com.gym.objects.ExerciseTemplate;
-import com.gym.objects.Program;
-import com.gym.objects.ProgramTemplate;
+import com.gym.objects.*;
 import com.gym.service.ExerciseService;
 import com.gym.service.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +17,9 @@ public class ProgramFactory {
     ExerciseService exerciseService;
 
     //todo: decide how to name programs
-    public void createProgram(ProgramTemplate programTemplate) {
-        Program newProgram = new Program(programTemplate.getName(),
+    public void createProgram(ProgramTemplate programTemplate, Owner owner) {
+        Program newProgram = new Program(owner,
+                programTemplate.getName(),
                 new Date(System.currentTimeMillis()),
                 programTemplate.getDescription(),
                 programTemplate.getNote());

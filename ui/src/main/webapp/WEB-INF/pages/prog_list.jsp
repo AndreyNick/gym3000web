@@ -10,13 +10,17 @@
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title><spring:message code="message.gym3000_title"/></title>
+</head>
+<spring:url value="/prog_list/add" var="programAddUrl" />
+<spring:url value="/prog_list/delete" var="programDeleteUrl" />
 <body>
 <div id="wrap">
     <div id="header">
         <span id="links">
-            <a href="<c:url value="/welcome"/>"><spring:message code="message.home"/></a>
+            <a href="<c:url value="/home/${sessionScope.owner.id}"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
+            <a href="${pageContext.request.contextPath}/users">${sessionScope.owner.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
@@ -38,16 +42,16 @@
                 </tr>
                 <c:forEach items="${programList}" var="program">
                     <tr>
-                        <td><a href="prog/${program.id}">${program.name}</a></td>
+                        <td><a href="/prog/${program.id}">${program.name}</a></td>
                         <td>${program.date}</td>
                         <td>${program.description}</td>
                         <td>${program.note}</td>
-                        <td><a href="prog_list/delete/${program.id}"><spring:message code="message.delete"/></a></td>
+                        <td><a href="${programDeleteUrl}/${program.id}"><spring:message code="message.delete"/></a></td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
-        <form:form method="post" action="prog_list/add" commandName="program">
+        <form:form method="post" action="${programAddUrl}" commandName="program">
             <table>
                 <tr>
                     <td colspan="2"><spring:message code="message.add_program"/></td>

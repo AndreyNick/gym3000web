@@ -56,8 +56,7 @@
     <bean id="exerciseService" class="com.gym.service.ExerciseService">
         <constructor-arg ref="exerciseDao"/>
     </bean>
-    <bean id="programDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Program"/>
+    <bean id="programDao" class="com.gym.dao.impl.ProgramDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="programService" class="com.gym.service.ProgramService">
@@ -65,6 +64,13 @@
     </bean>
     <bean id="programTemplate" class="com.gym.objects.ProgramTemplate">
         <constructor-arg index="0" value="program"/>
+    </bean>
+    <bean id="ownerDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Owner"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="ownerService" class="com.gym.service.OwnerService">
+        <constructor-arg ref="ownerDao"/>
     </bean>
     <bean id="programFactory" class="com.gym.factory.ProgramFactory"/>
     <bean id="programHelper" class="com.gym.helper.ProgramHelper"/>

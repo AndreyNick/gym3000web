@@ -24,7 +24,6 @@ public abstract class GenericTest {
     HasIdAndName expected;
     AbstractGenericService service;
 
-
     @Before
     public abstract void init();
 
