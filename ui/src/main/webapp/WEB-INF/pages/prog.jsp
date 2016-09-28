@@ -103,7 +103,7 @@
                     </tr>
                     <c:forEach items="${exerciseList}" var="exercise">
                         <tr>
-                            <td><a href="${exerciseUrl}">${exercise.name}</a></td>
+                            <td><a href="/exer/${exercise.id}">${exercise.name}</a></td>
                             <%--td>${exercise.name}</td>--%>
                             <td><a href="${programUrl}/delete/${exercise.id}"><spring:message code="message.delete"/></a></td>
                         </tr>
