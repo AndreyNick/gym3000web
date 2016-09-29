@@ -58,6 +58,14 @@ CREATE TABLE `program` (
   PRIMARY KEY (`program_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
+CREATE TABLE `set` (
+  `exercise_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `times` INT (5),
+  `weight` INT (7),
+  `measure` VARCHAR (20),
+  PRIMARY KEY (`exercise_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
 
 
 

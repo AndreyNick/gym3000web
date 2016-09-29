@@ -66,4 +66,10 @@
     <bean id="ownerService" class="com.gym.service.OwnerService">
         <constructor-arg ref="ownerDao"/>
     </bean>
+    <bean id="setDao" class="com.gym.dao.impl.SetDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="setService" class="com.gym.service.SetService">
+        <constructor-arg ref="setDao"/>
+    </bean>
 </beans>
