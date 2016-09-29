@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Interface of generic DAO class for simple crud operations
+ * Interface of generic DAO class for simple CRUD operations
  */
 public interface GenericDao <T, PK extends Serializable> {
 

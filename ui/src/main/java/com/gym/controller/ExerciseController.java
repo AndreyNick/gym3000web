@@ -20,23 +20,44 @@ public class ExerciseController {
     @Autowired
     ExerciseService exerciseService;
 
-    @RequestMapping(value = "/exer")
-    public String printPrograms(Map<String, Object> map) {
-        map.put("exercise", new Program());
-        map.put("exerciseList", exerciseService.readAll());
-        return "exer";
+    @RequestMapping(value = "/exer/{id}", method = RequestMethod.GET)
+    public String singleExercise(Map<String, Object> map,
+                                @PathVariable("id") Long id) {
+        Exercise e = exerciseService.read(id);
+        Program p = e.getProgram();
+        map.put("exercise", e);
+        map.put("program", p);
+        return "/exer";
     }
 
-    @RequestMapping("/exer/delete/{id}")
-    public String deleteProgram(@PathVariable("id") Long id) {
-        exerciseService.delete(exerciseService.read(id));
-        return "redirect:/exer";
+    @RequestMapping(value = "/exer/{id}/edit_form")
+    public String editFormSingleExercise(Map<String, Object> map,
+                                @PathVariable("id") Long id) {
+        Exercise e = exerciseService.read(id);
+        Program p = e.getProgram();
+        map.put("exercise", e);
+        map.put("program", p);
+        map.put("edit", true);
+        return "/exer";
     }
 
-    @RequestMapping(value = "/exer/add", method = RequestMethod.POST)
-    public String addProgram(@ModelAttribute("exercise") Exercise exercise,
-                             BindingResult result) {
-        exerciseService.create(exercise);
-        return "redirect:/exer";
+    @RequestMapping(value = "/exer/{id}/edit", method = RequestMethod.POST)
+    public String editSingleExercise(@ModelAttribute("exercise") /*@Validated*/ Exercise exercise,
+                                            @PathVariable("id") Long id,
+                                            BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("ERROR.");
+            return "redirect:/prog/" + id + "/edit_form";
+        } else {
+            Exercise e = exerciseService.read(id);
+            e.setName(exercise.getName());
+            e.setDescription(exercise.getDescription());
+            e.setNote(exercise.getNote());
+            exerciseService.update(e);
+            return "redirect:/exer/" + id;
+            //i think it would be better to get full program from jsp and update it
+            //not find it by id and update
+            //todo: think about it
+        }
     }
 }

@@ -7,8 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class keeps ExerciseType list. It can be called like 'ExerciseType group'.
- * Program shows list of the exercise names which you should do during training
+ * This class keeps Exercises list. It can be called like 'Exercises group'.
+ * Program shows list of the exercise names which you should do during training.
+ * It also contains the date of training.
  */
 
 @Entity
@@ -21,6 +22,10 @@ public class Program implements HasIdAndName{
     @Column(name = "program_id", unique = true, nullable = false)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private Owner owner;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -28,16 +33,24 @@ public class Program implements HasIdAndName{
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "program")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "program")
     private List<Exercise> exerciseList = new LinkedList<Exercise>();
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "note")
+    private String note;
 
     public Program() {
     }
 
-
-    public Program(String name, Date date) {
+    public Program(Owner owner, String name, Date date, String description, String note) {
+        this.owner = owner;
         this.name = name;
         this.date = date;
+        this.description = description;
+        this.note = note;
     }
 
     public Long getId() {
@@ -76,6 +89,30 @@ public class Program implements HasIdAndName{
         exerciseList.remove(exercise);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,9 +121,11 @@ public class Program implements HasIdAndName{
         Program program = (Program) o;
 
         if (!date.equals(program.date)) return false;
+        if (description != null ? !description.equals(program.description) : program.description != null) return false;
         if (exerciseList != null ? !exerciseList.equals(program.exerciseList) : program.exerciseList != null)
             return false;
         if (!name.equals(program.name)) return false;
+        if (note != null ? !note.equals(program.note) : program.note != null) return false;
 
         return true;
     }
@@ -96,6 +135,8 @@ public class Program implements HasIdAndName{
         int result = name.hashCode();
         result = 31 * result + date.hashCode();
         result = 31 * result + (exerciseList != null ? exerciseList.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
         return result;
     }
 
@@ -105,7 +146,10 @@ public class Program implements HasIdAndName{
         for(Exercise item : exerciseList) {
             exercises += "\n\t\t{id=" + item.getId() + ", name='" + item.getName() + "\'}";
         }
-        return "\nProgram{id=" + id + ", name='" + name +
+        return "\nProgram{id=" + id +
+                ", name='" + name +
+                /*", owner='" + owner!=null?owner.getName():"null" +*/
+                ", date='" + date.toString() +
                 "', \n\texerciseList=[" + exercises + ']' +
                 '}';
     }

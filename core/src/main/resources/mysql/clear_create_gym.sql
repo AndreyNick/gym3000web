@@ -6,15 +6,25 @@ DROP DATABASE `gym`$$
 CREATE DATABASE `gym`$$
 USE `gym`$$
 
+CREATE TABLE `owner` (
+  `owner_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR (1000) NOT NULL,
+  PRIMARY KEY (`owner_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
 CREATE TABLE `program_template` (
   `program_template_id` INT (11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (100),
+  `name` VARCHAR (1000) NOT NULL,
+  `description` VARCHAR (10000),
+  `note` VARCHAR (10000),
   PRIMARY KEY (`program_template_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `exercise_template` (
   `exercise_template_id` INT (11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (100),
+  `name` VARCHAR (1000) NOT NULL,
+  `description` VARCHAR (10000),
+  `note` VARCHAR (10000),
   PRIMARY KEY (`exercise_template_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
@@ -33,13 +43,18 @@ CREATE TABLE `exercise` (
   `exercise_id` INT (11) NOT NULL AUTO_INCREMENT,
   `program_id` INT (11) NOT NULL,
   `exercise_template_id` INT (11) NOT NULL,
-  `name` VARCHAR (100),
+  `name` VARCHAR (1000) NOT NULL,
+  `description` VARCHAR (10000),
+  `note` VARCHAR (10000),
   PRIMARY KEY (`exercise_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `program` (
   `program_id` INT (11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (100),
+  `owner_id` INT (11) NOT NULL,
+  `name` VARCHAR (1000) NOT NULL,
+  `description` VARCHAR (10000),
+  `note` VARCHAR (10000),
   `date` DATE NOT NULL,
   PRIMARY KEY (`program_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$

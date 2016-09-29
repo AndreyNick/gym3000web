@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.sql.Date;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:temporary_test_context.xml")
 public class TemporaryTest {
 
@@ -45,7 +45,7 @@ public class TemporaryTest {
     Program program;
 
 
-    @Test
+    //@Test
     public void multipleBindSameExerciseTemplate() {
         programTemplateService.create(programTemplate1);
         programTemplateService.create(programTemplate2);
@@ -66,7 +66,7 @@ public class TemporaryTest {
     *ExerciseTemplate could be created without ProgramTemplate
     */
 
-    @Test
+    //@Test
     public void createReadExerciseTemplate() {
         exerciseTemplateService.create(exerciseTemplate1);
         ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate1.getId());
@@ -76,21 +76,21 @@ public class TemporaryTest {
     /**
      * ProgramTemplate could be created without ExerciseTemplates list
      */
-    @Test
+    //@Test
     public void createReadProgramTemplate() {
         programTemplateService.create(programTemplate1);
         ProgramTemplate pt = programTemplateService.read(programTemplate1.getId());
         Assert.assertEquals(programTemplate1, pt);
     }
 
-    @Test
+    //@Test
     public void createReadProgram() {
         programService.create(program);
         Program p = programService.read(program.getId());
         Assert.assertEquals(program, p);
     }
 
-    @Test
+    //@Test
     public void createReadExercise() {
         exercise.setExerciseTemplate(exerciseTemplate1);
         exercise.setProgram(program);
@@ -99,7 +99,7 @@ public class TemporaryTest {
         Assert.assertEquals(exercise, e);
     }
 
-    @Test
+    //@Test
     public void updateExerciseTemplate() {
         exerciseTemplateService.create(exerciseTemplate1);
         exerciseTemplate1.setName("name was changed");
@@ -108,7 +108,7 @@ public class TemporaryTest {
         Assert.assertEquals(exerciseTemplate1, et);
     }
 
-    @Test
+    //@Test
     public void updateProgramTemplate() {
         programTemplateService.create(programTemplate1);
         programTemplate1.setName("name was changed");
@@ -117,7 +117,7 @@ public class TemporaryTest {
         Assert.assertEquals(programTemplate1, pt);
     }
 
-    @Test
+    //@Test
     public void updateProgram() {
         programService.create(program);
         program.setName("name was changed");
@@ -126,7 +126,7 @@ public class TemporaryTest {
         Assert.assertEquals(program, p);
     }
 
-    @Test
+    //@Test
     public void updateExercise() {
         exerciseService.create(exercise);
         exercise.setName("name was changed");
@@ -135,7 +135,7 @@ public class TemporaryTest {
         Assert.assertEquals(exercise, e);
     }
 
-    @Test
+    //@Test
      public void deleteExerciseTemplate() throws ObjectNotFoundException {
         exerciseTemplateService.create(exerciseTemplate1);
         ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplate1.getId());
@@ -144,7 +144,7 @@ public class TemporaryTest {
         exerciseTemplateService.read(exerciseTemplate1.getId());
     }
 
-    @Test
+    //@Test
     public void deleteExercise() throws ObjectNotFoundException {
         exerciseService.create(exercise);
         Exercise e = exerciseService.read(exercise.getId());
@@ -153,7 +153,7 @@ public class TemporaryTest {
         exerciseService.read(exercise.getId());
     }
 
-    @Test
+    //@Test
     public void deleteProgramTemplate() throws ObjectNotFoundException {
         programTemplateService.create(programTemplate1);
         ProgramTemplate pt = programTemplateService.read(programTemplate1.getId());
@@ -162,7 +162,7 @@ public class TemporaryTest {
         programTemplateService.read(programTemplate1.getId());
     }
 
-    @Test
+    //@Test
     public void deleteProgram() throws ObjectNotFoundException {
         programService.create(program);
         Program p = programService.read(program.getId());
@@ -172,7 +172,7 @@ public class TemporaryTest {
     }
 
 
-    @Test
+    //@Test
     public void equalsProgramMethodsTest() {
         /*Program legsDayProgram = new Program("Legs day", new Date(System.currentTimeMillis()));
         ExerciseTemplate pushUpsT = new ExerciseTemplate("Push Ups T");

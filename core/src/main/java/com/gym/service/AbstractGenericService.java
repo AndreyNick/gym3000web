@@ -8,10 +8,13 @@ import java.io.Serializable;
 import java.util.List;
 
 
+/**
+ * Generic service
+ */
 @Service
 public class AbstractGenericService<T, PK extends Serializable> {
 
-    private GenericDao<T, PK> dao;
+    protected GenericDao<T, PK> dao;
 
     protected AbstractGenericService(GenericDao<T, PK> dao) {
         this.dao = dao;

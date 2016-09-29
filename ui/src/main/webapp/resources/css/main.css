@@ -1,4 +1,5 @@
-body {
+html, body, #wrap {
+    height: 100%;
     color: #757575;
     font-family: ProximaNova,Arial,sans-serif;
     font-size: 14px;
@@ -7,6 +8,12 @@ body {
     width: 1400px;
     margin: 0 auto;
 }
+
+body > #wrap {
+    height: auto;
+    min-height: 100%;
+}
+
 h1 {
     color: #333;
     font-size: 42px;
@@ -15,28 +22,45 @@ h1 {
     margin: 0;
     text-align: center;
 }
+
 table {
     margin-top: 20px;
 }
+
 th, td {
     border-bottom: 1px solid #ddd;
     padding: 6px;
     text-align: left;
 }
-.header {
-    padding: 1rem;
+
+/*#links {
+    float: left;
+}*/
+
+#lang {
+    float: right;
+}
+
+#header {
+    padding: 20px;
     background-color: #efefef;
+    text-transform: uppercase;
 }
-.home {
-    padding-right: 1000px;
-}
-.main {
+
+#main {
     padding-top: 25px;
+    padding-bottom: 100px;
 }
-.footer {
+
+#footer {
+    text-transform: uppercase;
     width: 1400px;
-    position: fixed;
-    bottom: 0;
-    padding: 1rem;
     background-color: #efefef;
+    position: relative;
+    margin-top: -60px;
+    height: 40px;
+    padding-top: 20px;
+    padding-left: 20px;
+    clear: both;
 }
+

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Implementation of generic DAO class for simple crud operations
+ * Implementation of generic DAO class for simple CRUD operations
  */
 @Repository
 public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
@@ -55,7 +55,7 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
         return list;
     }
 
-    private Session getSession() {
+    protected Session getSession() {
         if (session == null) {
             session = sessionFactory.openSession();
             }

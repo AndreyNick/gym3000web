@@ -4,8 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-import java.util.List;
-
 
 @Entity
 @Table(name = "exercise")
@@ -17,7 +15,7 @@ public class Exercise implements HasIdAndName {
     @Column(name = "exercise_id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "program_id", nullable = false)
     private Program program;
 
@@ -28,13 +26,21 @@ public class Exercise implements HasIdAndName {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "note")
+    private String note;
+
     public Exercise() {
     }
 
-    public Exercise(Program program, ExerciseTemplate exerciseTemplate, String name) {
+    public Exercise(Program program, ExerciseTemplate exerciseTemplate, String name, String description, String note) {
         this.program = program;
         this.exerciseTemplate = exerciseTemplate;
         this.name = name;
+        this.description = description;
+        this.note = note;
     }
 
     public Exercise(String name) {
@@ -69,6 +75,22 @@ public class Exercise implements HasIdAndName {
         this.program = program;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,9 +98,11 @@ public class Exercise implements HasIdAndName {
 
         Exercise exercise = (Exercise) o;
 
-        if (exerciseTemplate != null ? !exerciseTemplate.equals(exercise.exerciseTemplate) : exercise.exerciseTemplate != null)
+        if (description != null ? !description.equals(exercise.description) : exercise.description != null)
             return false;
+        if (!exerciseTemplate.equals(exercise.exerciseTemplate)) return false;
         if (!name.equals(exercise.name)) return false;
+        if (note != null ? !note.equals(exercise.note) : exercise.note != null) return false;
         if (!program.equals(exercise.program)) return false;
 
         return true;
@@ -86,9 +110,11 @@ public class Exercise implements HasIdAndName {
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + (exerciseTemplate != null ? exerciseTemplate.hashCode() : 0);
+        int result = program.hashCode();
+        result = 31 * result + exerciseTemplate.hashCode();
         result = 31 * result + name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
         return result;
     }
 

@@ -7,23 +7,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>gym3000</title>
+    <title><spring:message code="message.gym3000_title"/></title>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
 </head>
 <body>
-<div class="header">
-    <a class="home">HOME</a>
-    <a class="sign_in">SIGN IN</a>
-    <a class="sign_out">SIGN OUT</a>
+<div id="wrap">
+    <div id="header">
+        <span id="links">
+            <a href="<c:url value="/home/${sessionScope.owner.id}"/>"><spring:message code="message.home"/></a>
+        </span>
+        <span id="lang">
+            <a href="${pageContext.request.contextPath}/users">${sessionScope.owner.name}</a>
+        </span>
+    </div>
+    <div id="main">
+        <h1><spring:message code="message.no_such_page"/></h1>
+        <h2><spring:message code="message.back_home_page"/></h2>
+    </div>
 </div>
-<div class="main">
-    <h1>List of links</h1>
-    <h3><a href="<c:url value="/p_temp_list"/>">Program Templates List</a></h3>
-    <h3><a href="<c:url value="/e_temp_list"/>">Exercise Templates List</a></h3>
-    <h3><a href="<c:url value="/prog_list"/>">Programs List</a></h3>
-</div>
-<div class="footer">
-    <a>TEST VERSION</a>
+<div id="footer">
+    <a><spring:message code="message.test_version"/></a>
 </div>
 </body>
 </html>

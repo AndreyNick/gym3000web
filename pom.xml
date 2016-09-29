@@ -15,7 +15,6 @@
     </modules>
 
     <properties>
-        <!--<gym3000web.version>1.0-SNAPSHOT</gym3000web.version>-->
         <springframwork.version>4.0.5.RELEASE</springframwork.version>
         <hibernate.version>4.2.3.Final</hibernate.version>
         <aspectJ.version>1.8.4</aspectJ.version>
@@ -187,6 +186,12 @@
                 <groupId>jstl</groupId>
                 <artifactId>jstl</artifactId>
                 <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

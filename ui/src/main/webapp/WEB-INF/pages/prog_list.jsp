@@ -9,65 +9,100 @@
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Programs List</title>
+    <title><spring:message code="message.gym3000_title"/></title>
+</head>
+<spring:url value="/prog_list/add" var="programAddUrl" />
+<spring:url value="/prog_list/delete" var="programDeleteUrl" />
 <body>
-<div class="header">
-    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
+<div id="wrap">
+    <div id="header">
+        <span id="links">
+            <a href="<c:url value="/home/${sessionScope.owner.id}"/>"><spring:message code="message.home"/></a>
+        </span>
+        <span id="lang">
+            <a href="${pageContext.request.contextPath}/users">${sessionScope.owner.name}</a>
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
+    </div>
+    <div id="main">
+        <h1><spring:message code="message.programs_list"/></h1>
+        <c:if test="${!empty programList}">
+            <table class="data">
+                <tr>
+                    <td colspan="5"><spring:message code="message.list_programs"/></td>
+                </tr>
+                <tr>
+                    <th><spring:message code="message.name"/></th>
+                    <th><spring:message code="message.date"/></th>
+                    <th><spring:message code="message.description"/></th>
+                    <th><spring:message code="message.note"/></th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach items="${programList}" var="program">
+                    <tr>
+                        <td><a href="/prog/${program.id}">${program.name}</a></td>
+                        <td>${program.date}</td>
+                        <td>${program.description}</td>
+                        <td>${program.note}</td>
+                        <td><a href="${programDeleteUrl}/${program.id}"><spring:message code="message.delete"/></a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
+        <form:form method="post" action="${programAddUrl}" commandName="program">
+            <table>
+                <tr>
+                    <td colspan="2"><spring:message code="message.add_program"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="name">
+                            <spring:message code="message.name"/>
+                        </form:label></td>
+                    <td>
+                        <form:input path="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="date" >
+                            <spring:message code="message.date"/> (yyyy-MM-dd)
+                        </form:label>
+                    </td>
+                    <td>
+                        <fmt:formatDate value="${program.date}" pattern="yyyy-MM-dd" var="programDate"/>
+                        <form:input path="date" value="${programDate}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="description">
+                            <spring:message code="message.description"/>
+                        </form:label></td>
+                    <td>
+                        <form:textarea path="description"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="note">
+                            <spring:message code="message.note"/>
+                        </form:label></td>
+                    <td>
+                        <form:textarea path="note"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
+                </tr>
+            </table>
+        </form:form>
+    </div>
 </div>
-<div class="main">
-<h1>Programs List</h1>
-<c:if test="${!empty programList}">
-    <table class="data">
-        <tr>
-            <td colspan="3">List of programs</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${programList}" var="program">
-            <tr>
-                <td><a href="prog/${program.id}">${program.name}</a></td>
-                <td>${program.date}</td>
-                <td><a href="prog_list/delete/${program.id}">Delete</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
-<form:form method="post" action="prog_list/add" commandName="program">
-    <table>
-        <tr>
-        <tr>
-            <td colspan="2">Add program</td>
-        </tr>
-            <td>
-                <form:label path="name">
-                    Name
-                </form:label></td>
-            <td>
-                <form:input path="name"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="date" >
-                    Date (yyyy-MM-dd)
-                </form:label>
-            </td>
-            <td>
-                <fmt:formatDate value="${program.date}" pattern="yyyy-MM-dd" var="programDate"/>
-                <form:input path="date" value="${programDate}"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Add"/></td>
-        </tr>
-    </table>
-</form:form>
-</div>
-<div class="footer">
-    <a>TEST VERSION</a>
+<div id="footer">
+    <a><spring:message code="message.test_version"/></a>
 </div>
 </body>
 </html>

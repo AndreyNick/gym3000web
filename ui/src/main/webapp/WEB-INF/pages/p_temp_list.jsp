@@ -3,59 +3,107 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
-    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title>Program Templates</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><spring:message code="message.gym3000_title"/></title>
 </head>
 <body>
-<div class="header">
-    <a class="home" href="<c:url value="/welcome"/>">HOME</a>
-</div>
-<div class="main">
-<h1>Program Templates</h1>
-<c:if test="${!empty programTemplateList}">
-    <table class="data">
-        <tr>
-            <td colspan="2" align="center">Program Templates List:</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-        </tr>
-        <c:forEach items="${programTemplateList}" var="programTemplate">
-            <tr>
-                <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
-                <td><a href="p_temp_list/delete/${programTemplate.id}">Delete</a></td>
-                <td><a href="p_temp_list/create_program/${programTemplate.id}">Create Program</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</c:if>
+<div id="wrap">
+    <div id="header">
+        <span id="links">
+            <a href="<c:url value="/home/${sessionScope.owner.id}"/>"><spring:message code="message.home"/></a>
+        </span>
+        <span id="lang">
+            <a href="${pageContext.request.contextPath}/users">${sessionScope.owner.name}</a>
+            <a href="?lang=en"><spring:message code="message.language_en"/></a>
+            |
+            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+        </span>
+    </div>
+    <div id="main">
+        <h1><spring:message code="message.program_templates"/></h1>
 
-<form:form method="post" action="p_temp_list/add" commandName="programTemplate">
-    <table>
-        <tr>
-            <td colspan="2" align="center">Add Program Template:</td>
-        </tr>
-        <tr>
-            <td><form:label path="name">
-                Name
-            </form:label></td>
-            <td><form:input path="name"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="add"/></td>
-        </tr>
-    </table>
-</form:form>
+        <c:choose>
+            <c:when test="${!empty programTemplateList}">
+                <table class="data">
+                    <tr>
+                        <td colspan="5" align="center"><spring:message code="message.program_templates_list"/></td>
+                    </tr>
+                    <tr>
+                        <th><spring:message code="message.name"/></th>
+                        <th><spring:message code="message.description"/></th>
+                        <th><spring:message code="message.note"/></th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <c:forEach items="${programTemplateList}" var="programTemplate">
+                        <tr>
+                            <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
+                            <td>${programTemplate.description}</td>
+                            <td>${programTemplate.note}</td>
+                            <td><a href="p_temp_list/delete/${programTemplate.id}"><spring:message code="message.delete"/></a></td>
+                            <td><a href="p_temp_list/create_program/${programTemplate.id}"><spring:message code="message.create_program"/></a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <a><spring:message code="message.no_program_templates"/><br /><spring:message code="message.you_can_add_them"/></a>
+                <br />
+            </c:otherwise>
+        </c:choose>
+
+        <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
+            <table>
+                <tr>
+                    <td colspan="2" align="center"><spring:message code="message.add_program_template"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <springForm:label path="name">
+                            <spring:message code="message.name"/>
+                        </springForm:label>
+                    </td>
+                    <td>
+                        <springForm:input path="name"/>
+                    </td>
+                    <td><springForm:errors path="name" cssClass="error" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <springForm:label path="description">
+                            <spring:message code="message.description"/>
+                        </springForm:label>
+                    </td>
+                    <td>
+                        <springForm:textarea path="description"/>
+                    </td>
+                    <td><springForm:errors path="description" cssClass="error" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <springForm:label path="note">
+                            <spring:message code="message.note"/>
+                        </springForm:label>
+                    </td>
+                    <td>
+                        <springForm:textarea path="note"/>
+                    </td>
+                    <td><springForm:errors path="note" cssClass="error" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
+                </tr>
+            </table>
+        </form:form>
+    </div>
 </div>
-<div class="footer">
-    <a>TEST VERSION</a>
+<div id="footer">
+    <a><spring:message code="message.test_version"/></a>
 </div>
 
 </body>
