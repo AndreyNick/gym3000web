@@ -39,6 +39,13 @@ public class Set {
     @Column(name = "measure")
     private Measure measure;
 
+    public Set(Exercise exercise, int times, int weight, Measure measure) {
+        this.exercise = exercise;
+        this.times = times;
+        this.weight = weight;
+        this.measure = measure;
+    }
+
     public Exercise getExercise() {
         return exercise;
     }

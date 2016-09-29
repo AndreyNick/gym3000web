@@ -103,4 +103,12 @@
         <constructor-arg index="4" value="Note"/>
     </bean>
 
+    <!--Set-->
+    <bean id="set" class="com.gym.objects.Set">
+        <constructor-arg index="0" ref="exercise1"/>
+        <constructor-arg index="1" value="10"/>
+        <constructor-arg index="2" value="80"/>
+        <constructor-arg index="3" value="KG"/>
+    </bean>
+
 </beans>
