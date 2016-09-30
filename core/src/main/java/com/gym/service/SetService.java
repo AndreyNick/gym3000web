@@ -1,8 +1,6 @@
 package com.gym.service;
 
-import com.gym.dao.impl.ProgramDaoImpl;
 import com.gym.dao.impl.SetDaoImpl;
-import com.gym.objects.Program;
 import com.gym.objects.Set;
 import org.springframework.transaction.annotation.Transactional;
 

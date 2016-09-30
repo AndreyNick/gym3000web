@@ -14,10 +14,10 @@
 <div id="wrap">
     <div id="header">
         <span id="links">
-            <a href="<c:url value="/home/${sessionScope.owner.id}"/>"><spring:message code="message.home"/></a>
+            <a href="<c:url value="/home/${sessionScope.user.id}"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
-            <a href="${pageContext.request.contextPath}/users">${sessionScope.owner.name}</a>
+            <a href="${pageContext.request.contextPath}/users">${sessionScope.user.name}</a>
         </span>
     </div>
     <div id="main">

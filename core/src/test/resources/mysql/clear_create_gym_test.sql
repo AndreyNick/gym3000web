@@ -5,10 +5,10 @@ DROP DATABASE `gym_test`$$
 CREATE DATABASE `gym_test`$$
 USE `gym_test`$$
 
-CREATE TABLE `owner` (
-  `owner_id` INT (11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `user_id` INT (11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR (1000) NOT NULL,
-  PRIMARY KEY (`owner_id`)
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `program_template` (
@@ -50,7 +50,7 @@ CREATE TABLE `exercise` (
 
 CREATE TABLE `program` (
   `program_id` INT (11) NOT NULL AUTO_INCREMENT,
-  `owner_id` INT (11) NOT NULL,
+  `user_id` INT (11) NOT NULL,
   `name` VARCHAR (1000) NOT NULL,
   `description` VARCHAR (10000),
   `note` VARCHAR (10000),
@@ -58,12 +58,13 @@ CREATE TABLE `program` (
   PRIMARY KEY (`program_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
-CREATE TABLE `set` (
-  `set_id` INT (11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `approach` (
+  `approach_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `exercise_id` INT (11) NOT NULL,
   `times` INT (5),
   `weight` INT (7),
   `measure` VARCHAR (20),
-  PRIMARY KEY (`set_id`)
+  PRIMARY KEY (`approach_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 

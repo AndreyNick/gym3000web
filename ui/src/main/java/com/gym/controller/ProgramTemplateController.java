@@ -2,7 +2,7 @@ package com.gym.controller;
 
 import com.gym.factory.ProgramFactory;
 import com.gym.objects.ExerciseTemplate;
-import com.gym.objects.Owner;
+import com.gym.objects.User;
 import com.gym.objects.ProgramTemplate;
 import com.gym.service.ExerciseTemplateService;
 import com.gym.service.ProgramTemplateService;
@@ -57,8 +57,8 @@ public class ProgramTemplateController {
                                                     HttpSession session) {
 
         ProgramTemplate pt = programTemplateService.read(id);
-        Owner owner = (Owner)session.getAttribute("owner");
-        programFactory.createProgram(pt, owner);
+        User user = (User)session.getAttribute("user");
+        programFactory.createProgram(pt, user);
         return "redirect:/p_temp_list";
     }
 

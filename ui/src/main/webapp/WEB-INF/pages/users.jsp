@@ -24,7 +24,7 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.list_users"/></h1>
-        <c:if test="${!empty ownerList}">
+        <c:if test="${!empty userList}">
             <table class="data">
                 <tr>
                     <td colspan="5"><spring:message code="message.list_users"/></td>
@@ -33,16 +33,16 @@
                     <th><spring:message code="message.name"/></th>
                     <th>&nbsp;</th>
                 </tr>
-                <c:forEach items="${ownerList}" var="owner">
+                <c:forEach items="${userList}" var="user">
                     <tr>
-                        <td><a href="home/${owner.id}">${owner.name}</a></td>
-                        <td><a href="users/delete/${owner.id}"><spring:message code="message.delete"/></a></td>
+                        <td><a href="home/${user.id}">${user.name}</a></td>
+                        <td><a href="users/delete/${user.id}"><spring:message code="message.delete"/></a></td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
 
-        <form:form method="post" action="users/add" commandName="owner">
+        <form:form method="post" action="users/add" commandName="user">
             <table>
                 <tr>
                     <td colspan="2"><spring:message code="message.add_program"/></td>

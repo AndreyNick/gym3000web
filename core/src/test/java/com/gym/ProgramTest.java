@@ -1,8 +1,8 @@
 package com.gym;
 
-import com.gym.objects.Owner;
+import com.gym.objects.User;
 import com.gym.objects.Program;
-import com.gym.service.OwnerService;
+import com.gym.service.UserService;
 import com.gym.service.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,9 +14,9 @@ public class ProgramTest extends GenericTest{
     @Autowired
     ProgramService programService;
     @Autowired
-    OwnerService ownerService;
+    UserService userService;
     @Autowired
-    Owner owner1;
+    User user1;
     @Autowired
     Program program1;
     @Autowired
@@ -34,6 +34,6 @@ public class ProgramTest extends GenericTest{
 
     @Override
     public void saveTransientObjectsIfNeed() {
-        ownerService.create(owner1);
+        userService.create(user1);
     }
 }

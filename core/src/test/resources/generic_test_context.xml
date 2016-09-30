@@ -7,11 +7,11 @@
     <import resource="dao_services_configs_context.xml"/>
 
     <!--Objects-->
-    <!--Owner-->
-    <bean id="owner1" class="com.gym.objects.Owner">
+    <!--User-->
+    <bean id="user1" class="com.gym.objects.User">
         <constructor-arg index="0" value="Andrew"/>
     </bean>
-    <bean id="owner2" class="com.gym.objects.Owner">
+    <bean id="user2" class="com.gym.objects.User">
         <constructor-arg index="0" value="Victor"/>
     </bean>
     <!--Exercise Templates-->
@@ -59,7 +59,7 @@
 
     <!--Programs-->
     <bean id="program1" class="com.gym.objects.Program">
-        <constructor-arg index="0" ref="owner1"/>
+        <constructor-arg index="0" ref="user1"/>
         <constructor-arg index="1" value="Day 1 Program"/>
         <constructor-arg index="2">
             <bean class="java.sql.Date" factory-method="valueOf">
@@ -70,7 +70,7 @@
         <constructor-arg index="4" value="Note"/>
     </bean>
     <bean id="program2" class="com.gym.objects.Program">
-        <constructor-arg index="0" ref="owner2"/>
+        <constructor-arg index="0" ref="user2"/>
         <constructor-arg index="1" value="Day 2 Program"/>
         <constructor-arg index="2">
             <bean class="java.sql.Date" factory-method="valueOf">
@@ -81,7 +81,7 @@
         <constructor-arg index="4" value="Note"/>
     </bean>
     <bean id="equalProgram1" class="com.gym.objects.Program">
-        <constructor-arg index="0" ref="owner1"/>
+        <constructor-arg index="0" ref="user1"/>
         <constructor-arg index="1" value="Program that should be equals"/>
         <constructor-arg index="2">
             <bean class="java.sql.Date" factory-method="valueOf">
@@ -92,7 +92,7 @@
         <constructor-arg index="4" value="Note"/>
     </bean>
     <bean id="equalProgram2" class="com.gym.objects.Program">
-        <constructor-arg index="0" ref="owner1"/>
+        <constructor-arg index="0" ref="user1"/>
         <constructor-arg index="1" value="Program that should be equals"/>
         <constructor-arg index="2">
             <bean class="java.sql.Date" factory-method="valueOf">

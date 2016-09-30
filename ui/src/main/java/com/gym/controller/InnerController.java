@@ -1,7 +1,7 @@
 package com.gym.controller;
 
-import com.gym.objects.Owner;
-import com.gym.service.OwnerService;
+import com.gym.objects.User;
+import com.gym.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,16 +14,16 @@ import java.util.Map;
  */
 
 @Controller
-@SessionAttributes("owner")
+@SessionAttributes("user")
 @Scope("session")
 public class InnerController {
 
     @Autowired
-    OwnerService ownerService;
+    UserService userService;
 
-    @ModelAttribute("owner")
-    public Owner populateOwner() {
-        return new Owner();
+    @ModelAttribute("user")
+    public User populateUser() {
+        return new User();
     }
 
     @RequestMapping(value = "/")
@@ -34,27 +34,27 @@ public class InnerController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String welcome(Map<String, Object> map) {
-        map.put("owner", new Owner());
-        map.put("ownerList", ownerService.readAll());
+        map.put("user", new User());
+        map.put("userList", userService.readAll());
         return "users";
     }
 
     @RequestMapping(value = "/home/{id}", method = RequestMethod.GET)
     public String singleProgram(@PathVariable("id") Long id,
                                 Map<String, Object> map) {
-        map.put("owner", ownerService.read(id));
+        map.put("user", userService.read(id));
         return "home";
     }
 
     @RequestMapping("/users/delete/{id}")
     public String deleteProgram(@PathVariable("id") Long id) {
-        ownerService.delete(ownerService.read(id));
+        userService.delete(userService.read(id));
         return "redirect:/users";
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addProgram(@ModelAttribute("owner") Owner owner) {
-        ownerService.create(owner);
+    public String addProgram(@ModelAttribute("user") User user) {
+        userService.create(user);
         return "redirect:/users";
     }
 }

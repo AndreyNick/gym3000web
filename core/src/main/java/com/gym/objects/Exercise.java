@@ -3,6 +3,8 @@ package com.gym.objects;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +24,9 @@ public class Exercise implements HasIdAndName {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exercise_template_id", nullable = false)
     private ExerciseTemplate exerciseTemplate;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exercise")
+    private List<Set> setList = new LinkedList<Set>();
 
     @Column(name = "name")
     private String name;
@@ -89,6 +94,14 @@ public class Exercise implements HasIdAndName {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public List<Set> getSetList() {
+        return setList;
+    }
+
+    public void setSetList(List<Set> setList) {
+        this.setList = setList;
     }
 
     @Override

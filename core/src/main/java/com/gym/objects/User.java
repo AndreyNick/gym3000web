@@ -1,11 +1,8 @@
 package com.gym.objects;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,26 +11,26 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "owner")
-public class Owner implements HasIdAndName {
+@Table(name = "user")
+public class User implements HasIdAndName {
 
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "owner_id", unique = true, nullable = false)
+    @Column(name = "user_id", unique = true, nullable = false)
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Program> programList = new LinkedList<Program>();
 
-    public Owner(String name) {
+    public User(String name) {
         this.name = name;
     }
 
-    public Owner() {
+    public User() {
     }
 
     @Override
@@ -64,10 +61,10 @@ public class Owner implements HasIdAndName {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Owner owner = (Owner) o;
+        User user = (User) o;
 
-        if (!name.equals(owner.name)) return false;
-        return programList != null ? programList.equals(owner.programList) : owner.programList == null;
+        if (!name.equals(user.name)) return false;
+        return programList != null ? programList.equals(user.programList) : user.programList == null;
     }
 
     @Override
@@ -79,7 +76,7 @@ public class Owner implements HasIdAndName {
 
     @Override
     public String toString() {
-        return "Owner{" +
+        return "User{" +
                 "name='" + name + '\'' +
                 ", programList=" + programList +
                 '}';

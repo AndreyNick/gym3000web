@@ -26,9 +26,9 @@ public class SetTest {
     @Autowired
     ProgramService programService;
     @Autowired
-    OwnerService ownerService;
+    UserService userService;
     @Autowired
-    Owner owner1;
+    User user1;
     @Autowired
     Exercise exercise1;
     @Autowired
@@ -38,29 +38,22 @@ public class SetTest {
     @Autowired
     Program program1;
 
-    @Before()
-    public void before() {
-        ownerService.create(owner1);
-        programService.create(program1);
-        exerciseTemplateService.create(exerciseTemplate1);
-        exerciseService.create(exercise1);
-        setService.create(set);
-    }
-
-    @After()
-    public void after() {
-        setService.delete(set);
-        exerciseService.delete(exercise1);
-        exerciseTemplateService.delete(exerciseTemplate1);
-        programService.delete(program1);
-        ownerService.delete(owner1);
-    }
 
     @Test
     @Transactional
     @Rollback(true)
     public void createAndReadEntity() {
+        userService.create(user1);
+        programService.create(program1);
+        exerciseTemplateService.create(exerciseTemplate1);
+        exerciseService.create(exercise1);
+        setService.create(set);
         Set actual = setService.read(set.getId());
+        exerciseService.delete(exercise1);
+        exerciseTemplateService.delete(exerciseTemplate1);
+        programService.delete(program1);
+        userService.delete(user1);
+        setService.delete(set);
         Assert.assertEquals(actual, set);
     }
 
@@ -68,18 +61,37 @@ public class SetTest {
     @Transactional
     @Rollback(true)
     public void updateEntity() {
+        userService.create(user1);
+        programService.create(program1);
+        exerciseTemplateService.create(exerciseTemplate1);
+        exerciseService.create(exercise1);
+        setService.create(set);
         set.setWeight(100);
         setService.update(set);
         Set actual = setService.read(set.getId());
         Assert.assertEquals(set, actual);
+        exerciseService.delete(exercise1);
+        exerciseTemplateService.delete(exerciseTemplate1);
+        programService.delete(program1);
+        userService.delete(user1);
+        setService.delete(set);
     }
 
     @Test
     @Transactional
     @Rollback(true)
     public void deleteEntity() throws ObjectNotFoundException {
+        userService.create(user1);
+        programService.create(program1);
+        exerciseTemplateService.create(exerciseTemplate1);
+        exerciseService.create(exercise1);
+        setService.create(set);
         Set actual = setService.read(set.getId());
         Assert.assertEquals(set, actual);
+        exerciseService.delete(exercise1);
+        exerciseTemplateService.delete(exerciseTemplate1);
+        programService.delete(program1);
+        userService.delete(user1);
         setService.delete(set);
         setService.read(set.getId());
     }

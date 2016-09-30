@@ -1,18 +1,14 @@
 package com.gym.objects;
 
-import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by anni0913 on 29.09.2016.
  */
 @Entity
-@Table(name = "set")
+@Table(name = "approach")
 public class Set {
 
     public enum Measure {
@@ -23,7 +19,7 @@ public class Set {
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "set_id", unique = true, nullable = false)
+    @Column(name = "approach_id", unique = true, nullable = false)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -44,6 +40,9 @@ public class Set {
         this.times = times;
         this.weight = weight;
         this.measure = measure;
+    }
+
+    public Set() {
     }
 
     public Exercise getExercise() {

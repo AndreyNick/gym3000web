@@ -2,11 +2,11 @@ package com.gym.controller;
 
 import com.gym.objects.Exercise;
 import com.gym.objects.ExerciseTemplate;
-import com.gym.objects.Owner;
+import com.gym.objects.User;
 import com.gym.objects.Program;
 import com.gym.service.ExerciseService;
 import com.gym.service.ExerciseTemplateService;
-import com.gym.service.OwnerService;
+import com.gym.service.UserService;
 import com.gym.service.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
-@SessionAttributes("owner")
+@SessionAttributes("user")
 @Scope("session")
 public class ProgramController {
 
@@ -31,14 +31,14 @@ public class ProgramController {
     ExerciseService exerciseService;
 
     @Autowired
-    OwnerService ownerService;
+    UserService userService;
 
     @RequestMapping(value = "/prog_list", method = RequestMethod.GET)
     public String printPrograms(Map<String, Object> map,
                                 HttpSession session) {
-        Owner owner = (Owner)session.getAttribute("owner");
+        User user = (User)session.getAttribute("user");
         map.put("program", new Program());
-        map.put("programList", programService.getProgramsByOwnerId(owner.getId()));
+        map.put("programList", programService.getProgramsByUserId(user.getId()));
         return "prog_list";
     }
 
@@ -51,8 +51,8 @@ public class ProgramController {
     @RequestMapping(value = "/prog_list/add", method = RequestMethod.POST)
     public String addProgram(@ModelAttribute("program") Program program,
                              HttpSession session) {
-        Owner owner = (Owner)session.getAttribute("owner");
-        program.setOwner(ownerService.read(owner.getId()));
+        User user = (User)session.getAttribute("user");
+        program.setUser(userService.read(user.getId()));
         programService.create(program);
         return "redirect:/prog_list";
     }

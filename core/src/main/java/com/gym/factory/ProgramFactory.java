@@ -17,8 +17,8 @@ public class ProgramFactory {
     ExerciseService exerciseService;
 
     //todo: decide how to name programs
-    public void createProgram(ProgramTemplate programTemplate, Owner owner) {
-        Program newProgram = new Program(owner,
+    public void createProgram(ProgramTemplate programTemplate, User user) {
+        Program newProgram = new Program(user,
                 programTemplate.getName(),
                 new Date(System.currentTimeMillis()),
                 programTemplate.getDescription(),

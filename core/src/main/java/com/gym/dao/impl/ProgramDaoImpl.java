@@ -15,9 +15,9 @@ public class ProgramDaoImpl extends GenericDaoImpl {
         super(Program.class);
     }
 
-    public List<Program> getProgramsByOwnerId(Long ownerId) {
-        Query query = getSession().createQuery("from Program where owner.id = :ownerId");
-        query.setParameter("ownerId", ownerId);
+    public List<Program> getProgramsByUserId(Long userId) {
+        Query query = getSession().createQuery("from Program where user.id = :userId");
+        query.setParameter("userId", userId);
         List list = query.list();
         return list;
     }
