@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-/**
- * Created by anni0913 on 28.09.2016.
- */
-
 @Controller
 @SessionAttributes("user")
 @Scope("session")

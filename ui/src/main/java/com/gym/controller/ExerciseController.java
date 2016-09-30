@@ -42,13 +42,9 @@ public class ExerciseController {
     }
 
     @RequestMapping(value = "/exer/{id}/edit", method = RequestMethod.POST)
-    public String editSingleExercise(@ModelAttribute("exercise") /*@Validated*/ Exercise exercise,
-                                            @PathVariable("id") Long id,
-                                            BindingResult result) {
-        if (result.hasErrors()) {
-            System.out.println("ERROR.");
-            return "redirect:/prog/" + id + "/edit_form";
-        } else {
+    public String editSingleExercise(@ModelAttribute("exercise") Exercise exercise,
+                                            @PathVariable("id") Long id) {
+
             Exercise e = exerciseService.read(id);
             e.setName(exercise.getName());
             e.setDescription(exercise.getDescription());
@@ -58,6 +54,6 @@ public class ExerciseController {
             //i think it would be better to get full program from jsp and update it
             //not find it by id and update
             //todo: think about it
-        }
+
     }
 }

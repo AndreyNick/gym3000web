@@ -81,13 +81,8 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog/{id}/edit", method = RequestMethod.POST)
-    public String editSingleProgramTemplate(@ModelAttribute("programTemplate") /*@Validated*/ Program program,
-                                            @PathVariable("id") Long id,
-                                            BindingResult result) {
-        if (result.hasErrors()) {
-            System.out.println("ERROR.");
-            return "redirect:/prog/" + id + "/edit_form";
-        } else {
+    public String editSingleProgramTemplate(@ModelAttribute("programTemplate") Program program,
+                                            @PathVariable("id") Long id) {
             Program p = programService.read(id);
             p.setName(program.getName());
             p.setDescription(program.getDescription());
@@ -98,7 +93,6 @@ public class ProgramController {
             //i think it would be better to get full program from jsp and update it
             //not find it by id and update
             //todo: think about it
-        }
     }
 
     @RequestMapping(value = "/prog/{programId}/add/{exerciseTemplateId}")
