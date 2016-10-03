@@ -45,7 +45,7 @@
         <form:form method="post" action="users/add" commandName="user">
             <table>
                 <tr>
-                    <td colspan="2"><spring:message code="message.add_program"/></td>
+                    <td colspan="2"><spring:message code="message.add_user"/></td>
                 </tr>
                 <tr>
                     <td>

@@ -3,7 +3,9 @@ package com.gym.controller;
 
 import com.gym.objects.Exercise;
 import com.gym.objects.Program;
+import com.gym.objects.Set;
 import com.gym.service.ExerciseService;
+import com.gym.service.SetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,13 +22,18 @@ public class ExerciseController {
     @Autowired
     ExerciseService exerciseService;
 
+    @Autowired
+    SetService setService;
+
     @RequestMapping(value = "/exer/{id}", method = RequestMethod.GET)
     public String singleExercise(Map<String, Object> map,
                                 @PathVariable("id") Long id) {
         Exercise e = exerciseService.read(id);
-        Program p = e.getProgram();
         map.put("exercise", e);
-        map.put("program", p);
+        map.put("program", e.getProgram());
+        map.put("set", new Set());
+        map.put("setList", setService.getSetsByExerciseId(id));
+        //map.put("measureValues", Set.Measure.KG, Set.Measure.POUND);
         return "/exer";
     }
 
@@ -34,9 +41,10 @@ public class ExerciseController {
     public String editFormSingleExercise(Map<String, Object> map,
                                 @PathVariable("id") Long id) {
         Exercise e = exerciseService.read(id);
-        Program p = e.getProgram();
         map.put("exercise", e);
-        map.put("program", p);
+        map.put("program", e.getProgram());
+        map.put("set", new Set());
+        map.put("setList", setService.getSetsByExerciseId(id));
         map.put("edit", true);
         return "/exer";
     }
