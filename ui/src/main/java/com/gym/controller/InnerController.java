@@ -53,4 +53,22 @@ public class InnerController {
         userService.create(user);
         return "redirect:/users";
     }
+
+    @RequestMapping(value = "/users/{userId}/edit_form")
+    public String editFormUser(Map<String, Object> map,
+                               @PathVariable("userId") Long userId) {
+        map.put("user", new User());
+        map.put("userList", userService.readAll());
+        map.put("edit_user", userId);
+        return "users";
+    }
+
+    @RequestMapping(value = "/users/{id}/edit", method = RequestMethod.POST)
+    public String editSingleExercise(@ModelAttribute("user") User user,
+                                     @PathVariable("id") Long id) {
+        User u = userService.read(id);
+        u.setName(user.getName());
+        userService.update(u);
+        return "redirect:/users";
+    }
 }

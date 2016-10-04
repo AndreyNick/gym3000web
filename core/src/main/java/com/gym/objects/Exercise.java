@@ -104,6 +104,10 @@ public class Exercise implements HasIdAndName {
         this.setList = setList;
     }
 
+    public void deleteSet(Set set) {
+        setList.remove(set);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

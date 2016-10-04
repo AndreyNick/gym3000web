@@ -28,29 +28,37 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.programs_list"/></h1>
-        <c:if test="${!empty programList}">
-            <table class="data">
-                <tr>
-                    <td colspan="5"><spring:message code="message.list_programs"/></td>
-                </tr>
-                <tr>
-                    <th><spring:message code="message.name"/></th>
-                    <th><spring:message code="message.date"/></th>
-                    <th><spring:message code="message.description"/></th>
-                    <th><spring:message code="message.note"/></th>
-                    <th>&nbsp;</th>
-                </tr>
-                <c:forEach items="${programList}" var="program">
+        <c:choose>
+            <c:when test="${!empty programList}">
+                <table class="data">
                     <tr>
-                        <td><a href="/prog/${program.id}">${program.name}</a></td>
-                        <td>${program.date}</td>
-                        <td>${program.description}</td>
-                        <td>${program.note}</td>
-                        <td><a href="${programDeleteUrl}/${program.id}"><spring:message code="message.delete"/></a></td>
+                        <td colspan="5"><spring:message code="message.list_programs"/></td>
                     </tr>
-                </c:forEach>
-            </table>
-        </c:if>
+                    <tr>
+                        <th><spring:message code="message.name"/></th>
+                        <th><spring:message code="message.date"/></th>
+                        <th><spring:message code="message.description"/></th>
+                        <th><spring:message code="message.note"/></th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <c:forEach items="${programList}" var="program">
+                        <tr>
+                            <td><a href="/prog/${program.id}">${program.name}</a></td>
+                            <td>${program.date}</td>
+                            <td>${program.description}</td>
+                            <td>${program.note}</td>
+                            <td><a href="${programDeleteUrl}/${program.id}"><spring:message code="message.delete"/></a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <spring:message code="message.no_programs_here"/>
+                <br />
+            </c:otherwise>
+
+        </c:choose>
+
         <form:form method="post" action="${programAddUrl}" commandName="program">
             <table>
                 <tr>

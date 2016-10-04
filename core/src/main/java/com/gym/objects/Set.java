@@ -27,15 +27,15 @@ public class Set {
     private Exercise exercise;
 
     @Column(name = "times")
-    private int times;
+    private Integer times;
 
     @Column(name = "weight")
-    private int weight;
+    private Integer weight;
 
     @Column(name = "measure")
     private Measure measure;
 
-    public Set(Exercise exercise, int times, int weight, Measure measure) {
+    public Set(Exercise exercise, Integer times, Integer weight, Measure measure) {
         this.exercise = exercise;
         this.times = times;
         this.weight = weight;
@@ -53,19 +53,19 @@ public class Set {
         this.exercise = exercise;
     }
 
-    public int getTimes() {
+    public Integer getTimes() {
         return times;
     }
 
-    public void setTimes(int times) {
+    public void setTimes(Integer times) {
         this.times = times;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
@@ -107,7 +107,8 @@ public class Set {
     @Override
     public String toString() {
         return "Set{" +
-                "exercise=" + exercise +
+                "id=" + id +
+                ", exercise=" + exercise +
                 ", times=" + times +
                 ", weight=" + weight +
                 ", measure=" + measure +

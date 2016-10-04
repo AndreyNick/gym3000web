@@ -89,13 +89,35 @@
                         <th><spring:message code="message.times"/></th>
                         <th><spring:message code="message.weight"/></th>
                         <th><spring:message code="message.measure"/></th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </tr>
                     <c:forEach items="${setList}" var="set">
-                        <tr>
-                            <td>${set.times}</td>
-                            <td>${set.weight}</td>
-                            <td>${set.measure}</td>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${set.id == edit_set}">
+                                <form:form method="post" action="/exer/${exercise.id}/edit/${set.id}" commandName="set">
+                                        <tr>
+                                            <td><springForm:input path="times"/></td>
+                                            <td><springForm:input path="weight"/></td>
+                                            <td><form:radiobutton path="measure" value="KG" /><spring:message code="message.kg"/>
+                                                <form:radiobutton path="measure" value="POUND" /><spring:message code="message.pound"/></td>
+                                            <td colspan="2">
+                                                <input type="submit" value="<spring:message code="message.save"/>"/>
+                                            </td>
+
+                                        </tr>
+                                </form:form>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td>${set.times}</td>
+                                    <td>${set.weight}</td>
+                                    <td>${set.measure}</td>
+                                    <td><a href="/exer/${exercise.id}/delete/${set.id}"><spring:message code="message.delete"/></a></td>
+                                    <td><a href="/exer/${exercise.id}/edit_form/${set.id}"><spring:message code="message.edit"/></a></td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </table>
             </c:when>
