@@ -53,8 +53,10 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <spring:message code="message.no_programs_here"/>
-                <br />
+                <span id="text">
+                    <spring:message code="message.no_programs_here"/>
+                    <br />
+                </span>
             </c:otherwise>
 
         </c:choose>

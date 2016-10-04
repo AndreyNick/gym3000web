@@ -103,8 +103,11 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a><spring:message code="message.no_exercise_templates_under_program_template"/><br /><spring:message code="message.you_can_bind_from_list"/></a>
-                <br />
+                <span id="text">
+                    <a><spring:message code="message.no_exercise_templates_under_program_template"/>
+                        <br /><spring:message code="message.you_can_bind_from_list"/></a>
+                    <br />
+                </span>
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -130,8 +133,12 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a><spring:message code="message.no_exercise_templates"/><br />You can create them <a href="<c:url value="/e_temp_list"/>">here</a></a>
-                <br />
+                <span id="text">
+                    <a><spring:message code="message.no_exercise_templates"/>
+                        <br />
+                        You can create them <a href="<c:url value="/e_temp_list"/>">here</a></a>
+                    <br />
+                </span>
             </c:otherwise>
         </c:choose>
     </div>

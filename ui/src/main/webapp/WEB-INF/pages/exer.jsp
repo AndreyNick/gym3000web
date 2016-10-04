@@ -100,11 +100,11 @@
                                             <td><springForm:input path="times"/></td>
                                             <td><springForm:input path="weight"/></td>
                                             <td><form:radiobutton path="measure" value="KG" /><spring:message code="message.kg"/>
-                                                <form:radiobutton path="measure" value="POUND" /><spring:message code="message.pound"/></td>
+                                                <form:radiobutton path="measure" value="POUND" /><spring:message code="message.pound"/>
+                                            </td>
                                             <td colspan="2">
                                                 <input type="submit" value="<spring:message code="message.save"/>"/>
                                             </td>
-
                                         </tr>
                                 </form:form>
                             </c:when>
@@ -122,8 +122,10 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <spring:message code="message.no_sets_here"/>
-                <br />
+                <span id="text">
+                    <spring:message code="message.no_sets_here"/>
+                    <br />
+                </span>
             </c:otherwise>
         </c:choose>
 

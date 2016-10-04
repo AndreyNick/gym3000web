@@ -64,12 +64,12 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <spring:message code="message.no_users_here"/>
-                <br />
+                <span id="text">
+                    <spring:message code="message.no_users_here"/>
+                    <br />
+                </span>
             </c:otherwise>
-
         </c:choose>
-
 
         <form:form method="post" action="users/add" commandName="user">
             <table>

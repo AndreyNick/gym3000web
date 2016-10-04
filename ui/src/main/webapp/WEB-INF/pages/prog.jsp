@@ -104,15 +104,18 @@
                     <c:forEach items="${exerciseList}" var="exercise">
                         <tr>
                             <td><a href="/exer/${exercise.id}">${exercise.name}</a></td>
-                            <%--td>${exercise.name}</td>--%>
                             <td><a href="${programUrl}/delete/${exercise.id}"><spring:message code="message.delete"/></a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
-                <a><spring:message code="message.no_exercises_in_program"/><br /><spring:message code="message.you_can_add_them"/></a>
-                <br />
+                <span id="text">
+                    <a><spring:message code="message.no_exercises_in_program"/>
+                        <br />
+                        <spring:message code="message.you_can_add_them"/></a>
+                    <br />
+                </span>
             </c:otherwise>
         </c:choose>
 
@@ -135,8 +138,12 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <a><spring:message code="message.no_exercise_templates"/><br />You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>
-                <br />
+                <span id="text">
+                    <a><spring:message code="message.no_exercise_templates"/>
+                        <br />
+                        You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>
+                    <br />
+                </span>
             </c:otherwise>
         </c:choose>
     </div>
