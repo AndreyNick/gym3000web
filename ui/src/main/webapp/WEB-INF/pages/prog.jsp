@@ -81,6 +81,7 @@
                 </form:form>
             </c:when>
             <c:otherwise>
+                <span>
                 <h1>${program.name}</h1>
                 <h2><spring:message code="message.date"/>: ${program.date}</h2>
                 <h2><spring:message code="message.description"/>: ${program.description}</h2>
@@ -88,6 +89,7 @@
                 <form method="post" action="${programUrl}/edit_form">
                     <input type="submit" value="<spring:message code="message.edit"/>"/>
                 </form>
+                    </span>
             </c:otherwise>
         </c:choose>
 
@@ -110,7 +112,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.no_exercises_in_program"/>
                         <br />
                         <spring:message code="message.you_can_add_them"/></a>
@@ -138,7 +140,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.no_exercise_templates"/>
                         <br />
                         You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>

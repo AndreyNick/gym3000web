@@ -50,7 +50,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.no_exercise_templates"/>
                         <br />
                         <spring:message code="message.you_can_add_them"/></a>

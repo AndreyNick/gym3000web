@@ -52,7 +52,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.no_exercise_templates"/>
                         <br />
                         You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>

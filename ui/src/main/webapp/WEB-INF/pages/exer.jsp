@@ -122,7 +122,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <spring:message code="message.no_sets_here"/>
                     <br />
                 </span>

@@ -103,7 +103,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.no_exercise_templates_under_program_template"/>
                         <br /><spring:message code="message.you_can_bind_from_list"/></a>
                     <br />
@@ -133,7 +133,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.no_exercise_templates"/>
                         <br />
                         You can create them <a href="<c:url value="/e_temp_list"/>">here</a></a>

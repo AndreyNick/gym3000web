@@ -97,7 +97,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <span id="text">
+                <span class="text">
                     <a><spring:message code="message.exercise_template_dont_used_by_program_template"/></a>
                     <br />
                 </span>
