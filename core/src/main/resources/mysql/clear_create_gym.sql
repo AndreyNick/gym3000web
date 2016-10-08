@@ -9,8 +9,19 @@ USE `gym`$$
 CREATE TABLE `user` (
   `user_id` INT (11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR (1000) NOT NULL,
+  `password` VARCHAR (60) NOT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
+CREATE TABLE `role` (
+  `role_id` INT (11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT (11) NOT NULL,
+  `role` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`role_id`),
+  KEY `fk_user` (`user_id`),
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `program_template` (
   `program_template_id` INT (11) NOT NULL AUTO_INCREMENT,
