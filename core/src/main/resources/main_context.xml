@@ -78,6 +78,13 @@
     <bean id="setService" class="com.gym.service.SetService">
         <constructor-arg ref="setDao"/>
     </bean>
+    <bean id="roleDao" class="com.gym.dao.impl.GenericDaoImpl">
+        <constructor-arg value="com.gym.objects.Role"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="roleService" class="com.gym.service.RoleService">
+        <constructor-arg ref="roleDao"/>
+    </bean>
     <bean id="programFactory" class="com.gym.factory.ProgramFactory"/>
     <bean id="programHelper" class="com.gym.helper.ProgramHelper"/>
     <!--Validators-->

@@ -18,12 +18,11 @@ public class Role {
     @Column(name = "role_id", unique = true, nullable = false)
     private Long id;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "role", nullable = false)
     private String role;
 
     public Role(User user, String role) {
@@ -48,5 +47,9 @@ public class Role {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

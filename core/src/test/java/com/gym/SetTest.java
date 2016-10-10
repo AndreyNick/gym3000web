@@ -49,11 +49,6 @@ public class SetTest {
         exerciseService.create(exercise1);
         setService.create(set);
         Set actual = setService.read(set.getId());
-        exerciseService.delete(exercise1);
-        exerciseTemplateService.delete(exerciseTemplate1);
-        programService.delete(program1);
-        userService.delete(user1);
-        setService.delete(set);
         Assert.assertEquals(actual, set);
     }
 
@@ -68,13 +63,7 @@ public class SetTest {
         setService.create(set);
         set.setWeight(100);
         setService.update(set);
-        Set actual = setService.read(set.getId());
-        Assert.assertEquals(set, actual);
-        exerciseService.delete(exercise1);
-        exerciseTemplateService.delete(exerciseTemplate1);
-        programService.delete(program1);
-        userService.delete(user1);
-        setService.delete(set);
+        Assert.assertEquals(set, setService.read(set.getId()));
     }
 
     @Test
@@ -86,13 +75,8 @@ public class SetTest {
         exerciseTemplateService.create(exerciseTemplate1);
         exerciseService.create(exercise1);
         setService.create(set);
-        Set actual = setService.read(set.getId());
-        Assert.assertEquals(set, actual);
-        exerciseService.delete(exercise1);
-        exerciseTemplateService.delete(exerciseTemplate1);
-        programService.delete(program1);
-        userService.delete(user1);
+        Long id = set.getId();
         setService.delete(set);
-        setService.read(set.getId());
+        setService.read(id);
     }
 }

@@ -10,9 +10,13 @@
     <!--User-->
     <bean id="user1" class="com.gym.objects.User">
         <constructor-arg index="0" value="Andrew"/>
+        <constructor-arg index="1" value="test"/>
+        <constructor-arg index="2" value="true"/>
     </bean>
     <bean id="user2" class="com.gym.objects.User">
         <constructor-arg index="0" value="Victor"/>
+        <constructor-arg index="1" value="test"/>
+        <constructor-arg index="2" value="true"/>
     </bean>
     <!--Exercise Templates-->
     <bean id="exerciseTemplate1" class="com.gym.objects.ExerciseTemplate">
@@ -30,7 +34,6 @@
         <constructor-arg index="1" value="Description"/>
         <constructor-arg index="2" value="Note"/>
     </bean>
-
     <!--Program Templates-->
     <bean id="programTemplate1" class="com.gym.objects.ProgramTemplate">
         <constructor-arg index="0" value="Basic crunches T"/>
@@ -47,7 +50,6 @@
         <constructor-arg index="1" value="Description"/>
         <constructor-arg index="2" value="Note"/>
     </bean>
-
     <!--Exercises-->
     <bean id="exercise1" class="com.gym.objects.Exercise">
         <constructor-arg index="0" ref="program1"/>
@@ -56,7 +58,6 @@
         <constructor-arg index="3" value="Description"/>
         <constructor-arg index="4" value="Note"/>
     </bean>
-
     <!--Programs-->
     <bean id="program1" class="com.gym.objects.Program">
         <constructor-arg index="0" ref="user1"/>
@@ -102,7 +103,6 @@
         <constructor-arg index="3" value="Description"/>
         <constructor-arg index="4" value="Note"/>
     </bean>
-
     <!--Set-->
     <bean id="set" class="com.gym.objects.Set">
         <constructor-arg index="0" ref="exercise1"/>
@@ -110,5 +110,13 @@
         <constructor-arg index="2" value="80"/>
         <constructor-arg index="3" value="KG"/>
     </bean>
-
+    <!--Role-->
+    <bean id="roleAdm" class="com.gym.objects.Role">
+        <constructor-arg index="0" ref="user1"/>
+        <constructor-arg index="1" value="ADMIN"/>
+    </bean>
+    <bean id="roleUser" class="com.gym.objects.Role">
+        <constructor-arg index="0" ref="user1"/>
+        <constructor-arg index="1" value="USER"/>
+    </bean>
 </beans>

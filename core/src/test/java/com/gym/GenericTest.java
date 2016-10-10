@@ -4,7 +4,6 @@ import com.gym.objects.HasIdAndName;
 import com.gym.service.AbstractGenericService;
 import junit.framework.Assert;
 import org.hibernate.ObjectNotFoundException;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,8 +42,7 @@ public abstract class GenericTest {
     public void createAndReadEntity() {
         saveTransientObjectsIfNeed();
         service.create(expected);
-        HasIdAndName actual = (HasIdAndName) service.read(expected.getId());
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(expected, service.read(expected.getId()));
     }
 
     @Test
@@ -55,8 +53,7 @@ public abstract class GenericTest {
         service.create(expected);
         expected.setName("name was changed");
         service.update(expected);
-        HasIdAndName actual = (HasIdAndName) service.read(expected.getId());
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, service.read(expected.getId()));
     }
 
     @Test
@@ -65,9 +62,8 @@ public abstract class GenericTest {
     public void deleteEntity() throws ObjectNotFoundException {
         saveTransientObjectsIfNeed();
         service.create(expected);
-        HasIdAndName actual = (HasIdAndName) service.read(expected.getId());
-        Assert.assertEquals(expected, actual);
+        Long id = expected.getId();
         service.delete(expected);
-        service.read(expected.getId());
+        service.read(id);
     }
 }
