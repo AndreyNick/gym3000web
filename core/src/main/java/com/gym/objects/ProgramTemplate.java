@@ -1,6 +1,5 @@
 package com.gym.objects;
 
-import com.sun.istack.internal.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

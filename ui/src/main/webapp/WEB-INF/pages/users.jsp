@@ -80,9 +80,20 @@
                     <td>
                         <form:label path="name">
                             <spring:message code="message.name"/>
-                        </form:label></td>
+                        </form:label>
+                    </td>
                     <td>
                         <form:input path="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="password">
+                            <spring:message code="message.description"/>
+                        </form:label>
+                    </td>
+                    <td>
+                        <form:input path="password"/>
                     </td>
                 </tr>
                 <tr>
