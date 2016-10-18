@@ -59,8 +59,7 @@
     <bean id="programService" class="com.gym.service.ProgramService">
         <constructor-arg ref="programDao"/>
     </bean>
-    <bean id="userDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.User"/>
+    <bean id="userDao" class="com.gym.dao.impl.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="userService" class="com.gym.service.UserService">

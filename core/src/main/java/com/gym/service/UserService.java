@@ -1,14 +1,27 @@
 package com.gym.service;
 
-import com.gym.dao.GenericDao;
+import com.gym.dao.impl.UserDaoImpl;
 import com.gym.objects.User;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by anni0913 on 27.09.2016.
  */
 public class UserService extends AbstractGenericService<User, Long> {
 
-    protected UserService(GenericDao<User, Long> dao) {
-        super(dao);
+    private UserDaoImpl udi;
+
+    protected UserService(UserDaoImpl udi) {
+        super(udi);
+        this.udi = udi;
+    }
+
+    @Transactional
+    public User readByName(String name) {
+        User user = udi.readByName(name);
+        List<GrantedAuthority>
+        return ;
     }
 }
