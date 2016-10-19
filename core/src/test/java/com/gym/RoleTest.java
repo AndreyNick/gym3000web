@@ -48,7 +48,7 @@ public class RoleTest {
     public void updateEntity() {
         userService.create(user1);
         roleService.create(roleAdm);
-        roleAdm.setRole("SUPER_ADM");
+        roleAdm.setRole(Role.UserRoleType.ADMIN);
         roleService.update(roleAdm);
         Assert.assertEquals(roleAdm, roleService.read(roleAdm.getId()));
     }

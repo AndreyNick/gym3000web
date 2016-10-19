@@ -17,15 +17,10 @@ public class InnerController {
     @Autowired
     UserService userService;
 
-    @ModelAttribute("user")
-    public User populateUser() {
-        return new User();
-    }
-
-    @RequestMapping(value = "/")
+/*    @RequestMapping(value = "/")
     public String home() {
         return "redirect:/users";
-    }
+    }*/
 
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)

@@ -35,14 +35,16 @@ public class User implements HasIdAndName {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Role> roles = new LinkedList<Role>();
 
-    public User(String name, String password, boolean enabled) {
+    public User(String name, String password, boolean enabled, List<Role> userRole) {
         this.name = name;
         this.password = password;
         this.enabled = enabled;
+        this.roles = userRole;
     }
 
     public User() {
     }
+
 
     @Override
     public Long getId() {

@@ -12,6 +12,11 @@ import javax.persistence.*;
 @Table(name = "role")
 public class Role {
 
+    public enum UserRoleType {
+        USER,
+        ADMIN
+    }
+
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
@@ -23,11 +28,11 @@ public class Role {
     private User user;
 
     @Column(name = "role", nullable = false)
-    private String role;
+    private UserRoleType userRoleType;
 
-    public Role(User user, String role) {
+    public Role(User user, UserRoleType userRoleType) {
         this.user = user;
-        this.role = role;
+        this.userRoleType = userRoleType;
     }
 
     public Role() {
@@ -41,12 +46,12 @@ public class Role {
         this.user = user;
     }
 
-    public String getRole() {
-        return role;
+    public UserRoleType getRole() {
+        return userRoleType;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(UserRoleType userRoleType) {
+        this.userRoleType = userRoleType;
     }
 
     public Long getId() {
