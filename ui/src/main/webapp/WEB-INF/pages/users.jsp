@@ -44,7 +44,7 @@
                                     <tr>
                                         <td><springForm:input path="name"/></td>
                                         <td colspan="2">
-                                            <input type="submit" placeholder="${user.name}" value="<spring:message code="message.save"/>"/>
+                                            <input type="submit" placeholder="User name" value="<spring:message code="message.save"/>"/>
                                         </td>
                                     </tr>
                                 </form:form>

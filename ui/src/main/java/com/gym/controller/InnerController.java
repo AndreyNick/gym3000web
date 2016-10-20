@@ -37,7 +37,7 @@ public class InnerController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String welcome(Map<String, Object> map) {
-        map.put("user", new User());
+        map.put("user", getPrincipal());
         map.put("userList", userService.readAll());
         return "users";
     }
