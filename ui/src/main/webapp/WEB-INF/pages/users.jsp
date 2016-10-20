@@ -15,9 +15,10 @@
 <div id="wrap">
     <div id="header">
         <span id="links">
-            <a href="<c:url value="/users"/>"><spring:message code="message.home"/></a>
+            <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
+            <a href="<c:url value="/user"/>">${user.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
@@ -42,22 +43,18 @@
                                 <form:form method="post" action="/users/${user.id}/edit/" commandName="user">
                                     <tr>
                                         <td><springForm:input path="name"/></td>
-
                                         <td colspan="2">
-                                            <input type="submit" value="<spring:message code="message.save"/>"/>
+                                            <input type="submit" placeholder="${user.name}" value="<spring:message code="message.save"/>"/>
                                         </td>
-
                                     </tr>
                                 </form:form>
                             </c:when>
                             <c:otherwise>
                                 <tr>
-
                                     <td><a href="home/${user.id}">${user.name}</a></td>
                                     <td><a href="users/${user.id}/edit_form"><spring:message code="message.edit"/></a></td>
                                     <td><a href="users/delete/${user.id}"><spring:message code="message.delete"/></a></td>
                                 </tr>
-
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>

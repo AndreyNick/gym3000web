@@ -6,10 +6,21 @@ http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
     <http auto-config="true" >
-        <intercept-url pattern="/" access="permitAll" />
-        <intercept-url pattern="/welcomePage" access="permitAll" />
-        <intercept-url pattern="/adminPage**" access="hasRole('ADMIN')" />
-        <form-login  login-page="/login" username-parameter="ssoId" password-parameter="password" authentication-failure-url="/error403" />
+        <!--tune it correctly-->
+        <intercept-url pattern="/home" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/prog_list**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/prog**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/user/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/exer/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/users/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/p_temp_list**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/p_temp/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/e_temp_list/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/e_temp/**" access="hasRole('ADMIN')" />
+        <form-login  login-page="/login"
+                     username-parameter="ssoId"
+                     password-parameter="password"
+                     authentication-failure-url="/error403" />
     </http>
 
     <authentication-manager >

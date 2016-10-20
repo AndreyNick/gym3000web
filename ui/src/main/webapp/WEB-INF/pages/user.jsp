@@ -14,25 +14,21 @@
 <body>
 <div id="wrap">
     <div id="header">
+        <span id="links">
+            <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
+        </span>
         <span id="lang">
-            <a href="${pageContext.request.contextPath}/users">${user.name}</a>
+            <a href="<c:url value="/logout" />">Logout</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
         </span>
     </div>
     <div id="main">
-        <h1>Admin page</h1>
-        Dear <strong>${user.name}</strong>, Welcome to Admin Page.
-        <a href="<c:url value="/logout" />">Logout</a>
-
-        <div>
-            <sec:authorize access="hasRole('ADMIN')">
-                <label><a href="#">Edit this page</a> | This part is visible only to ADMIN</label>
-            </sec:authorize>
-        </div>
+        <h1>User page</h1>
+        <h3>${user.name}</h3>
+        <h3>Here should be smth to edit or add</h3>
     </div>
-
 </div>
 <div id="footer">
     <a><spring:message code="message.test_version"/></a>

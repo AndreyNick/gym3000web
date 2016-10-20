@@ -13,8 +13,10 @@
 <body>
 <div id="wrap">
     <div id="header">
+        <span id="links">
+            <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
+        </span>
         <span id="lang">
-            <a href="${pageContext.request.contextPath}/users">${sessionScope.user.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
@@ -22,8 +24,8 @@
     </div>
     <div id="main">
         <h1>Error 403</h1>
-        Dear <strong>${user}</strong>, You are not authorized to access this page
-        <a href="<c:url value="/logout" />">Logout</a>
+        You are not authorized
+        <a href="<c:url value="/logout" />">Relogin</a>
 
     </div>
 </div>

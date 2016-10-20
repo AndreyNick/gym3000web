@@ -2,23 +2,24 @@ package com.gym.controller;
 
 import com.gym.objects.Exercise;
 import com.gym.objects.ExerciseTemplate;
-import com.gym.objects.User;
 import com.gym.objects.Program;
+import com.gym.objects.User;
 import com.gym.service.ExerciseService;
 import com.gym.service.ExerciseTemplateService;
-import com.gym.service.UserService;
 import com.gym.service.ProgramService;
+import com.gym.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.util.Map;
 
 @Controller
-@SessionAttributes("user")
-@Scope("session")
 public class ProgramController {
 
     @Autowired
@@ -34,9 +35,9 @@ public class ProgramController {
     UserService userService;
 
     @RequestMapping(value = "/prog_list", method = RequestMethod.GET)
-    public String printPrograms(Map<String, Object> map,
-                                HttpSession session) {
-        User user = (User)session.getAttribute("user");
+    public String printPrograms(Map<String, Object> map) {
+        User user = getPrincipal();
+        map.put("user", user);
         map.put("program", new Program());
         map.put("programList", programService.getProgramsByUserId(user.getId()));
         return "prog_list";
@@ -49,17 +50,19 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog_list/add", method = RequestMethod.POST)
-    public String addProgram(@ModelAttribute("program") Program program,
-                             HttpSession session) {
-        User user = (User)session.getAttribute("user");
+    public String addProgram(@ModelAttribute("program") Program program) {
+        User user = getPrincipal();
         program.setUser(userService.read(user.getId()));
         programService.create(program);
         return "redirect:/prog_list";
     }
 
     @RequestMapping(value = "/prog/{id}", method = RequestMethod.GET)
-    public String singleProgram(Map<String, Object> map, @PathVariable("id") Long id) {
+    public String singleProgram(Map<String, Object> map,
+                                @PathVariable("id") Long id) {
         Program p =  programService.read(id);
+        User user = getPrincipal();
+        map.put("user", user);
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
@@ -69,8 +72,11 @@ public class ProgramController {
     }
 
     @RequestMapping("/prog/{id}/edit_form")
-    public String editFormSingleProgram(Map<String, Object> map, @PathVariable("id") Long id) {
+    public String editFormSingleProgram(Map<String, Object> map,
+                                        @PathVariable("id") Long id) {
         Program p =  programService.read(id);
+        User user = getPrincipal();
+        map.put("user", user);
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
@@ -117,5 +123,15 @@ public class ProgramController {
         programService.update(p);
         exerciseService.delete(exerciseService.read(exerciseId));
         return "redirect:/prog/" + programId;
+    }
+
+    private User getPrincipal(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return userService.readByName(((UserDetails)principal).getUsername());
+        } else {
+            return null;
+        }
     }
 }
