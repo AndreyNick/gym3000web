@@ -71,8 +71,7 @@
     <bean id="setService" class="com.gym.service.SetService">
         <constructor-arg ref="setDao"/>
     </bean>
-    <bean id="roleDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Role"/>
+    <bean id="roleDao" class="com.gym.dao.impl.RoleDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="roleService" class="com.gym.service.RoleService">

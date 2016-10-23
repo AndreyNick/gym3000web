@@ -42,9 +42,9 @@
                             <c:when test="${user.id == edit_user}">
                                 <form:form method="post" action="/users/${user.id}/edit/" commandName="user">
                                     <tr>
-                                        <td><springForm:input path="name"/></td>
+                                        <td><springForm:input path="name" placeholder="${user.name}"/></td>
                                         <td colspan="2">
-                                            <input type="submit" placeholder="User name" value="<spring:message code="message.save"/>"/>
+                                            <input type="submit" value="<spring:message code="message.save"/>"/>
                                         </td>
                                     </tr>
                                 </form:form>
@@ -67,37 +67,6 @@
                 </span>
             </c:otherwise>
         </c:choose>
-
-        <form:form method="post" action="users/add" commandName="user">
-            <table>
-                <tr>
-                    <td colspan="2"><spring:message code="message.add_user"/></td>
-                </tr>
-                <tr>
-                    <td>
-                        <form:label path="name">
-                            <spring:message code="message.name"/>
-                        </form:label>
-                    </td>
-                    <td>
-                        <form:input path="name"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <form:label path="password">
-                            <spring:message code="message.description"/>
-                        </form:label>
-                    </td>
-                    <td>
-                        <form:input path="password"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
-                </tr>
-            </table>
-        </form:form>
     </div>
 </div>
 <div id="footer">

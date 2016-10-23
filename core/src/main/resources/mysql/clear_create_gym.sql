@@ -12,7 +12,7 @@ CREATE TABLE `user` (
   `password` VARCHAR (60) NOT NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `persistent_logins` (
   `username` VARCHAR(64) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `program_template` (
   `description` VARCHAR (10000),
   `note` VARCHAR (10000),
   PRIMARY KEY (`program_template_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `exercise_template` (
   `exercise_template_id` INT (11) NOT NULL AUTO_INCREMENT,
@@ -45,7 +45,7 @@ CREATE TABLE `exercise_template` (
   `description` VARCHAR (10000),
   `note` VARCHAR (10000),
   PRIMARY KEY (`exercise_template_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `program_exercise_templates` (
   `program_exercise_template_id` INT (11) NOT NULL AUTO_INCREMENT,
@@ -66,7 +66,7 @@ CREATE TABLE `exercise` (
   `description` VARCHAR (10000),
   `note` VARCHAR (10000),
   PRIMARY KEY (`exercise_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `program` (
   `program_id` INT (11) NOT NULL AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE `program` (
   `note` VARCHAR (10000),
   `date` DATE NOT NULL,
   PRIMARY KEY (`program_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `approach` (
   `approach_id` INT (11) NOT NULL AUTO_INCREMENT,
@@ -85,7 +85,7 @@ CREATE TABLE `approach` (
   `weight` INT (7),
   `measure` VARCHAR (20),
   PRIMARY KEY (`approach_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
 
 
 

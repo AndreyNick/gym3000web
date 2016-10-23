@@ -54,12 +54,6 @@ public class InnerController {
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addProgram(@ModelAttribute("user") User user) {
-        userService.create(user);
-        return "redirect:/users";
-    }
-
     @RequestMapping(value = "/users/{userId}/edit_form")
     public String editFormUser(Map<String, Object> map,
                                @PathVariable("userId") Long userId) {
