@@ -8,6 +8,7 @@ USE `gym_test`$$
 CREATE TABLE `user` (
   `user_id` INT (11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR (1000) NOT NULL,
+  `login` VARCHAR (1000) NOT NULL,
   `password` VARCHAR (60) NOT NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`)

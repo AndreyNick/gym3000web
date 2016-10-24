@@ -23,6 +23,9 @@ public class User implements HasIdAndName {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "login", nullable = false)
+    private String login;
+
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -38,8 +41,9 @@ public class User implements HasIdAndName {
     public User() {
     }
 
-    public User(String name, String password, boolean enabled) {
+    public User(String name, String login, String password, boolean enabled) {
         this.name = name;
+        this.login = login;
         this.password = password;
         this.enabled = enabled;
     }
@@ -91,29 +95,46 @@ public class User implements HasIdAndName {
         this.programList = programList;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
 
         User user = (User) o;
 
+        if (enabled != user.enabled) return false;
+        if (!login.equals(user.login)) return false;
         if (!name.equals(user.name)) return false;
-        return programList != null ? programList.equals(user.programList) : user.programList == null;
+        if (!password.equals(user.password)) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + (programList != null ? programList.hashCode() : 0);
+        result = 31 * result + login.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + (enabled ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", programList=" + programList +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
                 '}';
     }
 }
