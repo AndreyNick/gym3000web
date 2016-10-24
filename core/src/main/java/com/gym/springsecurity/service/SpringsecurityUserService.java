@@ -2,6 +2,7 @@ package com.gym.springsecurity.service;
 
 import com.gym.objects.Role;
 import com.gym.objects.User;
+import com.gym.service.RoleService;
 import com.gym.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,6 +22,9 @@ public class SpringSecurityUserService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @Transactional(readOnly=true)
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
@@ -37,7 +41,7 @@ public class SpringSecurityUserService implements UserDetailsService {
     private List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        for(Role role : user.getRoles()){
+        for(Role role : roleService.getRolesByUserId(user.getId())){
             System.out.println("Role : " + role);
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRole()));
         }
