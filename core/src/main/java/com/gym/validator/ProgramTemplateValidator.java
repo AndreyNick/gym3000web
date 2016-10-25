@@ -14,8 +14,8 @@ public class ProgramTemplateValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "validation.name.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "validation.description.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "note", "validation.note.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.test");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "error.test");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "note", "error.test");
     }
 }

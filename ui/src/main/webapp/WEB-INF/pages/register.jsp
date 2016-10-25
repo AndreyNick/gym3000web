@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,7 +27,7 @@
     </div>
     <div id="main">
         <h1>Registration</h1>
-        <form:form method="post" action="register/add" commandName="user">
+        <form:form method="post" action="/register/add" commandName="user">
             <table class="data">
                 <tr>
                     <td colspan="2">Create User</td>
@@ -36,7 +37,7 @@
                         <form:label path="name"><spring:message code="message.name"/></form:label>
                     </td>
                     <td>
-                        <form:input path="name"/>
+                        <form:input path="name"/><springForm:errors path="name" cssClass="error" />
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +45,7 @@
                         <form:label path="login">Login/Email</form:label>
                     </td>
                     <td>
-                        <form:input path="login"/>
+                        <form:input path="login"/><springForm:errors path="login" cssClass="error" />
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +53,7 @@
                         <form:label path="password">Password</form:label>
                     </td>
                     <td>
-                        <form:input path="password"/>
+                        <form:input path="password"/><springForm:errors path="password" cssClass="error" />
                     </td>
                 </tr>
                 <tr>

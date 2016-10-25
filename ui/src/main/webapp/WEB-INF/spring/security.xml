@@ -6,17 +6,17 @@ http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
     <http auto-config="true" use-expressions="true">
-        <!--tune it correctly-->
+        <!--todo tune it correctly-->
         <intercept-url pattern="/home" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/prog_list**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/prog**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/user/**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/exer/**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/users/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/p_temp_list**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/p_temp/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/e_temp_list/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/e_temp/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/p_temp_list**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/p_temp/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/e_temp_list/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/e_temp/**" access="hasAnyRole('USER','ADMIN')" />
 
         <form-login login-page="/login"
                     username-parameter="ssoId"
@@ -27,7 +27,6 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
         <logout delete-cookies="JSESSIONID" />
         <csrf />
 
-        <!-- enable remember me -->
         <remember-me
                 token-validity-seconds="1209600"
                 remember-me-parameter="remember-me"

@@ -87,9 +87,6 @@
     <bean id="programHelper" class="com.gym.helper.ProgramHelper"/>
     <!--Validators-->
     <bean id="programTemplateValidator" class="com.gym.validator.ProgramTemplateValidator" />
-    <bean id="messageSource"
-                class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:validation" />
-        <property name="defaultEncoding" value="UTF-8" />
-    </bean>
+    <bean id="registrationValidator" class="com.gym.validator.RegistrationValidator" />
+
 </beans>

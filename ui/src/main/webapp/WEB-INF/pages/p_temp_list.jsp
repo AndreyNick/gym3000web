@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -63,49 +64,51 @@
             </c:otherwise>
         </c:choose>
 
-        <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
-            <table>
-                <tr>
-                    <td colspan="2" align="center"><spring:message code="message.add_program_template"/></td>
-                </tr>
-                <tr>
-                    <td>
-                        <springForm:label path="name">
-                            <spring:message code="message.name"/>
-                        </springForm:label>
-                    </td>
-                    <td>
-                        <springForm:input path="name"/>
-                    </td>
-                    <td><springForm:errors path="name" cssClass="error" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        <springForm:label path="description">
-                            <spring:message code="message.description"/>
-                        </springForm:label>
-                    </td>
-                    <td>
-                        <springForm:textarea path="description"/>
-                    </td>
-                    <td><springForm:errors path="description" cssClass="error" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        <springForm:label path="note">
-                            <spring:message code="message.note"/>
-                        </springForm:label>
-                    </td>
-                    <td>
-                        <springForm:textarea path="note"/>
-                    </td>
-                    <td><springForm:errors path="note" cssClass="error" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
-                </tr>
-            </table>
-        </form:form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <form:form method="post" action="p_temp_list/add" commandName="programTemplate">
+                <table>
+                    <tr>
+                        <td colspan="2" align="center"><spring:message code="message.add_program_template"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <springForm:label path="name">
+                                <spring:message code="message.name"/>
+                            </springForm:label>
+                        </td>
+                        <td>
+                            <springForm:input path="name"/>
+                        </td>
+                        <td><springForm:errors path="name" cssClass="error" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <springForm:label path="description">
+                                <spring:message code="message.description"/>
+                            </springForm:label>
+                        </td>
+                        <td>
+                            <springForm:textarea path="description"/>
+                        </td>
+                        <td><springForm:errors path="description" cssClass="error" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <springForm:label path="note">
+                                <spring:message code="message.note"/>
+                            </springForm:label>
+                        </td>
+                        <td>
+                            <springForm:textarea path="note"/>
+                        </td>
+                        <td><springForm:errors path="note" cssClass="error" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
+                    </tr>
+                </table>
+            </form:form>
+        </sec:authorize>
     </div>
 </div>
 <div id="footer">

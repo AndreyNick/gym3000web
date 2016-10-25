@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -58,47 +59,48 @@
                 </span>
             </c:otherwise>
         </c:choose>
-
-        <form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
-            <table>
-                <tr>
-                    <td colspan="2" align="center"><spring:message code="message.add_exercise_template"/></td>
-                </tr>
-                <tr>
-                    <td>
-                        <form:label path="name">
-                            <spring:message code="message.name"/>
-                        </form:label>
-                    </td>
-                    <td>
-                        <form:input path="name"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <form:label path="description">
-                            <spring:message code="message.description"/>
-                        </form:label>
-                    </td>
-                    <td>
-                        <form:textarea path="description"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <form:label path="note">
-                            <spring:message code="message.note"/>
-                        </form:label>
-                    </td>
-                    <td>
-                        <form:textarea path="note"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
-                </tr>
-            </table>
-        </form:form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <form:form method="post" action="e_temp_list/add" commandName="exerciseTemplate">
+                <table>
+                    <tr>
+                        <td colspan="2" align="center"><spring:message code="message.add_exercise_template"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form:label path="name">
+                                <spring:message code="message.name"/>
+                            </form:label>
+                        </td>
+                        <td>
+                            <form:input path="name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form:label path="description">
+                                <spring:message code="message.description"/>
+                            </form:label>
+                        </td>
+                        <td>
+                            <form:textarea path="description"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form:label path="note">
+                                <spring:message code="message.note"/>
+                            </form:label>
+                        </td>
+                        <td>
+                            <form:textarea path="note"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>
+                    </tr>
+                </table>
+            </form:form>
+        </sec:authorize>
     </div>
 </div>
 <div id="footer">

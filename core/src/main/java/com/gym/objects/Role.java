@@ -55,4 +55,33 @@ public class Role {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role)) return false;
+
+        Role role1 = (Role) o;
+
+        if (!role.equals(role1.role)) return false;
+        if (!user.equals(role1.user)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user.hashCode();
+        result = 31 * result + role.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", user=" + user +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

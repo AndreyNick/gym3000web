@@ -26,12 +26,12 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.list_of_links"/></h1>
+        <h3><a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates_list"/></a></h3>
+        <h3><a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates_list"/></a></h3>
+        <h3><a href="<c:url value="/prog_list"/>"><spring:message code="message.programs_list"/></a></h3>
         <sec:authorize access="hasRole('ADMIN')">
-            <h3><a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates_list"/></a></h3>
-            <h3><a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates_list"/></a></h3>
             <h3><a href="<c:url value="/users"/>">Users list</a></h3>
         </sec:authorize>
-        <h3><a href="<c:url value="/prog_list"/>"><spring:message code="message.programs_list"/></a></h3>
     </div>
 </div>
 <div id="footer">
