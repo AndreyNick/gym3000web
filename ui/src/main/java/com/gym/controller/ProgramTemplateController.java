@@ -1,34 +1,20 @@
 package com.gym.controller;
 
-import com.gym.factory.ProgramFactory;
 import com.gym.objects.ExerciseTemplate;
-import com.gym.objects.User;
 import com.gym.objects.ProgramTemplate;
-import com.gym.service.ExerciseTemplateService;
-import com.gym.service.ProgramTemplateService;
-import com.gym.validator.ProgramTemplateValidator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.gym.objects.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class ProgramTemplateController {
-
-    @Autowired
-    ProgramTemplateService programTemplateService;
-
-    @Autowired
-    ExerciseTemplateService exerciseTemplateService;
-
-    @Autowired
-    ProgramFactory programFactory;
+public class ProgramTemplateController extends GenericController {
 
     /*@Autowired
     @Qualifier("programTemplateValidator")
@@ -41,6 +27,7 @@ public class ProgramTemplateController {
 
     @RequestMapping(value = "/p_temp_list")
     public String programTemplateList(Map<String, Object> map) {
+        map.put("user", getPrincipal());
         map.put("programTemplate", new ProgramTemplate());
         map.put("programTemplateList", programTemplateService.readAll());
         return "p_temp_list";
@@ -71,6 +58,7 @@ public class ProgramTemplateController {
     public String singleProgramTemplate(Map<String, Object> map,
                                         @PathVariable("id") Long id) {
         ProgramTemplate pt =  programTemplateService.read(id);
+        map.put("user", getPrincipal());
         map.put("programTemplate", pt);
         map.put("exerciseTemplate", new ExerciseTemplate());
         map.put("exerciseTemplateList", pt.getExerciseTemplateList());
@@ -82,6 +70,7 @@ public class ProgramTemplateController {
     public String editFormSingleProgramTemplate(Map<String, Object> map,
                                                 @PathVariable("id") Long id) {
         ProgramTemplate pt =  programTemplateService.read(id);
+        map.put("user", getPrincipal());
         map.put("programTemplate", pt);
         map.put("exerciseTemplate", new ExerciseTemplate());
         map.put("exerciseTemplateList", pt.getExerciseTemplateList());

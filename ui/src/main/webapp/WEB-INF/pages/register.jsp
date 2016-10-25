@@ -33,9 +33,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <form:label path="name">
-                            <spring:message code="message.name"/>
-                        </form:label>
+                        <form:label path="name"><spring:message code="message.name"/></form:label>
                     </td>
                     <td>
                         <form:input path="name"/>
@@ -43,9 +41,15 @@
                 </tr>
                 <tr>
                     <td>
-                        <form:label path="password">
-                            <spring:message code="message.description"/>
-                        </form:label>
+                        <form:label path="login">Login/Email</form:label>
+                    </td>
+                    <td>
+                        <form:input path="login"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form:label path="password">Password</form:label>
                     </td>
                     <td>
                         <form:input path="password"/>

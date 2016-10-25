@@ -1,11 +1,7 @@
 package com.gym.controller;
 
 import com.gym.objects.Exercise;
-import com.gym.objects.Program;
 import com.gym.objects.Set;
-import com.gym.service.ExerciseService;
-import com.gym.service.SetService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Map;
 
 @Controller
-public class SetController {
-
-    @Autowired
-    SetService setService;
-
-    @Autowired
-    ExerciseService exerciseService;
+public class SetController extends GenericController{
 
     @RequestMapping(value = "/exer/{id}/add", method = RequestMethod.POST)
     public String addProgram(@ModelAttribute("user") Set set,
@@ -48,6 +38,7 @@ public class SetController {
                                      @PathVariable("exerciseId") Long exerciseId,
                                      @PathVariable("setId") Long setId) {
         Exercise e = exerciseService.read(exerciseId);
+        map.put("user", getPrincipal());
         map.put("exercise", e);
         map.put("program", e.getProgram());
         map.put("set", new Set());
@@ -67,6 +58,5 @@ public class SetController {
         s.setMeasure(set.getMeasure());
         setService.update(s);
         return "redirect:/exer/" + exerciseId;
-
     }
 }

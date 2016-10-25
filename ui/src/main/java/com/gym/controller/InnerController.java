@@ -1,11 +1,8 @@
 package com.gym.controller;
 
 import com.gym.objects.User;
-import com.gym.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
-public class InnerController {
-
-    @Autowired
-    UserService userService;
+public class InnerController extends GenericController {
 
     @RequestMapping(value = "/")
     public String home() {
@@ -89,16 +83,6 @@ public class InnerController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
-    }
-
-    private User getPrincipal(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            return userService.readByName(((UserDetails)principal).getUsername());
-        } else {
-            return null;
-        }
+        return "redirect:/login?logout";
     }
 }

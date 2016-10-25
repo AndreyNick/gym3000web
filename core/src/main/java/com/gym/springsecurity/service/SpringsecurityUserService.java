@@ -27,8 +27,8 @@ public class SpringSecurityUserService implements UserDetailsService {
 
     @Transactional(readOnly=true)
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userService.readByName(name);
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = userService.readByLogin(login);
         System.out.println("User : "+user);
         if(user==null){
             System.out.println("User not found");

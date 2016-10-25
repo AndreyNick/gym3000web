@@ -4,13 +4,6 @@ import com.gym.objects.Exercise;
 import com.gym.objects.ExerciseTemplate;
 import com.gym.objects.Program;
 import com.gym.objects.User;
-import com.gym.service.ExerciseService;
-import com.gym.service.ExerciseTemplateService;
-import com.gym.service.ProgramService;
-import com.gym.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,19 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Map;
 
 @Controller
-public class ProgramController {
-
-    @Autowired
-    ProgramService programService;
-
-    @Autowired
-    ExerciseTemplateService exerciseTemplateService;
-
-    @Autowired
-    ExerciseService exerciseService;
-
-    @Autowired
-    UserService userService;
+public class ProgramController extends GenericController {
 
     @RequestMapping(value = "/prog_list", method = RequestMethod.GET)
     public String printPrograms(Map<String, Object> map) {
@@ -61,8 +42,7 @@ public class ProgramController {
     public String singleProgram(Map<String, Object> map,
                                 @PathVariable("id") Long id) {
         Program p =  programService.read(id);
-        User user = getPrincipal();
-        map.put("user", user);
+        map.put("user", getPrincipal());
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
@@ -75,8 +55,7 @@ public class ProgramController {
     public String editFormSingleProgram(Map<String, Object> map,
                                         @PathVariable("id") Long id) {
         Program p =  programService.read(id);
-        User user = getPrincipal();
-        map.put("user", user);
+        map.put("user", getPrincipal());
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
@@ -102,8 +81,7 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog/{programId}/add/{exerciseTemplateId}")
-    public String addExerciseToProgram(
-            @PathVariable("programId") Long programId,
+    public String addExerciseToProgram(@PathVariable("programId") Long programId,
             @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
         Program p = programService.read(programId);
         ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplateId);
@@ -115,23 +93,12 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog/{programId}/delete/{exerciseId}")
-    public String deleteExerciseFromProgram(
-            @PathVariable("programId") Long programId,
+    public String deleteExerciseFromProgram(@PathVariable("programId") Long programId,
             @PathVariable("exerciseId") Long exerciseId) {
         Program p = programService.read(programId);
         p.deleteExercise(exerciseService.read(exerciseId));
         programService.update(p);
         exerciseService.delete(exerciseService.read(exerciseId));
         return "redirect:/prog/" + programId;
-    }
-
-    private User getPrincipal(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            return userService.readByName(((UserDetails)principal).getUsername());
-        } else {
-            return null;
-        }
     }
 }
