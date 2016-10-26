@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -40,10 +39,9 @@ public class ProgramTemplateController extends GenericController {
     }
 
     @RequestMapping("/p_temp_list/create_program/{id}")
-    public String createNewProgramByProgramTemplate(@PathVariable("id") Long id,
-                                                    HttpSession session) {
+    public String createNewProgramByProgramTemplate(@PathVariable("id") Long id) {
         ProgramTemplate pt = programTemplateService.read(id);
-        User user = (User)session.getAttribute("user");
+        User user = getPrincipal();
         programFactory.createProgram(pt, user);
         return "redirect:/p_temp_list";
     }

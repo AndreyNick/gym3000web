@@ -97,8 +97,8 @@
                             <c:when test="${set.id == edit_set}">
                                 <form:form method="post" action="/exer/${exercise.id}/edit/${set.id}" commandName="set">
                                         <tr>
-                                            <td><springForm:input path="times"/></td>
-                                            <td><springForm:input path="weight"/></td>
+                                            <td><form:input placeholder="${set.times}" path="times" type="number" /></td>
+                                            <td><form:input placeholder="${set.weight}" path="weight" type="number" /></td>
                                             <td><form:radiobutton path="measure" value="KG" /><spring:message code="message.kg"/>
                                                 <form:radiobutton path="measure" value="POUND" /><spring:message code="message.pound"/>
                                             </td>
@@ -141,7 +141,7 @@
                         </springForm:label>
                     </td>
                     <td>
-                        <springForm:input path="times"/>
+                        <springForm:input path="times" type="number" />
                     </td>
                 </tr>
                 <tr>
@@ -151,7 +151,7 @@
                         </springForm:label>
                     </td>
                     <td>
-                        <springForm:input path="weight"/>
+                        <springForm:input path="weight" type="number" />
                     </td>
                 </tr>
                 <tr>

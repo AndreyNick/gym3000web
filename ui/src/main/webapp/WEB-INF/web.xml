@@ -65,10 +65,8 @@
         <location>/WEB-INF/pages/error404.jsp</location>
     </error-page>
     <error-page>
-        <!--doesnt work-->
-        <error-code>404</error-code>
+        <error-code>403</error-code>
         <location>/WEB-INF/pages/error403.jsp</location>
     </error-page>
-    <!--doesnt work-->
 
 </web-app>
