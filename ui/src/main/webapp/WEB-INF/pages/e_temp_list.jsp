@@ -27,12 +27,11 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.exercise_templates"/></h1>
-
         <c:choose>
             <c:when test="${!empty exerciseTemplateList}">
                 <table class="data">
                     <tr>
-                        <td colspan="5"><spring:message code="message.programs_list"/></td>
+                        <td colspan="5"><spring:message code="message.exercise_templates_list"/></td>
                     </tr>
                     <tr>
                         <th><spring:message code="message.name"/></th>
@@ -45,17 +44,19 @@
                             <td><a href="e_temp/${exerciseTemplate.id}">${exerciseTemplate.name}</a></td>
                             <td>${exerciseTemplate.description}</td>
                             <td>${exerciseTemplate.note}</td>
-                            <td><a href="e_temp_list/delete/${exerciseTemplate.id}"><spring:message code="message.delete"/></a></td>
+                            <sec:authorize access="hasRole('ADMIN')">
+                                <td>
+                                    <a href="e_temp_list/delete/${exerciseTemplate.id}">
+                                        <spring:message code="message.delete"/></a>
+                                </td>
+                            </sec:authorize>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <a><spring:message code="message.no_exercise_templates"/>
-                        <br />
-                        <spring:message code="message.you_can_add_them"/></a>
-                    <br />
+                    <a><br /><spring:message code="message.no_exercise_templates"/></a>
                 </span>
             </c:otherwise>
         </c:choose>

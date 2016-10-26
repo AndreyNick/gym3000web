@@ -27,7 +27,6 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.program_templates"/></h1>
-
         <c:choose>
             <c:when test="${!empty programTemplateList}">
                 <table class="data">
@@ -46,7 +45,12 @@
                             <td><a href="p_temp/${programTemplate.id}">${programTemplate.name}</a></td>
                             <td>${programTemplate.description}</td>
                             <td>${programTemplate.note}</td>
-                            <td><a href="p_temp_list/delete/${programTemplate.id}"><spring:message code="message.delete"/></a></td>
+                            <sec:authorize access="hasRole('ADMIN')">
+                                <td>
+                                    <a href="p_temp_list/delete/${programTemplate.id}">
+                                        <spring:message code="message.delete"/></a>
+                                </td>
+                            </sec:authorize>
                             <td><a href="p_temp_list/create_program/${programTemplate.id}"><spring:message code="message.create_program"/></a></td>
                         </tr>
                     </c:forEach>
@@ -54,13 +58,8 @@
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <a><spring:message code="message.no_exercise_templates"/>
-                        <br />
-                        You can add them <a href="<c:url value="/e_temp_list"/>">here</a></a>
-                    <br />
+                    <a><br /><spring:message code="message.no_program_templates"/></a>
                 </span>
-                <a><spring:message code="message.no_program_templates"/><br /><spring:message code="message.you_can_add_them"/></a>
-                <br />
             </c:otherwise>
         </c:choose>
 

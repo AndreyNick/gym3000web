@@ -10,13 +10,15 @@
     <!--User-->
     <bean id="user1" class="com.gym.objects.User">
         <constructor-arg index="0" value="Andrew"/>
-        <constructor-arg index="1" value="test"/>
-        <constructor-arg index="2" value="true"/>
+        <constructor-arg index="1" value="user"/>
+        <constructor-arg index="2" value="test"/>
+        <constructor-arg index="3" value="true"/>
     </bean>
     <bean id="user2" class="com.gym.objects.User">
         <constructor-arg index="0" value="Victor"/>
-        <constructor-arg index="1" value="test"/>
-        <constructor-arg index="2" value="true"/>
+        <constructor-arg index="1" value="admin"/>
+        <constructor-arg index="2" value="test"/>
+        <constructor-arg index="3" value="true"/>
     </bean>
     <!--Exercise Templates-->
     <bean id="exerciseTemplate1" class="com.gym.objects.ExerciseTemplate">
