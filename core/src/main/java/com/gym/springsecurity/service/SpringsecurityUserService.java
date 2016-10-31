@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service("springSecurityUserService")
 public class SpringSecurityUserService implements UserDetailsService {
@@ -28,13 +29,23 @@ public class SpringSecurityUserService implements UserDetailsService {
     @Transactional(readOnly=true)
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userService.readByLogin(login);
-        System.out.println("User : "+user);
-        if(user==null){
+        System.out.println("loadUserByUsername : "+login);
+        User user;
+        try{
+            user = userService.readByLogin(login);
+            System.out.println("User : "+user);
+        } catch (NoSuchElementException nse) {
             System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
+
+        if(!user.isEnabled()) {
+            System.out.println("User is not enable");
+            //todo: think how better to organize work with absence or unenable user
+            //it could be different error403 pages
+        }
+
+        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
                 user.isEnabled(), true, true, true, getGrantedAuthorities(user));
     }
 

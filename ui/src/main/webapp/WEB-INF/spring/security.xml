@@ -9,14 +9,14 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
         <!--todo tune it correctly-->
         <intercept-url pattern="/home" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/prog_list**" access="hasAnyRole('USER','ADMIN')" />
-        <intercept-url pattern="/prog**" access="hasAnyRole('USER','ADMIN')" />
-        <intercept-url pattern="/user/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/prog/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/user/*" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/exer/**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/p_temp_list**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/p_temp/**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/e_temp_list/**" access="hasAnyRole('USER','ADMIN')" />
         <intercept-url pattern="/e_temp/**" access="hasAnyRole('USER','ADMIN')" />
-        <intercept-url pattern="/users/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/profile/**" access="hasRole('ADMIN')" />
 
         <form-login login-page="/login"
                     username-parameter="ssoId"

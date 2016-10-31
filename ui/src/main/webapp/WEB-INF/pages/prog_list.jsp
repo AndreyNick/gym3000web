@@ -20,7 +20,7 @@
             <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
-            <a href="<c:url value="/user"/>">${user.name}</a>
+            <a href="<c:url value="/profile"/>">${user.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>

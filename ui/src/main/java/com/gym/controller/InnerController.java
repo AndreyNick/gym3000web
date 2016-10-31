@@ -1,5 +1,6 @@
 package com.gym.controller;
 
+import com.gym.objects.Role;
 import com.gym.objects.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,16 +24,33 @@ public class InnerController extends GenericController {
         return "redirect:/home";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String user(Map<String, Object> map) {
-        map.put("user", new User());
-        return "user";
+        map.put("user", getPrincipal());
+        return "profile";
+    }
+
+    @RequestMapping(value = "/profile_edit_form", method = RequestMethod.GET)
+    public String userEditForm(Map<String, Object> map) {
+        map.put("user", getPrincipal());
+        map.put("edit", true);
+        return "profile";
+    }
+
+    @RequestMapping(value = "/profile_edit", method = RequestMethod.POST)
+    public String editSingleProgramTemplate(@ModelAttribute("user") User user) {
+        User u = userService.read(getPrincipal().getId());
+        u.setName(user.getName());
+        u.setPassword(user.getPassword());
+        userService.update(u);
+        return "redirect:/profile";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String welcome(Map<String, Object> map) {
         map.put("user", getPrincipal());
         map.put("userList", userService.readAll());
+        map.put("role", new Role());
         return "users";
     }
 
@@ -51,7 +69,7 @@ public class InnerController extends GenericController {
     @RequestMapping(value = "/users/{userId}/edit_form")
     public String editFormUser(Map<String, Object> map,
                                @PathVariable("userId") Long userId) {
-        map.put("user", new User());
+        map.put("user", getPrincipal());
         map.put("userList", userService.readAll());
         map.put("edit_user", userId);
         return "users";
@@ -61,7 +79,7 @@ public class InnerController extends GenericController {
     public String editSingleExercise(@ModelAttribute("user") User user,
                                      @PathVariable("id") Long id) {
         User u = userService.read(id);
-        u.setName(user.getName());
+        u.setEnabled(user.isEnabled());
         userService.update(u);
         return "redirect:/users";
     }

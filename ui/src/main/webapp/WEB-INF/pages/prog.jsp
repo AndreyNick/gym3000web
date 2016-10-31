@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -22,7 +23,7 @@
             <a href="<c:url value="/prog_list"/>"><spring:message code="message.programs"/></a>
         </span>
         <span id="lang">
-            <a href="<c:url value="/user"/>">${user.name}</a>
+            <a href="<c:url value="/profile"/>">${user.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
@@ -86,13 +87,12 @@
                 <h2><spring:message code="message.date"/>: ${program.date}</h2>
                 <h2><spring:message code="message.description"/>: ${program.description}</h2>
                 <h2><spring:message code="message.note"/>: ${program.note}</h2>
-                <form method="post" action="${programUrl}/edit_form">
-                    <input type="submit" value="<spring:message code="message.edit"/>"/>
-                </form>
-                    </span>
+                    <form method="post" action="${programUrl}/edit_form">
+                        <input type="submit" value="<spring:message code="message.edit"/>"/>
+                    </form>
+                </span>
             </c:otherwise>
         </c:choose>
-
         <c:choose>
             <c:when test="${!empty exerciseList}">
                 <table class="data">

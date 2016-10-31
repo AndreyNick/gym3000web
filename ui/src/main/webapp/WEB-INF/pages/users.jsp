@@ -18,7 +18,7 @@
             <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
-            <a href="<c:url value="/user"/>">${user.name}</a>
+            <a href="<c:url value="/profile"/>">${user.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
@@ -30,10 +30,13 @@
             <c:when test="${!empty userList}">
                 <table class="data">
                     <tr>
-                        <td colspan="3"><spring:message code="message.list_users"/></td>
+                        <td colspan="6"><spring:message code="message.list_users"/></td>
                     </tr>
                     <tr>
                         <th><spring:message code="message.name"/></th>
+                        <th>Login</th>
+                        <th>Is Enabled</th>
+                        <th>Roles</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -42,7 +45,12 @@
                             <c:when test="${user.id == edit_user}">
                                 <form:form method="post" action="/users/${user.id}/edit/" commandName="user">
                                     <tr>
-                                        <td><springForm:input path="name" placeholder="${user.name}"/></td>
+                                        <td>${user.name}</td>
+                                        <td>${user.login}</td>
+                                        <td><form:radiobutton path="enabled" value="true" />true
+                                            <form:radiobutton path="enabled" value="false" />false
+                                        </td>
+                                        <td>&nbsp;</td>
                                         <td colspan="2">
                                             <input type="submit" value="<spring:message code="message.save"/>"/>
                                         </td>
@@ -51,7 +59,14 @@
                             </c:when>
                             <c:otherwise>
                                 <tr>
-                                    <td><a href="home/${user.id}">${user.name}</a></td>
+                                    <td>${user.name}</td>
+                                    <td>${user.login}</td>
+                                    <td>${user.enabled}</td>
+                                    <td>
+                                        <c:forEach items="${user.roles}" var="role">
+                                            ${role.role}
+                                        </c:forEach>
+                                    </td>
                                     <td><a href="users/${user.id}/edit_form"><spring:message code="message.edit"/></a></td>
                                     <td><a href="users/delete/${user.id}"><spring:message code="message.delete"/></a></td>
                                 </tr>

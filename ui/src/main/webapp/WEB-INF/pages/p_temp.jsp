@@ -21,7 +21,7 @@
             <a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates"/></a>
         </span>
         <span id="lang">
-            <a href="<c:url value="/user"/>">${user.name}</a>
+            <a href="<c:url value="/profile"/>">${user.name}</a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
