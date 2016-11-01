@@ -2,15 +2,17 @@ package com.gym.controller;
 
 import com.gym.objects.Role;
 import com.gym.objects.User;
+import com.gym.validator.RegistrationValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,14 @@ import java.util.Map;
 
 @Controller
 public class InnerController extends GenericController {
+
+    @Autowired
+    private RegistrationValidator registrationValidator;
+
+    @InitBinder("user")
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(registrationValidator);
+    }
 
     @RequestMapping(value = "/")
     public String home() {
@@ -38,12 +48,17 @@ public class InnerController extends GenericController {
     }
 
     @RequestMapping(value = "/profile_edit", method = RequestMethod.POST)
-    public String editSingleProgramTemplate(@ModelAttribute("user") User user) {
-        User u = userService.read(getPrincipal().getId());
-        u.setName(user.getName());
-        u.setPassword(user.getPassword());
-        userService.update(u);
-        return "redirect:/profile";
+    public String editSingleProgramTemplate(@ModelAttribute("user") @Validated User user,
+                                            BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "profile";
+        } else {
+            User u = userService.read(getPrincipal().getId());
+            u.setName(user.getName());
+            u.setPassword(user.getPassword());
+            userService.update(u);
+            return "redirect:/profile";
+        }
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)

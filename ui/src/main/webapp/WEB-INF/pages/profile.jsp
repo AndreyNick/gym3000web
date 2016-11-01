@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,6 +41,9 @@
                             <td>
                                 <form:input path="name"/>
                             </td>
+                            <td>
+                                <form:input path="name"/><springForm:errors path="name" cssClass="error" />
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -47,7 +51,7 @@
                                     Login
                                 </form:label></td>
                             <td>
-                                <form:input path="login"/>
+                                <form:label path="login">${user.login}</form:label>
                             </td>
                         </tr>
                         <tr>
@@ -57,6 +61,9 @@
                                 </form:label></td>
                             <td>
                                 <form:textarea path="password"/>
+                            </td>
+                            <td>
+                                <form:input path="password"/><springForm:errors path="password" cssClass="error" />
                             </td>
                         </tr>
                         <tr>
