@@ -26,64 +26,17 @@
         </span>
     </div>
     <div id="main">
-        <c:choose>
-            <c:when test="${edit}">
-                <form:form method="post" action="/profile_edit" commandName="user">
-                    <table>
-                        <tr>
-                            <td colspan="2">Edit User:</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form:label path="name">
-                                    <spring:message code="message.name"/>
-                                </form:label></td>
-                            <td>
-                                <form:input path="name"/>
-                            </td>
-                            <td>
-                                <form:input path="name"/><springForm:errors path="name" cssClass="error" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form:label path="login">
-                                    Login
-                                </form:label></td>
-                            <td>
-                                <form:label path="login">${user.login}</form:label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form:label path="password">
-                                    Password
-                                </form:label></td>
-                            <td>
-                                <form:textarea path="password"/>
-                            </td>
-                            <td>
-                                <form:input path="password"/><springForm:errors path="password" cssClass="error" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
-                        </tr>
-                    </table>
-                </form:form>
-            </c:when>
-            <c:otherwise>
-                <div>
-                    <h1>User page</h1>
-                    <h2>Name: ${user.name}</h2>
-                    <h2>Login: ${user.login}</h2>
-                    <h2>Password: ${user.password}</h2>
-                    <form method="post" action="/profile_edit_form">
-                        <input type="submit" value="<spring:message code="message.edit"/>"/>
-                    </form>
-                </div>
-            </c:otherwise>
-        </c:choose>
+        <div>
+            <h1>User page</h1>
+            <h2>Name: ${user.name}</h2>
+            <h2>Login: ${user.login}</h2>
+            <h2>Password: ${user.password}</h2>
+
+            <form method="post" action="<c:url value="/profile_edit"/>">
+                <input type="submit" value="<spring:message code="message.edit"/>"/>
+            </form>
+
+        </div>
 
     </div>
 </div>

@@ -2,7 +2,7 @@ package com.gym.controller;
 
 import com.gym.objects.Role;
 import com.gym.objects.User;
-import com.gym.validator.RegistrationValidator;
+import com.gym.validator.EditProfileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,11 +22,11 @@ import java.util.Map;
 public class InnerController extends GenericController {
 
     @Autowired
-    private RegistrationValidator registrationValidator;
+    private EditProfileValidator editProfileValidator;
 
     @InitBinder("user")
     private void initBinder(WebDataBinder binder) {
-        binder.setValidator(registrationValidator);
+        binder.setValidator(editProfileValidator);
     }
 
     @RequestMapping(value = "/")
@@ -40,18 +40,18 @@ public class InnerController extends GenericController {
         return "profile";
     }
 
-    @RequestMapping(value = "/profile_edit_form", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile_edit", method = RequestMethod.GET)
     public String userEditForm(Map<String, Object> map) {
         map.put("user", getPrincipal());
-        map.put("edit", true);
-        return "profile";
+        return "profile_edit";
     }
 
-    @RequestMapping(value = "/profile_edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/profile_save", method = RequestMethod.POST)
     public String editSingleProgramTemplate(@ModelAttribute("user") @Validated User user,
                                             BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return "profile";
+            System.out.println("error: " + bindingResult.getAllErrors());
+            return "profile_edit";
         } else {
             User u = userService.read(getPrincipal().getId());
             u.setName(user.getName());
