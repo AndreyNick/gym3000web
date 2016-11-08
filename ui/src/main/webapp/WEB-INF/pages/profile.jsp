@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -19,7 +19,7 @@
             <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
-            <a href="<c:url value="/logout" />">Logout</a>
+            <a href="<c:url value="/logout" />"><spring:message code="message.logout"/></a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
@@ -27,17 +27,16 @@
     </div>
     <div id="main">
         <div>
-            <h1>User page</h1>
-            <h2>Name: ${user.name}</h2>
-            <h2>Login: ${user.login}</h2>
-            <h2>Password: ${user.password}</h2>
+            <h1><spring:message code="message.user_page"/></h1>
 
-            <form method="post" action="<c:url value="/profile_edit"/>">
-                <input type="submit" value="<spring:message code="message.edit"/>"/>
-            </form>
+            <h2><spring:message code="message.name"/>: ${user.name}</h2>
 
+            <h2><spring:message code="message.login"/>: ${user.login}</h2>
+
+            <h2><spring:message code="message.password"/>: ${user.password}</h2>
+
+            <a href="<c:url value="/profile_edit"/>"><spring:message code="message.edit"/></a>
         </div>
-
     </div>
 </div>
 <div id="footer">

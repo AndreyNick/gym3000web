@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title><spring:message code="message.gym3000_title"/></title>
 </head>
@@ -56,7 +56,7 @@
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <a><br /><spring:message code="message.no_exercise_templates"/></a>
+                    <a><br/><spring:message code="message.no_exercise_templates"/></a>
                 </span>
             </c:otherwise>
         </c:choose>
@@ -68,9 +68,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="name">
-                                <spring:message code="message.name"/>
-                            </form:label>
+                            <form:label path="name"><spring:message code="message.name"/></form:label>
                         </td>
                         <td>
                             <form:input path="name"/>
@@ -78,9 +76,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="description">
-                                <spring:message code="message.description"/>
-                            </form:label>
+                            <form:label path="description"><spring:message code="message.description"/></form:label>
                         </td>
                         <td>
                             <form:textarea path="description"/>
@@ -88,9 +84,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form:label path="note">
-                                <spring:message code="message.note"/>
-                            </form:label>
+                            <form:label path="note"><spring:message code="message.note"/></form:label>
                         </td>
                         <td>
                             <form:textarea path="note"/>

@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -34,9 +34,9 @@
                     </tr>
                     <tr>
                         <th><spring:message code="message.name"/></th>
-                        <th>Login</th>
-                        <th>Is Enabled</th>
-                        <th>Roles</th>
+                        <th><spring:message code="message.login"/></th>
+                        <th><spring:message code="message.is_enabled"/></th>
+                        <th><spring:message code="message.roles"/></th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -47,8 +47,8 @@
                                     <tr>
                                         <td>${user.name}</td>
                                         <td>${user.login}</td>
-                                        <td><form:radiobutton path="enabled" value="true" />true
-                                            <form:radiobutton path="enabled" value="false" />false
+                                        <td><form:radiobutton path="enabled" value="true"/>true
+                                            <form:radiobutton path="enabled" value="false"/>false
                                         </td>
                                         <td>&nbsp;</td>
                                         <td colspan="2">
@@ -62,13 +62,13 @@
                                     <td>${user.name}</td>
                                     <td>${user.login}</td>
                                     <td>${user.enabled}</td>
+                                    <td><c:forEach items="${user.roles}" var="role">${role.role}</c:forEach></td>
                                     <td>
-                                        <c:forEach items="${user.roles}" var="role">
-                                            ${role.role}
-                                        </c:forEach>
+                                        <a href="users/${user.id}/edit_form"><spring:message code="message.edit"/></a>
                                     </td>
-                                    <td><a href="users/${user.id}/edit_form"><spring:message code="message.edit"/></a></td>
-                                    <td><a href="users/delete/${user.id}"><spring:message code="message.delete"/></a></td>
+                                    <td>
+                                        <a href="users/delete/${user.id}"><spring:message code="message.delete"/></a>
+                                    </td>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
@@ -77,8 +77,7 @@
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <spring:message code="message.no_users_here"/>
-                    <br />
+                    <br/><spring:message code="message.no_users_here"/>
                 </span>
             </c:otherwise>
         </c:choose>

@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -26,11 +26,14 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.list_of_links"/></h1>
+
         <h3><a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates_list"/></a></h3>
+
         <h3><a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates_list"/></a></h3>
+
         <h3><a href="<c:url value="/prog_list"/>"><spring:message code="message.programs_list"/></a></h3>
         <sec:authorize access="hasRole('ADMIN')">
-            <h3><a href="<c:url value="/users"/>">Users list</a></h3>
+            <h3><a href="<c:url value="/users"/>"><spring:message code="message.list_users"/></a></h3>
         </sec:authorize>
     </div>
 </div>

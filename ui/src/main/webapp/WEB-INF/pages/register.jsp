@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -26,35 +26,23 @@
         </span>
     </div>
     <div id="main">
-        <h1>Registration</h1>
+        <h1><spring:message code="message.registration"/></h1>
         <form:form method="post" action="/register/add" commandName="user">
             <table class="data">
                 <tr>
-                    <td colspan="2">Create User</td>
+                    <td colspan="2"><spring:message code="message.create_user"/>:</td>
                 </tr>
                 <tr>
-                    <td>
-                        <form:label path="name"><spring:message code="message.name"/></form:label>
-                    </td>
-                    <td>
-                        <form:input path="name"/><springForm:errors path="name" cssClass="error" />
-                    </td>
+                    <td><form:label path="name"><spring:message code="message.name"/></form:label></td>
+                    <td><form:input path="name"/><springForm:errors path="name" cssClass="error"/></td>
                 </tr>
                 <tr>
-                    <td>
-                        <form:label path="login">Login/Email</form:label>
-                    </td>
-                    <td>
-                        <form:input path="login"/><springForm:errors path="login" cssClass="error" />
-                    </td>
+                    <td><form:label path="login"><spring:message code="message.login_email"/></form:label></td>
+                    <td><form:input path="login"/><springForm:errors path="login" cssClass="error"/></td>
                 </tr>
                 <tr>
-                    <td>
-                        <form:label path="password">Password</form:label>
-                    </td>
-                    <td>
-                        <form:input path="password"/><springForm:errors path="password" cssClass="error" />
-                    </td>
+                    <td><form:label path="password"><spring:message code="message.password"/></form:label></td>
+                    <td><form:input path="password"/><springForm:errors path="password" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>

@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
 </head>
@@ -51,14 +51,15 @@
                                         <spring:message code="message.delete"/></a>
                                 </td>
                             </sec:authorize>
-                            <td><a href="p_temp_list/create_program/${programTemplate.id}"><spring:message code="message.create_program"/></a></td>
+                            <td><a href="p_temp_list/create_program/${programTemplate.id}"><spring:message
+                                    code="message.create_program"/></a></td>
                         </tr>
                     </c:forEach>
                 </table>
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <a><br /><spring:message code="message.no_program_templates"/></a>
+                    <a><br/><spring:message code="message.no_program_templates"/></a>
                 </span>
             </c:otherwise>
         </c:choose>
@@ -78,7 +79,7 @@
                         <td>
                             <springForm:input path="name"/>
                         </td>
-                        <td><springForm:errors path="name" cssClass="error" /></td>
+                        <td><springForm:errors path="name" cssClass="error"/></td>
                     </tr>
                     <tr>
                         <td>
@@ -89,7 +90,7 @@
                         <td>
                             <springForm:textarea path="description"/>
                         </td>
-                        <td><springForm:errors path="description" cssClass="error" /></td>
+                        <td><springForm:errors path="description" cssClass="error"/></td>
                     </tr>
                     <tr>
                         <td>
@@ -100,7 +101,7 @@
                         <td>
                             <springForm:textarea path="note"/>
                         </td>
-                        <td><springForm:errors path="note" cssClass="error" /></td>
+                        <td><springForm:errors path="note" cssClass="error"/></td>
                     </tr>
                     <tr>
                         <td colspan="2"><input type="submit" value="<spring:message code="message.add"/>"/></td>

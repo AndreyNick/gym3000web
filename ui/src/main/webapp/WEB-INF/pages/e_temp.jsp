@@ -6,12 +6,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title><spring:message code="message.gym3000_title"/></title>
 </head>
-<spring:url value="/p_temp" var="programTemplateUrl" />
-<spring:url value="/e_temp" var="exerciseTemplateUrl" />
+<spring:url value="/p_temp" var="programTemplateUrl"/>
+<spring:url value="/e_temp" var="exerciseTemplateUrl"/>
 <body>
 <div id="wrap">
     <div id="header">
@@ -30,40 +30,23 @@
     <div id="main">
         <c:choose>
             <c:when test="${edit}">
-                <form:form method="post" action="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit" commandName="exerciseTemplate">
+                <form:form method="post" action="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit"
+                           commandName="exerciseTemplate">
                     <table>
                         <tr>
                             <td colspan="2" align="center"><spring:message code="message.edit_exercise_template"/></td>
                         </tr>
                         <tr>
-                            <td>
-                                <form:label path="name">
-                                    <spring:message code="message.name"/>
-                                </form:label>
-                            </td>
-                            <td>
-                                <form:input path="name"/>
-                            </td>
+                            <td><form:label path="name"><spring:message code="message.name"/></form:label></td>
+                            <td><form:input path="name"/></td>
                         </tr>
                         <tr>
-                            <td>
-                                <form:label path="description">
-                                    <spring:message code="message.description"/>
-                                </form:label>
-                            </td>
-                            <td>
-                                <form:textarea path="description"/>
-                            </td>
+                            <td><form:label path="description"><spring:message code="message.description"/></form:label></td>
+                            <td><form:textarea path="description"/></td>
                         </tr>
                         <tr>
-                            <td>
-                                <form:label path="note">
-                                    <spring:message code="message.note"/>
-                                </form:label>
-                            </td>
-                            <td>
-                                <form:textarea path="note"/>
-                            </td>
+                            <td><form:label path="note"><spring:message code="message.note"/></form:label></td>
+                            <td><form:textarea path="note"/></td>
                         </tr>
                         <tr>
                             <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
@@ -73,11 +56,12 @@
             </c:when>
             <c:otherwise>
                 <h1>${exerciseTemplate.name}</h1>
+
                 <h2><spring:message code="message.description"/>: ${exerciseTemplate.description}</h2>
+
                 <h2><spring:message code="message.note"/>: ${exerciseTemplate.note}</h2>
-                <form method="post" action="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit_form">
-                    <input type="submit" value="<spring:message code="message.edit"/>"/>
-                </form>
+
+                <a href="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit_form"><spring:message code="message.edit"/></a>
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -98,8 +82,7 @@
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <a><spring:message code="message.exercise_template_dont_used_by_program_template"/></a>
-                    <br />
+                    <a><br/><spring:message code="message.exercise_template_dont_used_by_program_template"/></a>
                 </span>
             </c:otherwise>
         </c:choose>
@@ -108,7 +91,5 @@
 <div id="footer">
     <a><spring:message code="message.test_version"/></a>
 </div>
-
-
 </body>
 </html>

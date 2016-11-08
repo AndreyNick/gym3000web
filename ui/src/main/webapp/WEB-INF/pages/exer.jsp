@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title><spring:message code="message.gym3000_title"/></title>
 </head>
@@ -70,12 +70,14 @@
             </c:when>
             <c:otherwise>
                 <h1>${exercise.name}</h1>
+
                 <h2><spring:message code="message.program"/>: <a href="/prog/${program.id}">${program.name}</a></h2>
+
                 <h2><spring:message code="message.description"/>: ${exercise.description}</h2>
+
                 <h2><spring:message code="message.note"/>: ${exercise.note}</h2>
-                <form method="post" action="/exer/${exercise.id}/edit_form">
-                    <input type="submit" value="<spring:message code="message.edit"/>"/>
-                </form>
+
+                <a href="/exer/${exercise.id}/edit_form"><spring:message code="message.edit"/></a>
             </c:otherwise>
         </c:choose>
 
@@ -96,16 +98,18 @@
                         <c:choose>
                             <c:when test="${set.id == edit_set}">
                                 <form:form method="post" action="/exer/${exercise.id}/edit/${set.id}" commandName="set">
-                                        <tr>
-                                            <td><form:input placeholder="${set.times}" path="times" type="number" /></td>
-                                            <td><form:input placeholder="${set.weight}" path="weight" type="number" /></td>
-                                            <td><form:radiobutton path="measure" value="KG" /><spring:message code="message.kg"/>
-                                                <form:radiobutton path="measure" value="POUND" /><spring:message code="message.pound"/>
-                                            </td>
-                                            <td colspan="2">
-                                                <input type="submit" value="<spring:message code="message.save"/>"/>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td><form:input placeholder="${set.times}" path="times" type="number"/></td>
+                                        <td><form:input placeholder="${set.weight}" path="weight" type="number"/></td>
+                                        <td><form:radiobutton path="measure" value="KG"/><spring:message
+                                                code="message.kg"/>
+                                            <form:radiobutton path="measure" value="POUND"/><spring:message
+                                                    code="message.pound"/>
+                                        </td>
+                                        <td colspan="2">
+                                            <input type="submit" value="<spring:message code="message.save"/>"/>
+                                        </td>
+                                    </tr>
                                 </form:form>
                             </c:when>
                             <c:otherwise>
@@ -113,8 +117,10 @@
                                     <td>${set.times}</td>
                                     <td>${set.weight}</td>
                                     <td>${set.measure}</td>
-                                    <td><a href="/exer/${exercise.id}/delete/${set.id}"><spring:message code="message.delete"/></a></td>
-                                    <td><a href="/exer/${exercise.id}/edit_form/${set.id}"><spring:message code="message.edit"/></a></td>
+                                    <td><a href="/exer/${exercise.id}/delete/${set.id}"><spring:message
+                                            code="message.delete"/></a></td>
+                                    <td><a href="/exer/${exercise.id}/edit_form/${set.id}"><spring:message
+                                            code="message.edit"/></a></td>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
@@ -124,7 +130,7 @@
             <c:otherwise>
                 <span class="text">
                     <spring:message code="message.no_sets_here"/>
-                    <br />
+                    <br/>
                 </span>
             </c:otherwise>
         </c:choose>
@@ -141,7 +147,7 @@
                         </springForm:label>
                     </td>
                     <td>
-                        <springForm:input path="times" type="number" />
+                        <springForm:input path="times" type="number"/>
                     </td>
                 </tr>
                 <tr>
@@ -151,7 +157,7 @@
                         </springForm:label>
                     </td>
                     <td>
-                        <springForm:input path="weight" type="number" />
+                        <springForm:input path="weight" type="number"/>
                     </td>
                 </tr>
                 <tr>
@@ -161,8 +167,8 @@
                         </springForm:label>
                     </td>
                     <td>
-                        <form:radiobutton path="measure" value="KG" /><spring:message code="message.kg"/>
-                        <form:radiobutton path="measure" value="POUND" /><spring:message code="message.pound"/>
+                        <form:radiobutton path="measure" value="KG"/><spring:message code="message.kg"/>
+                        <form:radiobutton path="measure" value="POUND"/><spring:message code="message.pound"/>
                     </td>
                 </tr>
                 <tr>

@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -19,54 +19,37 @@
             <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
         </span>
         <span id="lang">
-            <a href="<c:url value="/logout" />">Logout</a>
+            <a href="<c:url value="/logout" />"><spring:message code="message.logout"/></a>
             <a href="?lang=en"><spring:message code="message.language_en"/></a>
             |
             <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
         </span>
     </div>
     <div id="main">
-
-                <form:form method="post" action="/profile_save" commandName="user">
-                    <table>
-                        <tr>
-                            <td colspan="2">Edit User:</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form:label path="name">
-                                    <spring:message code="message.name"/>
-                                </form:label></td>
-                            <td>
-                                <form:input path="name"/>
-                            </td>
-                            <td><springForm:errors path="name" cssClass="error" /></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form:label path="login">
-                                    Login
-                                </form:label></td>
-                            <td>
-                                <form:label path="login">${user.login}</form:label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form:label path="password">
-                                    Password
-                                </form:label></td>
-                            <td>
-                                <form:textarea path="password"/>
-                            </td>
-                            <td><springForm:errors path="password" cssClass="error" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
-                        </tr>
-                    </table>
-                </form:form>
-
+        <form:form method="post" action="/profile_save" commandName="user">
+            <table>
+                <tr>
+                    <td colspan="2"><spring:message code="message.edit_user"/>:</td>
+                </tr>
+                <tr>
+                    <td><form:label path="name"><spring:message code="message.name"/></form:label></td>
+                    <td><form:input path="name"/></td>
+                    <td><springForm:errors path="name" cssClass="error"/></td>
+                </tr>
+                <tr>
+                    <td><form:label path="login"><spring:message code="message.login"/></form:label></td>
+                    <td><form:label path="login">${user.login}</form:label></td>
+                </tr>
+                <tr>
+                    <td><form:label path="password"><spring:message code="message.password"/></form:label></td>
+                    <td><form:textarea path="password"/></td>
+                    <td><springForm:errors path="password" cssClass="error"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
+                </tr>
+            </table>
+        </form:form>
     </div>
 </div>
 <div id="footer">

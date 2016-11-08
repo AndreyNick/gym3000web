@@ -7,12 +7,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title><spring:message code="message.gym3000_title"/></title>
 </head>
-<spring:url value="/prog_list/add" var="programAddUrl" />
-<spring:url value="/prog_list/delete" var="programDeleteUrl" />
+<spring:url value="/prog_list/add" var="programAddUrl"/>
+<spring:url value="/prog_list/delete" var="programDeleteUrl"/>
 <body>
 <div id="wrap">
     <div id="header">
@@ -47,7 +47,8 @@
                             <td>${program.date}</td>
                             <td>${program.description}</td>
                             <td>${program.note}</td>
-                            <td><a href="${programDeleteUrl}/${program.id}"><spring:message code="message.delete"/></a></td>
+                            <td><a href="${programDeleteUrl}/${program.id}"><spring:message code="message.delete"/></a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -55,7 +56,7 @@
             <c:otherwise>
                 <span class="text">
                     <spring:message code="message.no_programs_here"/>
-                    <br />
+                    <br/>
                 </span>
             </c:otherwise>
 
@@ -77,7 +78,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <form:label path="date" >
+                        <form:label path="date">
                             <spring:message code="message.date"/> (yyyy-MM-dd)
                         </form:label>
                     </td>

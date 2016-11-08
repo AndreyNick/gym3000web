@@ -8,7 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -19,6 +19,7 @@
     </div>
     <div id="main">
         <h1><spring:message code="message.no_such_page"/></h1>
+
         <h2><spring:message code="message.back_home_page"/></h2>
     </div>
 </div>

@@ -8,7 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="message.gym3000_title"/></title>
-    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" >
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
@@ -23,10 +23,9 @@
         </span>
     </div>
     <div id="main">
-        <h1>Error 403</h1>
-        You are not authorized
-        <a href="<c:url value="/logout" />">Relogin</a>
-
+        <h1><spring:message code="error.error_403"/></h1>
+        <spring:message code="error.not_authorized"/>
+        <a href="<c:url value="/logout" />"><spring:message code="message.login"/></a>
     </div>
 </div>
 <div id="footer">
