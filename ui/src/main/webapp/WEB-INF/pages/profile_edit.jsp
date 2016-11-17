@@ -41,11 +41,6 @@
                     <td><form:label path="login">${user.login}</form:label></td>
                 </tr>
                 <tr>
-                    <td><form:label path="password"><spring:message code="message.password"/></form:label></td>
-                    <td><form:textarea path="password"/></td>
-                    <td><springForm:errors path="password" cssClass="error"/></td>
-                </tr>
-                <tr>
                     <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
                 </tr>
             </table>

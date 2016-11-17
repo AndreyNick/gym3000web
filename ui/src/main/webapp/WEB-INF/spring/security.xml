@@ -25,18 +25,21 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
                     authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler" />
 
         <logout delete-cookies="JSESSIONID" />
-        <!--<csrf />-->
+        <csrf />
 
         <remember-me
                 token-validity-seconds="1209600"
                 remember-me-parameter="remember-me"
                 data-source-ref="dataSource" />
-
     </http>
 
     <authentication-manager >
-        <authentication-provider user-service-ref="springSecurityUserService"/>
+        <authentication-provider user-service-ref="springSecurityUserService">
+            <password-encoder ref="bcryptEncoder"/>
+        </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
     <beans:bean id="springSecurityUserService" class="com.gym.springsecurity.service.SpringSecurityUserService" />
 

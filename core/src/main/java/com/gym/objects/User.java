@@ -29,6 +29,8 @@ public class User implements HasIdAndName {
     @Column(name = "password", nullable = false)
     private String password;
 
+    private String confirmPassword;
+
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
@@ -101,6 +103,10 @@ public class User implements HasIdAndName {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
     @Override

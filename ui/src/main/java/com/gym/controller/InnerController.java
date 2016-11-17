@@ -55,7 +55,6 @@ public class InnerController extends GenericController {
         } else {
             User u = userService.read(getPrincipal().getId());
             u.setName(user.getName());
-            u.setPassword(user.getPassword());
             userService.update(u);
             return "redirect:/profile";
         }

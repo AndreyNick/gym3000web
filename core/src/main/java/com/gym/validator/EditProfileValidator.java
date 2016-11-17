@@ -20,6 +20,5 @@ public class EditProfileValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.password.empty");
     }
 }

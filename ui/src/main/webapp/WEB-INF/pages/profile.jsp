@@ -33,8 +33,6 @@
 
             <h2><spring:message code="message.login"/>: ${user.login}</h2>
 
-            <h2><spring:message code="message.password"/>: ${user.password}</h2>
-
             <a href="<c:url value="/profile_edit"/>"><spring:message code="message.edit"/></a>
         </div>
     </div>
