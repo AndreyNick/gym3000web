@@ -29,6 +29,7 @@ public class User implements HasIdAndName {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Transient
     private String confirmPassword;
 
     @Column(name = "enabled", nullable = false)
@@ -107,6 +108,10 @@ public class User implements HasIdAndName {
 
     public String getConfirmPassword() {
         return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     @Override

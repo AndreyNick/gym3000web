@@ -30,8 +30,10 @@ public class RegistrationController extends GenericController {
     public String addProgram(@ModelAttribute("user") @Validated User user,
                              BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
+            System.out.println("error");
             return "register";
         } else {
+            System.out.println("no error");
             user.setEnabled(true); //todo maybe creation user should be removed from here
             userService.create(user);
             roleService.create(new Role(user, Role.USER));

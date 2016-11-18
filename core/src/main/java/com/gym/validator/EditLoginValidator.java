@@ -7,7 +7,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-public class EditProfileValidator implements Validator {
+import java.util.NoSuchElementException;
+
+public class EditLoginValidator implements Validator {
 
     @Autowired
     UserService userService;
@@ -19,6 +21,13 @@ public class EditProfileValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name.empty");
+        User user = (User) o;
+        User readByLoginUser = null;
+        try{
+            readByLoginUser = userService.readByLogin(user.getLogin());
+        } catch (NoSuchElementException ignored) {
+        }
+        if(readByLoginUser != null) errors.rejectValue("login", "error.login.alreadyExists");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "error.login.empty");
     }
 }

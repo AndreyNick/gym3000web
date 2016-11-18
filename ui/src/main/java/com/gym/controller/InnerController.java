@@ -2,7 +2,7 @@ package com.gym.controller;
 
 import com.gym.objects.Role;
 import com.gym.objects.User;
-import com.gym.validator.EditProfileValidator;
+import com.gym.validator.EditNameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,11 +22,11 @@ import java.util.Map;
 public class InnerController extends GenericController {
 
     @Autowired
-    private EditProfileValidator editProfileValidator;
+    private EditNameValidator editNameValidator;
 
     @InitBinder("user")
     private void initBinder(WebDataBinder binder) {
-        binder.setValidator(editProfileValidator);
+        binder.setValidator(editNameValidator);
     }
 
     @RequestMapping(value = "/")

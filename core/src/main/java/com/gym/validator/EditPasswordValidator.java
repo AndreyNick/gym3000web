@@ -7,9 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import java.util.NoSuchElementException;
-
-public class RegistrationValidator implements Validator {
+public class EditPasswordValidator implements Validator {
 
     @Autowired
     UserService userService;
@@ -21,23 +19,15 @@ public class RegistrationValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        User user = (User) o;
-        User readByLoginUser = null;
-        try{
-            readByLoginUser = userService.readByLogin(user.getLogin());
-        } catch (NoSuchElementException ignored) {
-        }
-        if(readByLoginUser != null) errors.rejectValue("login", "error.login.alreadyExists");
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "error.login.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.password.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "error.password.empty");
 
-        if(!user.getPassword().isEmpty()
-                && !user.getConfirmPassword().isEmpty()
-                && !user.getPassword().equals(user.getConfirmPassword())) {
+        //if values are not empty
+        User user = (User) o;
+        if(!user.getLogin().equals(user.getConfirmPassword())) {
             errors.rejectValue("password", "error.password.passwords_not_equal");
         }
+
     }
 }
