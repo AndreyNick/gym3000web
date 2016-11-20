@@ -4,6 +4,7 @@ import com.gym.objects.Role;
 import com.gym.objects.User;
 import com.gym.validator.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,9 @@ public class RegistrationController extends GenericController {
     @Autowired
     private RegistrationValidator registrationValidator;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @InitBinder("user")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(registrationValidator);
@@ -35,6 +39,7 @@ public class RegistrationController extends GenericController {
         } else {
             System.out.println("no error");
             user.setEnabled(true); //todo maybe creation user should be removed from here
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.create(user);
             roleService.create(new Role(user, Role.USER));
             return "redirect:/login";

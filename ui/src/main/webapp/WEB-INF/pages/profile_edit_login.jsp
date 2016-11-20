@@ -26,19 +26,19 @@
         </span>
     </div>
     <div id="main">
-        <form:form method="post" action="/profile_save" commandName="user">
+        <form:form method="post" action="/profile_save_login" commandName="user">
             <table>
                 <tr>
-                    <td colspan="2"><spring:message code="message.edit_user"/>:</td>
+                    <td colspan="2">Edit login:</td>
                 </tr>
                 <tr>
-                    <td><form:label path="name"><spring:message code="message.name"/></form:label></td>
-                    <td><form:input path="name"/></td>
-                    <td><springForm:errors path="name" cssClass="error"/></td>
+                    <td><label>Old login:</label></td>
+                    <td><label>${user.login}</label></td>
                 </tr>
                 <tr>
-                    <td><form:label path="login"><spring:message code="message.login"/></form:label></td>
-                    <td><form:label path="login">${user.login}</form:label></td>
+                    <td><form:label path="login">New login:</form:label></td>
+                    <td><form:input path="login"/></td>
+                    <td><springForm:errors path="login" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>

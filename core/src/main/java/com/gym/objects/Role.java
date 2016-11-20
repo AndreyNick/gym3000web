@@ -80,7 +80,7 @@ public class Role {
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user=" + user.getLogin() +
                 ", role='" + role + '\'' +
                 '}';
     }

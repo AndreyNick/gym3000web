@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by anni0913 on 26.09.2016.
+ * User
  */
 
 @Entity
@@ -31,6 +31,9 @@ public class User implements HasIdAndName {
 
     @Transient
     private String confirmPassword;
+
+    @Transient
+    private String previousPassword;
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
@@ -114,6 +117,14 @@ public class User implements HasIdAndName {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getPreviousPassword() {
+        return previousPassword;
+    }
+
+    public void setPreviousPassword(String previousPassword) {
+        this.previousPassword = previousPassword;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -145,7 +156,10 @@ public class User implements HasIdAndName {
                 ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", previousPassword='" + previousPassword + '\'' +
                 ", enabled=" + enabled +
+                ", roles=" + roles +
                 '}';
     }
 }
