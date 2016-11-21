@@ -88,6 +88,8 @@
     <!--Validators-->
     <bean id="programTemplateValidator" class="com.gym.validator.ProgramTemplateValidator" />
     <bean id="registrationValidator" class="com.gym.validator.RegistrationValidator" />
-    <bean id="editProfileValidator" class="com.gym.validator.EditNameValidator" />
+    <bean id="editNameValidator" class="com.gym.validator.EditNameValidator" />
+    <bean id="editLoginValidator" class="com.gym.validator.EditLoginValidator" />
+    <bean id="editPasswordValidator" class="com.gym.validator.EditPasswordValidator" />
 
 </beans>

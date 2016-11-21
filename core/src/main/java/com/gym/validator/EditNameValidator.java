@@ -19,6 +19,7 @@ public class EditNameValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
+        System.out.println("in Name");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name.empty");
     }
 }

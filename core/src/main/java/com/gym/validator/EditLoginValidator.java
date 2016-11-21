@@ -21,6 +21,7 @@ public class EditLoginValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
+        System.out.println("in Login");
         User user = (User) o;
         User readByLoginUser = null;
         try{

@@ -50,6 +50,7 @@
                     <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
                 </tr>
             </table>
+            <input id="login" name="login" type="hidden" path="login" value="${user.login}"/>
         </form:form>
     </div>
 </div>

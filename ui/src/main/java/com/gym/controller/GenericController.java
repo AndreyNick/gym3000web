@@ -12,34 +12,34 @@ import org.springframework.stereotype.Controller;
 public class GenericController {
 
     @Autowired
-    ProgramTemplateService programTemplateService;
+    public ProgramTemplateService programTemplateService;
 
     @Autowired
-    ProgramFactory programFactory;
+    public ProgramFactory programFactory;
 
     @Autowired
-    SetService setService;
+    public SetService setService;
 
     @Autowired
-    RoleService roleService;
+    public RoleService roleService;
 
     @Autowired
-    ProgramService programService;
+    public ProgramService programService;
 
     @Autowired
-    ExerciseTemplateService exerciseTemplateService;
+    public ExerciseTemplateService exerciseTemplateService;
 
     @Autowired
-    ExerciseService exerciseService;
+    public ExerciseService exerciseService;
 
     @Autowired
-    UserService userService;
+    public UserService userService;
 
     protected User getPrincipal(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            System.out.print("principal: " + ((UserDetails)principal).getUsername());
+            System.out.println("principal: " + ((UserDetails)principal).getUsername());
             return userService.readByLogin(((UserDetails)principal).getUsername());
         } else {
             return null;

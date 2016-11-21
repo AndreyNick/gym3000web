@@ -29,13 +29,10 @@ public class SpringSecurityUserService implements UserDetailsService {
     @Transactional(readOnly=true)
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername : "+login);
         User user;
         try{
             user = userService.readByLogin(login);
-            System.out.println("User : "+user);
         } catch (NoSuchElementException nse) {
-            System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
 
@@ -53,10 +50,8 @@ public class SpringSecurityUserService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         for(Role role : roleService.getRolesByUserId(user.getId())){
-            System.out.println("Role : " + role);
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRole()));
         }
-        System.out.print("authorities :"+authorities);
         return authorities;
     }
 }
