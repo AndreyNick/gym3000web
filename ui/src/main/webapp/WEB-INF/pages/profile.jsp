@@ -38,7 +38,8 @@
                     <td><a href="<c:url value="/profile_edit_login"/>"><spring:message code="message.edit"/></a></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><a href="<c:url value="/profile_edit_password"/>">Edit password</a></td>
+                    <td colspan="2"><a href="<c:url value="/profile_edit_password"/>">
+                        <spring:message code="message.edit_password"/></a></td>
                 </tr>
             </table>
         </div>
