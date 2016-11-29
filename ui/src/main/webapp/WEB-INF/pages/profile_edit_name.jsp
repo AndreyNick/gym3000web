@@ -29,14 +29,14 @@
         <form:form method="post" action="/profile_save_name" commandName="user">
             <table>
                 <tr>
-                    <td colspan="2">Edit name:</td>
+                    <td colspan="2"><spring:message code="message.edit_name"/>:</td>
                 </tr>
                 <tr>
-                    <td><form:label path="name">Old name:</form:label></td>
-                    <td><form:label path="name"/>${user.name}</td>
+                    <td><form:label path="name"><spring:message code="message.old_name"/>:</form:label></td>
+                    <td><form:label path="name"/>${username}</td>
                 </tr>
                 <tr>
-                    <td><form:label path="name">New name:</form:label></td>
+                    <td><form:label path="name"><spring:message code="message.new_name"/>:</form:label></td>
                     <td><form:input path="name"/></td>
                     <td><springForm:errors path="name" cssClass="error"/></td>
                 </tr>

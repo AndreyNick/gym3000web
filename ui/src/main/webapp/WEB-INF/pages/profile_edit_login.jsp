@@ -29,14 +29,14 @@
         <form:form method="post" action="/profile_save_login" commandName="user">
             <table>
                 <tr>
-                    <td colspan="2">Edit login:</td>
+                    <td colspan="2"><spring:message code="message.edit_login"/>:</td>
                 </tr>
                 <tr>
-                    <td><label>Old login:</label></td>
+                    <td><label><spring:message code="message.old_login"/>:</label></td>
                     <td><label>${user.login}</label></td>
                 </tr>
                 <tr>
-                    <td><form:label path="login">New login:</form:label></td>
+                    <td><form:label path="login"><spring:message code="message.new_login"/>:</form:label></td>
                     <td><form:input path="login"/></td>
                     <td><springForm:errors path="login" cssClass="error"/></td>
                 </tr>

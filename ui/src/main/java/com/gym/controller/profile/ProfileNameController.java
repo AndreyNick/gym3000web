@@ -28,7 +28,9 @@ public class ProfileNameController extends GenericController {
 
     @RequestMapping(value = "/profile_edit_name", method = RequestMethod.GET)
     public String userEditNameForm(Map<String, Object> map) {
-        map.put("user", getPrincipal());
+        User user = userService.readByLogin(getPrincipal().getLogin());
+        map.put("user", user);
+        map.put("username", user.getName());
         return "profile_edit_name";
     }
 

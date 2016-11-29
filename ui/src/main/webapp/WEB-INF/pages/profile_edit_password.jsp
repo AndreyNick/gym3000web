@@ -29,20 +29,20 @@
         <form:form method="post" action="/profile_save_password" modelAttribute="passwordHolder">
             <table>
                 <tr>
-                    <td colspan="2">Edit password:</td>
+                    <td colspan="2"><spring:message code="message.edit_password"/>:</td>
                 </tr>
                 <tr>
-                    <td><label>password</label></td>
+                    <td><label><spring:message code="message.password"/></label></td>
                     <td><form:input path="password" type="password"/></td>
                     <td><springForm:errors path="password" cssClass="error"/></td>
                 </tr>
                 <tr>
-                    <td><label>newPassword</label></td>
+                    <td><label><spring:message code="message.new_password"/></label></td>
                     <td><form:input path="newPassword" type="password"/></td>
                     <td><springForm:errors path="newPassword" cssClass="error"/></td>
                 </tr>
                 <tr>
-                    <td><label>confirmNewPassword</label></td>
+                    <td><label><spring:message code="message.repeat_new_password"/></label></td>
                     <td><form:input path="confirmNewPassword" type="password"/></td>
                     <td><springForm:errors path="confirmNewPassword" cssClass="error"/></td>
                 </tr>
