@@ -35,11 +35,11 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
     <authentication-manager >
         <authentication-provider user-service-ref="springSecurityUserService">
-            <password-encoder ref="bcryptEncoder"/>
+            <password-encoder ref="encoder"/>
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
     <beans:bean id="springSecurityUserService" class="com.gym.springsecurity.service.SpringSecurityUserService" />
 

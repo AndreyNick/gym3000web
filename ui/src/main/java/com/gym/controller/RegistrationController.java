@@ -23,7 +23,7 @@ public class RegistrationController extends GenericController {
     private RegistrationValidator registrationValidator;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder encoder;
 
     @InitBinder("user")
     private void initBinder(WebDataBinder binder) {
@@ -39,7 +39,7 @@ public class RegistrationController extends GenericController {
         } else {
             System.out.println("no error");
             user.setEnabled(true); //todo maybe creation user should be removed from here
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setPassword(encoder.encode(user.getPassword()));
             userService.create(user);
             roleService.create(new Role(user, Role.USER));
             return "redirect:/login";

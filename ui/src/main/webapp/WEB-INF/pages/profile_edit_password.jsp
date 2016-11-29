@@ -26,25 +26,25 @@
         </span>
     </div>
     <div id="main">
-        <form:form method="post" action="/profile_save_password" commandName="user">
+        <form:form method="post" action="/profile_save_password" modelAttribute="passwordHolder">
             <table>
                 <tr>
                     <td colspan="2">Edit password:</td>
                 </tr>
                 <tr>
-                    <td><label>Current password:</label></td>
-                    <td><form:input path="previousPassword" type="password"/></td>
-                    <td><springForm:errors path="previousPassword" cssClass="error"/></td>
-                </tr>
-                <tr>
-                    <td><label>New password:</label></td>
+                    <td><label>password</label></td>
                     <td><form:input path="password" type="password"/></td>
                     <td><springForm:errors path="password" cssClass="error"/></td>
                 </tr>
                 <tr>
-                    <td><label>New password again:</label></td>
-                    <td><form:input path="confirmPassword" type="password"/></td>
-                    <td><springForm:errors path="confirmPassword" cssClass="error"/></td>
+                    <td><label>newPassword</label></td>
+                    <td><form:input path="newPassword" type="password"/></td>
+                    <td><springForm:errors path="newPassword" cssClass="error"/></td>
+                </tr>
+                <tr>
+                    <td><label>confirmNewPassword</label></td>
+                    <td><form:input path="confirmNewPassword" type="password"/></td>
+                    <td><springForm:errors path="confirmNewPassword" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="<spring:message code="message.save"/>"/></td>
