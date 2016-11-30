@@ -92,10 +92,10 @@
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <a><spring:message code="message.no_exercises_in_program"/>
-                        <br/>
-                        <spring:message code="message.you_can_add_them"/></a>
-                    <br/>
+                    <a>
+                        <br/><spring:message code="message.no_exercises_in_program"/>
+                        <br/><spring:message code="message.you_can_add_them"/>
+                    </a>
                 </span>
             </c:otherwise>
         </c:choose>

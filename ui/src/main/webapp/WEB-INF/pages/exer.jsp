@@ -129,8 +129,7 @@
             </c:when>
             <c:otherwise>
                 <span class="text">
-                    <spring:message code="message.no_sets_here"/>
-                    <br/>
+                    <br/><spring:message code="message.no_sets_here"/>
                 </span>
             </c:otherwise>
         </c:choose>
