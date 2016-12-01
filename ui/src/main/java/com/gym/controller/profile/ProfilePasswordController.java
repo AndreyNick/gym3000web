@@ -44,9 +44,7 @@ public class ProfilePasswordController extends GenericController {
         if(bindingResult.hasErrors()) {
             return "profile_edit_password";
         } else {
-            System.out.println("passwordHolder:"  + passwordHolder);
             User u = userService.read(getPrincipal().getId());
-            System.out.println("u:" + u);
             u.setPassword(passwordEncoder.encode(passwordHolder.getNewPassword()));
             userService.update(u);
             return "redirect:/logout";

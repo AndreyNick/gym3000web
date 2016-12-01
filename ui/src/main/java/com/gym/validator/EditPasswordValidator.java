@@ -41,12 +41,10 @@ public class EditPasswordValidator implements Validator {
             if(!passwordHolder.getNewPassword().equals(passwordHolder.getConfirmNewPassword())) {
                 errors.rejectValue("password", "error.password.passwords_not_equal");
             }
-
-            //todo provide encode validation
-            /*if(passwordHolder.getPassword().equals(passwordHolder.getNewPassword()) &&
-                    !(passwordEncoder.encode(passwordHolder.getConfirmNewPassword())).equals(currentUser.getPassword())) {
+            if(passwordHolder.getConfirmNewPassword().equals(passwordHolder.getNewPassword()) &&
+                    !(encoder.matches(passwordHolder.getPassword(), currentUser.getPassword()))) {
                 errors.rejectValue("previousPassword", "error.password.previous_password_incorrect");
-            }*/
+            }
         }
     }
 }
