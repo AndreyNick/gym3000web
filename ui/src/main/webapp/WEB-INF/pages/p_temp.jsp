@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,17 +16,19 @@
 <body>
 <div id="wrap">
     <div id="header">
-        <span id="links">
-            <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
+        <div id="items">
+            <span id="links">
+                <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
             <a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates"/></a>
             <a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates"/></a>
-        </span>
-        <span id="lang">
-            <a href="<c:url value="/profile"/>">${user.name}</a>
-            <a href="?lang=en"><spring:message code="message.language_en"/></a>
-            |
-            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
-        </span>
+            </span>
+            <span id="lang">
+                <a href="<c:url value="/profile"/>">${user.name}</a>
+                <a href="?lang=en"><spring:message code="message.language_en"/></a>
+                |
+                <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+            </span>
+        </div>
     </div>
     <div id="main">
         <c:choose>
@@ -60,7 +63,9 @@
 
                 <h2><spring:message code="message.note"/>: ${programTemplate.note}</h2>
 
-                <a href="${programTemplateUrl}/edit_form"><spring:message code="message.edit"/></a>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="${programTemplateUrl}/edit_form"><spring:message code="message.edit"/></a>
+                </sec:authorize>
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -81,8 +86,13 @@
                             <td>${exerciseTemplate.name}</td>
                             <td>${exerciseTemplate.description}</td>
                             <td>${exerciseTemplate.note}</td>
-                            <td><a href="${programTemplateUrl}/unbind/${exerciseTemplate.id}"><spring:message
-                                    code="message.unbind"/></a></td>
+                            <td>
+                                <sec:authorize access="hasRole('ADMIN')">
+                                    <a href="${programTemplateUrl}/unbind/${exerciseTemplate.id}"><spring:message
+                                            code="message.unbind"/>
+                                    </a>
+                                </sec:authorize>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -95,37 +105,40 @@
                 </span>
             </c:otherwise>
         </c:choose>
-        <c:choose>
-            <c:when test="${!empty exerciseTemplateListAll}">
-                <table class="data">
-                    <tr>
-                        <td colspan="4" align="center"><spring:message code="message.all_program_templates"/></td>
-                    </tr>
-                    <tr>
-                        <th><spring:message code="message.name"/></th>
-                        <th><spring:message code="message.description"/></th>
-                        <th><spring:message code="message.note"/></th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
+
+        <sec:authorize access="hasRole('ADMIN')">
+            <c:choose>
+                <c:when test="${!empty exerciseTemplateListAll}">
+                    <table class="data">
                         <tr>
-                            <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a>
-                            </td>
-                            <td>${exerciseTemplate.description}</td>
-                            <td>${exerciseTemplate.note}</td>
-                            <td><a href="${programTemplateUrl}/bind/${exerciseTemplate.id}"><spring:message
-                                    code="message.bind"/></a></td>
+                            <td colspan="4" align="center"><spring:message code="message.all_program_templates"/></td>
                         </tr>
-                    </c:forEach>
-                </table>
-            </c:when>
-            <c:otherwise>
+                        <tr>
+                            <th><spring:message code="message.name"/></th>
+                            <th><spring:message code="message.description"/></th>
+                            <th><spring:message code="message.note"/></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <c:forEach items="${exerciseTemplateListAll}" var="exerciseTemplate">
+                            <tr>
+                                <td><a href="${exerciseTemplateUrl}/${exerciseTemplate.id}">${exerciseTemplate.name}</a>
+                                </td>
+                                <td>${exerciseTemplate.description}</td>
+                                <td>${exerciseTemplate.note}</td>
+                                <td><a href="${programTemplateUrl}/bind/${exerciseTemplate.id}"><spring:message
+                                        code="message.bind"/></a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </c:when>
+                <c:otherwise>
                 <span class="text">
                     <spring:message code="message.no_exercise_templates"/>
                     <br/>
                 </span>
-            </c:otherwise>
-        </c:choose>
+                </c:otherwise>
+            </c:choose>
+        </sec:authorize>
     </div>
 </div>
 <div id="footer">

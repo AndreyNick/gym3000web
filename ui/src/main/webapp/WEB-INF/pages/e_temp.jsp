@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,17 +16,17 @@
 <body>
 <div id="wrap">
     <div id="header">
-        <span id="links">
-            <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
-            <a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates"/></a>
-            <a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates"/></a>
-        </span>
-        <span id="lang">
-            <a href="<c:url value="/profile"/>">${user.name}</a>
-            <a href="?lang=en"><spring:message code="message.language_en"/></a>
-            |
-            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
-        </span>
+        <div id="items">
+            <span id="links">
+                <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
+            </span>
+            <span id="lang">
+                <a href="<c:url value="/profile"/>">${user.name}</a>
+                <a href="?lang=en"><spring:message code="message.language_en"/></a>
+                |
+                <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+            </span>
+        </div>
     </div>
     <div id="main">
         <c:choose>
@@ -61,7 +62,11 @@
 
                 <h2><spring:message code="message.note"/>: ${exerciseTemplate.note}</h2>
 
-                <a href="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit_form"><spring:message code="message.edit"/></a>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a href="${exerciseTemplateUrl}/${exerciseTemplate.id}/edit_form">
+                        <spring:message code="message.edit"/>
+                    </a>
+                </sec:authorize>
             </c:otherwise>
         </c:choose>
         <c:choose>

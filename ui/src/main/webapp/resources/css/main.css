@@ -33,18 +33,17 @@ th, td {
     text-align: left;
 }
 
-/*#links {
-    float: left;
-}*/
-
 #lang {
     float: right;
 }
 
 #header {
-    padding: 20px;
+    height: 60px;
     background-color: #efefef;
     text-transform: uppercase;
+}
+#items {
+    padding: 20px;
 }
 
 #main {

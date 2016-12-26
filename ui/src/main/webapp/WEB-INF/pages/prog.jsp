@@ -18,16 +18,18 @@
 <body>
 <div id="wrap">
     <div id="header">
-        <span id="links">
-            <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
-            <a href="<c:url value="/prog_list"/>"><spring:message code="message.programs"/></a>
-        </span>
-        <span id="lang">
-            <a href="<c:url value="/profile"/>">${user.name}</a>
-            <a href="?lang=en"><spring:message code="message.language_en"/></a>
-            |
-            <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
-        </span>
+        <div id="items">
+            <span id="links">
+                <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
+                <a href="<c:url value="/prog_list"/>"><spring:message code="message.programs"/></a>
+            </span>
+            <span id="lang">
+                <a href="<c:url value="/profile"/>">${user.name}</a>
+                <a href="?lang=en"><spring:message code="message.language_en"/></a>
+                |
+                <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
+            </span>
+        </div>
     </div>
     <div id="main">
         <c:choose>

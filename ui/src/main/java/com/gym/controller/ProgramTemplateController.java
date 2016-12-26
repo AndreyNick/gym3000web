@@ -42,8 +42,8 @@ public class ProgramTemplateController extends GenericController {
     public String createNewProgramByProgramTemplate(@PathVariable("id") Long id) {
         ProgramTemplate pt = programTemplateService.read(id);
         User user = getPrincipal();
-        programFactory.createProgram(pt, user);
-        return "redirect:/p_temp_list";
+        Long newProgramId = programFactory.createProgram(pt, user);
+        return "redirect:/prog/" + newProgramId;
     }
 
     @RequestMapping(value = "/p_temp_list/add", method = RequestMethod.POST)

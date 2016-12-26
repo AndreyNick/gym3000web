@@ -34,8 +34,8 @@ public class ProgramController extends GenericController {
     public String addProgram(@ModelAttribute("program") Program program) {
         User user = getPrincipal();
         program.setUser(userService.read(user.getId()));
-        programService.create(program);
-        return "redirect:/prog_list";
+        Long newProgramId = programService.create(program);
+        return "redirect:/prog/" + newProgramId;
     }
 
     @RequestMapping(value = "/prog/{id}", method = RequestMethod.GET)

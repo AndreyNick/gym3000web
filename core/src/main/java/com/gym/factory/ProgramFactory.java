@@ -17,13 +17,13 @@ public class ProgramFactory {
     ExerciseService exerciseService;
 
     //todo: decide how to name programs
-    public void createProgram(ProgramTemplate programTemplate, User user) {
+    public Long createProgram(ProgramTemplate programTemplate, User user) {
         Program newProgram = new Program(user,
                 programTemplate.getName(),
                 new Date(System.currentTimeMillis()),
                 programTemplate.getDescription(),
                 programTemplate.getNote());
-        programService.create(newProgram);
+        Long newProgramId = programService.create(newProgram);
         List<ExerciseTemplate> exerciseTemplateList = programTemplate.getExerciseTemplateList();
         for(ExerciseTemplate exerciseTemplate:exerciseTemplateList) {
             exerciseService.create(new Exercise(newProgram,
@@ -32,5 +32,6 @@ public class ProgramFactory {
                     exerciseTemplate.getDescription(),
                     exerciseTemplate.getNote()));
         }
+        return newProgramId;
     }
 }
