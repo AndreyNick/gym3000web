@@ -1,0 +1,50 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+    <http auto-config="true" use-expressions="true">
+        <!--todo tune it correctly-->
+        <intercept-url pattern="/home" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/prog_list**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/prog/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/profile*" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/exer/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/p_temp_list**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/p_temp/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/e_temp_list/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/e_temp/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/users/*" access="hasRole('ADMIN')" />
+
+        <form-login login-page="/login"
+                    username-parameter="ssoId"
+                    password-parameter="password"
+                    authentication-failure-url="/error403"
+                    authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler" />
+
+        <logout delete-cookies="JSESSIONID" />
+        <csrf />
+
+        <remember-me
+                token-validity-seconds="1209600"
+                remember-me-parameter="remember-me"
+                data-source-ref="dataSource" />
+    </http>
+
+    <authentication-manager >
+        <authentication-provider user-service-ref="springSecurityUserService">
+            <password-encoder ref="encoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+    <beans:bean id="springSecurityUserService" class="com.gym.springsecurity.service.SpringSecurityUserService" />
+
+    <beans:bean id="savedRequestAwareAuthenticationSuccessHandler"
+          class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <beans:property name="targetUrlParameter" value="targetUrl" />
+    </beans:bean>
+</beans:beans>

@@ -2,43 +2,25 @@ package com.gym.controller;
 
 import com.gym.objects.Exercise;
 import com.gym.objects.ExerciseTemplate;
-import com.gym.objects.Owner;
 import com.gym.objects.Program;
-import com.gym.service.ExerciseService;
-import com.gym.service.ExerciseTemplateService;
-import com.gym.service.OwnerService;
-import com.gym.service.ProgramService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import com.gym.objects.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.util.Map;
 
 @Controller
-@SessionAttributes("owner")
-@Scope("session")
-public class ProgramController {
-
-    @Autowired
-    ProgramService programService;
-
-    @Autowired
-    ExerciseTemplateService exerciseTemplateService;
-
-    @Autowired
-    ExerciseService exerciseService;
-
-    @Autowired
-    OwnerService ownerService;
+public class ProgramController extends GenericController {
 
     @RequestMapping(value = "/prog_list", method = RequestMethod.GET)
-    public String printPrograms(Map<String, Object> map,
-                                HttpSession session) {
-        Owner owner = (Owner)session.getAttribute("owner");
+    public String printPrograms(Map<String, Object> map) {
+        User user = getPrincipal();
+        map.put("user", user);
         map.put("program", new Program());
-        map.put("programList", programService.getProgramsByOwnerId(owner.getId()));
+        map.put("programList", programService.getProgramsByUserId(user.getId()));
         return "prog_list";
     }
 
@@ -49,17 +31,18 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog_list/add", method = RequestMethod.POST)
-    public String addProgram(@ModelAttribute("program") Program program,
-                             HttpSession session) {
-        Owner owner = (Owner)session.getAttribute("owner");
-        program.setOwner(ownerService.read(owner.getId()));
-        programService.create(program);
-        return "redirect:/prog_list";
+    public String addProgram(@ModelAttribute("program") Program program) {
+        User user = getPrincipal();
+        program.setUser(userService.read(user.getId()));
+        Long newProgramId = programService.create(program);
+        return "redirect:/prog/" + newProgramId;
     }
 
     @RequestMapping(value = "/prog/{id}", method = RequestMethod.GET)
-    public String singleProgram(Map<String, Object> map, @PathVariable("id") Long id) {
+    public String singleProgram(Map<String, Object> map,
+                                @PathVariable("id") Long id) {
         Program p =  programService.read(id);
+        map.put("user", getPrincipal());
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
@@ -69,8 +52,10 @@ public class ProgramController {
     }
 
     @RequestMapping("/prog/{id}/edit_form")
-    public String editFormSingleProgram(Map<String, Object> map, @PathVariable("id") Long id) {
+    public String editFormSingleProgram(Map<String, Object> map,
+                                        @PathVariable("id") Long id) {
         Program p =  programService.read(id);
+        map.put("user", getPrincipal());
         map.put("program", p);
         map.put("exercise", new Exercise());
         map.put("exerciseTemplate", new ExerciseTemplate());
@@ -81,13 +66,8 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog/{id}/edit", method = RequestMethod.POST)
-    public String editSingleProgramTemplate(@ModelAttribute("programTemplate") /*@Validated*/ Program program,
-                                            @PathVariable("id") Long id,
-                                            BindingResult result) {
-        if (result.hasErrors()) {
-            System.out.println("ERROR.");
-            return "redirect:/prog/" + id + "/edit_form";
-        } else {
+    public String editSingleProgramTemplate(@ModelAttribute("programTemplate") Program program,
+                                            @PathVariable("id") Long id) {
             Program p = programService.read(id);
             p.setName(program.getName());
             p.setDescription(program.getDescription());
@@ -98,12 +78,10 @@ public class ProgramController {
             //i think it would be better to get full program from jsp and update it
             //not find it by id and update
             //todo: think about it
-        }
     }
 
     @RequestMapping(value = "/prog/{programId}/add/{exerciseTemplateId}")
-    public String addExerciseToProgram(
-            @PathVariable("programId") Long programId,
+    public String addExerciseToProgram(@PathVariable("programId") Long programId,
             @PathVariable("exerciseTemplateId") Long exerciseTemplateId) {
         Program p = programService.read(programId);
         ExerciseTemplate et = exerciseTemplateService.read(exerciseTemplateId);
@@ -115,8 +93,7 @@ public class ProgramController {
     }
 
     @RequestMapping(value = "/prog/{programId}/delete/{exerciseId}")
-    public String deleteExerciseFromProgram(
-            @PathVariable("programId") Long programId,
+    public String deleteExerciseFromProgram(@PathVariable("programId") Long programId,
             @PathVariable("exerciseId") Long exerciseId) {
         Program p = programService.read(programId);
         p.deleteExercise(exerciseService.read(exerciseId));

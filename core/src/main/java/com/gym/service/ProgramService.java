@@ -24,7 +24,7 @@ public class ProgramService
     }
 
     @Transactional
-    public List<Program> getProgramsByOwnerId(Long ownerId) {
-        return pdi.getProgramsByOwnerId(ownerId);
+    public List<Program> getProgramsByUserId(Long userId) {
+        return pdi.getProgramsByUserId(userId);
     }
 }

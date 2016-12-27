@@ -65,20 +65,24 @@
     <bean id="programTemplate" class="com.gym.objects.ProgramTemplate">
         <constructor-arg index="0" value="program"/>
     </bean>
-    <bean id="ownerDao" class="com.gym.dao.impl.GenericDaoImpl">
-        <constructor-arg value="com.gym.objects.Owner"/>
+    <bean id="userDao" class="com.gym.dao.impl.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="ownerService" class="com.gym.service.OwnerService">
-        <constructor-arg ref="ownerDao"/>
+    <bean id="userService" class="com.gym.service.UserService">
+        <constructor-arg ref="userDao"/>
+    </bean>
+    <bean id="setDao" class="com.gym.dao.impl.SetDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="setService" class="com.gym.service.SetService">
+        <constructor-arg ref="setDao"/>
+    </bean>
+    <bean id="roleDao" class="com.gym.dao.impl.RoleDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="roleService" class="com.gym.service.RoleService">
+        <constructor-arg ref="roleDao"/>
     </bean>
     <bean id="programFactory" class="com.gym.factory.ProgramFactory"/>
     <bean id="programHelper" class="com.gym.helper.ProgramHelper"/>
-    <!--Validators-->
-    <bean id="programTemplateValidator" class="com.gym.validator.ProgramTemplateValidator" />
-    <bean id="messageSource"
-                class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:validation" />
-        <property name="defaultEncoding" value="UTF-8" />
-    </bean>
 </beans>

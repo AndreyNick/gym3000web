@@ -33,23 +33,26 @@ th, td {
     text-align: left;
 }
 
-/*#links {
-    float: left;
-}*/
-
 #lang {
     float: right;
 }
 
 #header {
-    padding: 20px;
+    height: 60px;
     background-color: #efefef;
     text-transform: uppercase;
+}
+#items {
+    padding: 20px;
 }
 
 #main {
     padding-top: 25px;
     padding-bottom: 100px;
+}
+
+#text {
+    padding-top: 25px;
 }
 
 #footer {

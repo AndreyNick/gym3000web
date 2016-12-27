@@ -23,8 +23,8 @@ public class Program implements HasIdAndName{
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", nullable = false)
-    private Owner owner;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -45,8 +45,8 @@ public class Program implements HasIdAndName{
     public Program() {
     }
 
-    public Program(Owner owner, String name, Date date, String description, String note) {
-        this.owner = owner;
+    public Program(User user, String name, Date date, String description, String note) {
+        this.user = user;
         this.name = name;
         this.date = date;
         this.description = description;
@@ -105,12 +105,12 @@ public class Program implements HasIdAndName{
         this.note = note;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Program implements HasIdAndName{
         }
         return "\nProgram{id=" + id +
                 ", name='" + name +
-                /*", owner='" + owner!=null?owner.getName():"null" +*/
+                /*", user='" + user!=null?user.getName():"null" +*/
                 ", date='" + date.toString() +
                 "', \n\texerciseList=[" + exercises + ']' +
                 '}';
