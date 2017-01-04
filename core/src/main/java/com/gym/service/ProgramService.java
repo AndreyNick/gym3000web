@@ -1,8 +1,6 @@
 package com.gym.service;
 
-import com.gym.dao.GenericDao;
 import com.gym.dao.impl.ProgramDaoImpl;
-import com.gym.objects.Exercise;
 import com.gym.objects.Program;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,4 +25,10 @@ public class ProgramService
     public List<Program> getProgramsByUserId(Long userId) {
         return pdi.getProgramsByUserId(userId);
     }
+
+    @Transactional
+    public List<Program> getProgramsByText(String text) {
+        return pdi.getProgramsByText(text);
+    }
+
 }
