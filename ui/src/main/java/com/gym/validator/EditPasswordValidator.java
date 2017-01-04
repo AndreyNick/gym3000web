@@ -17,7 +17,6 @@ public class EditPasswordValidator implements Validator {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-
     @Override
     public boolean supports(Class<?> aClass) {
         return PasswordHolder.class.isAssignableFrom(aClass);

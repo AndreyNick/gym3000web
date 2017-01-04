@@ -16,19 +16,7 @@
 <body>
 <div id="wrap">
     <div id="header">
-        <div id="items">
-            <span id="links">
-                <a href="<c:url value="/home"/>"><spring:message code="message.home"/></a>
-            <a href="<c:url value="/p_temp_list"/>"><spring:message code="message.program_templates"/></a>
-            <a href="<c:url value="/e_temp_list"/>"><spring:message code="message.exercise_templates"/></a>
-            </span>
-            <span id="lang">
-                <a href="<c:url value="/profile"/>">${user.name}</a>
-                <a href="?lang=en"><spring:message code="message.language_en"/></a>
-                |
-                <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
-            </span>
-        </div>
+        <jsp:include page="additionalPages/homeProgExerLangHeader.jsp"/>
     </div>
     <div id="main">
         <c:choose>
@@ -142,7 +130,7 @@
     </div>
 </div>
 <div id="footer">
-    <a><spring:message code="message.test_version"/></a>
+    <jsp:include page="additionalPages/footer.jsp"/>
 </div>
 </body>
 </html>
