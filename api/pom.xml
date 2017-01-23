@@ -32,7 +32,7 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
+        <!--<pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -45,7 +45,7 @@
                     </configuration>
                 </plugin>
             </plugins>
-        </pluginManagement>
+        </pluginManagement>-->
 
         <finalName>gym3000-api</finalName>
     </build>
