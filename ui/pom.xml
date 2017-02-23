@@ -12,7 +12,7 @@
     <name>gym3000web-ui</name>
 
     <build>
-        <finalName>gym3000-ui</finalName>
+        <finalName>ROOT</finalName>
     </build>
 
     <dependencies>
