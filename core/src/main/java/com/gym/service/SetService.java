@@ -18,7 +18,7 @@ public class SetService extends AbstractGenericService<Set, Long> {
         this.sdi = sdi;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Set> getSetsByExerciseId(Long exerciseId) {
         return sdi.getSetsByExerciseId(exerciseId);
     }

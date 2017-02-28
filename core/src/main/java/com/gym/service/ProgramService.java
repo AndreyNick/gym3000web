@@ -21,12 +21,12 @@ public class ProgramService
         this.pdi = pdi;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Program> getProgramsByUserId(Long userId) {
         return pdi.getProgramsByUserId(userId);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Program> getProgramsByText(String text) {
         return pdi.getProgramsByText(text);
     }
