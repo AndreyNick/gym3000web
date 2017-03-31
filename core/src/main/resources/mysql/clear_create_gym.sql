@@ -1,7 +1,6 @@
 
 delimiter $$
 
-
 DROP DATABASE `gym`$$
 CREATE DATABASE `gym`$$
 USE `gym`$$
@@ -21,7 +20,7 @@ CREATE TABLE `persistent_logins` (
   `token` VARCHAR(64) NOT NULL,
   `last_used` TIMESTAMP NOT NULL,
   PRIMARY KEY (`series`)
-) DEFAULT CHARSET=utf8$$;
+) DEFAULT CHARSET=utf8$$
 
 CREATE TABLE `role` (
   `role_id` INT (11) NOT NULL AUTO_INCREMENT,

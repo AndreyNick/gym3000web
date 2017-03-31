@@ -1,6 +1,5 @@
 package com.gym.dao.impl;
 
-import com.gym.objects.Exercise;
 import com.gym.objects.Program;
 import org.hibernate.Query;
 
@@ -18,6 +17,13 @@ public class ProgramDaoImpl extends GenericDaoImpl {
     public List<Program> getProgramsByUserId(Long userId) {
         Query query = getSession().createQuery("from Program where user.id = :userId");
         query.setParameter("userId", userId);
+        List list = query.list();
+        return list;
+    }
+
+    public List<Program> getProgramsByText(String text) {
+        Query query = getSession().createQuery("from Program where user.name in :text");
+        query.setParameter("text", text);
         List list = query.list();
         return list;
     }

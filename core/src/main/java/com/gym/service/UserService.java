@@ -16,13 +16,13 @@ public class UserService extends AbstractGenericService<User, Long> {
         this.udi = udi;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public User readByName(String name) {
         User user = udi.readByName(name);
         return user;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public User readByLogin(String login) {
         User user = udi.readByLogin(login);
         return user;

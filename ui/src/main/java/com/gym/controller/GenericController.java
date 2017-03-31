@@ -39,7 +39,6 @@ public class GenericController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            System.out.println("principal: " + ((UserDetails)principal).getUsername());
             return userService.readByLogin(((UserDetails)principal).getUsername());
         } else {
             return null;

@@ -14,12 +14,7 @@
 <div id="wrap">
     <div id="header">
         <div id="items">
-            <span id="lang">
-                <a href="<c:url value="/profile"/>">${user.name}</a>
-                <a href="?lang=en"><spring:message code="message.language_en"/></a>
-                |
-                <a href="?lang=ru"><spring:message code="message.language_ru"/></a>
-            </span>
+            <jsp:include page="additionalPages/langHeader.jsp"/>
         </div>
     </div>
     <div id="main">
@@ -29,7 +24,7 @@
     </div>
 </div>
 <div id="footer">
-    <a><spring:message code="message.test_version"/></a>
+    <jsp:include page="additionalPages/footer.jsp"/>
 </div>
 </body>
 </html>

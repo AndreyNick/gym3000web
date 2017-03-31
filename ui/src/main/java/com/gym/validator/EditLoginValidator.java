@@ -21,12 +21,14 @@ public class EditLoginValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        System.out.println("in Login");
         User user = (User) o;
         User readByLoginUser = null;
         try{
             readByLoginUser = userService.readByLogin(user.getLogin());
         } catch (NoSuchElementException ignored) {
+            //this exception means that user doesn't exists
+            //and it is positive sign
+            //we don't nee to mark this exception somehow
         }
         if(readByLoginUser != null) errors.rejectValue("login", "error.login.alreadyExists");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "error.login.empty");
