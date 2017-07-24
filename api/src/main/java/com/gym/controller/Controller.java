@@ -19,7 +19,7 @@ public class Controller {
     @RequestMapping(value="/",
             method = RequestMethod.GET)
     public String test() {
-        return "it works";
+        return "it works test";
     }
 
     @RequestMapping(value="/users",
